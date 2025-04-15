@@ -104,3 +104,7 @@ Chart.jsとgem gon を使って表示。
 最終的に、最もスコアの高い香り系統を結果として表示  
 * 香水ボトル画像の投稿  
 ActiveStorage + ImageMagickで実装予定
+
+
+# 画面遷移図
+Figma：https://www.figma.com/design/JgVPqQJR4IKZjYn4MqqM16/Untitled?node-id=0-1&t=w2gMPuBt5JpfR7jp-1
