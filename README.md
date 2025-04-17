@@ -107,3 +107,7 @@ ActiveStorage + ImageMagickで実装予定
 
 # 画面遷移図
 Figma：https://www.figma.com/design/JgVPqQJR4IKZjYn4MqqM16/Untitled?node-id=0-1&t=w2gMPuBt5JpfR7jp-1
+
+
+# ER図
+https://drive.google.com/file/d/1b6N3M7ooy3jwg23Yeb78RvLS1b1RQF3H/view?usp=sharing
