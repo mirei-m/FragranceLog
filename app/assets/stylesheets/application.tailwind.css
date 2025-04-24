@@ -1,4 +1,36 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: light --default, cupcake, dark, cyberpunk;
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "lemonade";
+  default: false;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(97% 0.008 101.277);
+  --color-base-200: oklch(97% 0.008 101.277);
+  --color-base-300: oklch(94% 0.05 101.54);
+  --color-base-content: oklch(26% 0.05 172.552);
+  --color-primary: oklch(70% 0.19 127.8);
+  --color-primary-content: oklch(98% 0.02 120.757);
+  --color-secondary: oklch(77.75% 0.17 111.09);
+  --color-secondary-content: oklch(15.55% 0.039 111.09);
+  --color-accent: oklch(85.39% 0.15 100.73);
+  --color-accent-content: oklch(17.078% 0.04 100.73);
+  --color-neutral: oklch(45% 0.05 168.94);
+  --color-neutral-content: oklch(90.196% 0.015 108.6);
+  --color-info: oklch(86.19% 0.047 224.14);
+  --color-info-content: oklch(17.238% 0.009 224.14);
+  --color-success: oklch(86.19% 0.047 157.85);
+  --color-success-content: oklch(17.238% 0.009 157.85);
+  --color-warning: oklch(86.19% 0.047 102.15);
+  --color-warning-content: oklch(17.238% 0.009 102.15);
+  --color-error: oklch(86.19% 0.047 25.85);
+  --color-error-content: oklch(17.238% 0.009 25.85);
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
 }
