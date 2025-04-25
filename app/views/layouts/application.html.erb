@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-theme="lemonade">
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= content_for(:title) || "FragranceLog" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -15,15 +15,19 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <script src="https://kit.fontawesome.com/6dfec99a84.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="min-h-screen">
     <div class="flex flex-col min-h-screen">
       <%= render 'shared/header' %>
 
+      <div class="flex flex-1">
+      <%= render 'shared/menu' %> <!-- 左メニュー -->
       <main class="flex-1 px-4 py-6">
         <%= yield %>
       </main>
+    </div>
 
       <%= render 'shared/footer' %>
     </div>
