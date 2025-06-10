@@ -28,9 +28,9 @@ class FragrancesController < ApplicationController
 
   def update
     if @fragrance.update(fragrance_params)
-      redirect_to @fragrance, notice: t("defaults.flash_message.update", item: Fragrance.model_name.human)
+      redirect_to @fragrance, notice: t("defaults.flash_message.updated", item: Fragrance.model_name.human)
     else
-      flash.now[:alert] = t("defaults.flash_message.not_update", item: Fragrance.model_name.human)
+      flash.now[:alert] = t("defaults.flash_message.not_updated", item: Fragrance.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end
