@@ -10,7 +10,7 @@ ja:
     edit: 編集
     show: 詳細
     delete: 削除
-    back_index: 一覧に戻る
+    back: 戻る
     search_word: 検索
     delete_confirm: 削除しますか？
     flash_message:
@@ -28,5 +28,9 @@ ja:
       title: マイ香水一覧
     new:
       title: マイ香水を登録
+      submit: マイ香水に登録する
     show:
       title: マイ香水詳細
+    edit:
+      title: マイ香水編集
+      submit: 更新する

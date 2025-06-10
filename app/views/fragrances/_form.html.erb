@@ -1,0 +1,23 @@
+<%= form_with model: @fragrance, local: true do |form| %>
+  <% if @fragrance.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+      <ul>
+        <% @fragrance.errors.full_messages.each do |message| %>
+          <li>・<%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :brand, class: "block font-bold mb-1" %>
+    <%= form.text_field :brand, class: "border rounded w-full py-2 px-3" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :name, class: "block font-bold mb-1" %>
+    <%= form.text_field :name, class: "border rounded w-full py-2 px-3" %>
+  </div>
+
+  <%= form.submit t(".submit"), class: "btn btn-primary" %>
+<% end %>
