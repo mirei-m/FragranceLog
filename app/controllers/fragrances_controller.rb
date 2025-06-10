@@ -1,0 +1,26 @@
+class FragrancesController < ApplicationController
+  before_action :authenticate_user!
+  def index
+    @fragrances = current_user.fragrances
+  end
+
+  def new
+    @fragrance = Fragrance.new
+  end
+
+  def create
+    @fragrance = current_user.fragrances.build(fragrance_params)
+    if @fragrance.save
+      redirect_to fragrances_path, notice: t('defaults.flash_message.created', item: Board.model_name.human)
+    else
+      flash.now[:alert] = t('defaults.flash_message.not_created', item: Board.model_name.human)
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def fragrance_params
+    params.require(:fragrance).permit(:name, :brand)
+  end
+end
