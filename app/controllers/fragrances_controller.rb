@@ -1,6 +1,6 @@
 class FragrancesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_fragrance, only: [:show, :edit, :update, :destroy]
+  before_action :set_fragrance, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @fragrances = current_user.fragrances

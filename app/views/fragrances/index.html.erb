@@ -5,7 +5,7 @@
     <% @fragrances.each do |fragrance| %>
       <li class="p-4 border rounded shadow-sm bg-white">
         <strong><%= fragrance.brand %></strong> - <%= fragrance.name %>
-        <%= link_to "詳細", fragrance_path(fragrance), class: "btn btn-sm" %>
+        <%= link_to t('defaults.show'), fragrance_path(fragrance), class: "btn btn-sm" %>
       </li>
     <% end %>
   </ul>

@@ -8,6 +8,9 @@ ja:
     create: 作成
     post: 投稿
     edit: 編集
+    show: 詳細
+    delete: 削除
+    back_index: 一覧に戻る
     search_word: 検索
     delete_confirm: 削除しますか？
     flash_message:
