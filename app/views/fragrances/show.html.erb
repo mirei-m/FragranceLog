@@ -1,0 +1,10 @@
+<h1><%= t('.title') %></h1>
+
+<h2>香水名： <%= @fragrance.name %></h2>
+<p>ブランド名: <%= @fragrance.brand %></p>
+
+<div class="mt-4 space-x-2">
+  <%= link_to "編集", '#', class: "btn btn-outline" %>
+  <%= link_to "削除", '#', method: :delete, data: { confirm: t('defaults.delete_confirm') }, class: "btn btn-error" %>
+  <%= link_to "一覧に戻る", fragrances_path, class: "btn" %>
+</div
