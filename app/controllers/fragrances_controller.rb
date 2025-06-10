@@ -1,5 +1,7 @@
 class FragrancesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_fragrance, only: [ :show, :edit, :update, :destroy ]
+
   def index
     @fragrances = current_user.fragrances
   end
@@ -18,9 +20,25 @@ class FragrancesController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
   private
 
   def fragrance_params
     params.require(:fragrance).permit(:name, :brand)
+  end
+
+  def set_fragrance
+    @fragrance = current_user.fragrances.find(params[:id])
   end
 end
