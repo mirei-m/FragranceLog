@@ -11,9 +11,9 @@ class FragrancesController < ApplicationController
   def create
     @fragrance = current_user.fragrances.build(fragrance_params)
     if @fragrance.save
-      redirect_to fragrances_path, notice: t('defaults.flash_message.created', item: Fragrance.model_name.human)
+      redirect_to fragrances_path, notice: t("defaults.flash_message.created", item: Fragrance.model_name.human)
     else
-      flash.now[:alert] = t('defaults.flash_message.not_created', item: Fragrance.model_name.human)
+      flash.now[:alert] = t("defaults.flash_message.not_created", item: Fragrance.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end
