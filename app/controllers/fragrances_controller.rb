@@ -36,6 +36,8 @@ class FragrancesController < ApplicationController
   end
 
   def destroy
+    @fragrance.destroy
+    redirect_to fragrances_path, notice: t("defaults.flash_message.deleted", item: Fragrance.model_name.human)
   end
 
   private
