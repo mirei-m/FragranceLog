@@ -2,9 +2,13 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      fragrance: マイ香水
     attributes:
       user:
         name: アカウント名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
+      fragrance:
+        name: 香水名
+        brand: ブランド名
