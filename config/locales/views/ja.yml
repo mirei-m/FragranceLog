@@ -20,3 +20,8 @@ ja:
   header:
     login: ログイン
     logout: ログアウト
+  fragrances:
+    index:
+      title: マイ香水一覧
+    new:
+      title: マイ香水を登録

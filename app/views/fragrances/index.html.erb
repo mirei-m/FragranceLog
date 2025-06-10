@@ -1,0 +1,15 @@
+<h1><%= t('.title') %></h1>
+
+<% if @fragrances.any? %>
+  <ul class="space-y-4">
+    <% @fragrances.each do |fragrance| %>
+      <li class="p-4 border rounded shadow-sm bg-white">
+        <strong><%= fragrance.brand %></strong> - <%= fragrance.name %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>まだ香水が登録されていません。</p>
+<% end %>
+
+<%= link_to "香水を登録する", new_fragrance_path, class: "btn btn-primary" %>
