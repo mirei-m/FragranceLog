@@ -1,0 +1,5 @@
+<h2><%= t('.title') %></h2>
+
+<%= render "form", fragrance: @fragrance %>
+
+<%= link_to t('defaults.back'), fragrance_path(@fragrance), class: "btn mt-4" %>

@@ -4,7 +4,7 @@
 <p><%= t('activerecord.attributes.fragrance.brand') %>: <%= @fragrance.brand %></p>
 
 <div class="mt-4 space-x-2">
-  <%= link_to t('defaults.edit'), '#', class: "btn btn-outline" %>
+  <%= link_to t('defaults.edit'), edit_fragrance_path(@fragrance), class: "btn btn-outline" %>
   <%= link_to t('defaults.delete'), '#', method: :delete, data: { confirm: t('defaults.delete_confirm') }, class: "btn btn-error" %>
   <%= link_to t('defaults.back_index'), fragrances_path, class: "btn" %>
 </div>
