@@ -7,10 +7,10 @@
         <span class="text-sm font-semibold">
           <%= current_user.name %>さん
         </span>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline" %>
+        <%= link_to t('header.logout'), destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline" %>
       <% else %>
-        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+        <%= link_to t('header.sign_up'), new_user_registration_path, class: "btn btn-primary" %>
+        <%= link_to t('header.login'), new_user_session_path, class: "btn btn-primary" %>
       <% end %>
     </div>
   </header>

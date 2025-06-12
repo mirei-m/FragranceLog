@@ -24,11 +24,12 @@ ja:
   header:
     login: ログイン
     logout: ログアウト
+    sign_up: アカウント登録
   fragrances:
     index:
       title: マイ香水一覧
     new:
-      title: マイ香水を登録
+      title: マイ香水登録
     show:
       title: マイ香水詳細
     edit:
