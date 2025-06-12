@@ -5,6 +5,9 @@
     <% @fragrances.each do |fragrance| %>
       <li class="p-4 border rounded shadow-sm bg-white">
         <strong><%= fragrance.brand %></strong> - <%= fragrance.name %>
+        <% if fragrance.image.attached? %>
+          <%= image_tag fragrance.image, class: "rounded shadow-md mb-4" %>
+        <% end %>
         <%= link_to t('defaults.show'), fragrance_path(fragrance), class: "btn btn-sm" %>
       </li>
     <% end %>
