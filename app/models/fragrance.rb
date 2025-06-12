@@ -3,4 +3,5 @@ class Fragrance < ApplicationRecord
   validates :brand, presence: true, length: { maximum: 50 }
 
   belongs_to :user
+  has_one_attached :image
 end

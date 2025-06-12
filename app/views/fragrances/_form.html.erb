@@ -21,5 +21,10 @@
     <p class="text-sm text-gray-500">※100文字以内</p>
   </div>
 
+  <div class="mb-4">
+    <%= form.label :image, class: "block font-bold mb-1" %>
+    <%= form.file_field :image, class: "file-input file-input-bordered w-full" %>
+  </div>
+
   <%= form.submit class: "btn btn-primary" %>
 <% end %>

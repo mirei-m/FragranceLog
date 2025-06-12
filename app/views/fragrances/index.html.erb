@@ -1,10 +1,17 @@
 <h1><%= t('.title') %></h1>
 
 <% if @fragrances.any? %>
-  <ul class="space-y-4">
+  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     <% @fragrances.each do |fragrance| %>
       <li class="p-4 border rounded shadow-sm bg-white">
         <strong><%= fragrance.brand %></strong> - <%= fragrance.name %>
+        <div class="w-full h-[200px] overflow-hidden mb-4">
+          <% if fragrance.image.attached? %>
+            <%= image_tag fragrance.image, class: "w-full h-full object-cover rounded shadow" %>
+          <% else %>
+            <%= image_tag "default_fragrance.png", class: "w-full h-full object-cover rounded shadow" %>
+          <% end %>
+        </div>
         <%= link_to t('defaults.show'), fragrance_path(fragrance), class: "btn btn-sm" %>
       </li>
     <% end %>
