@@ -1,5 +1,6 @@
 module CalendarsHelper
   def weather_icon_tag(key)
+    return unless key.present?
     style = {
       sunny:    '#FFD43B',
       cloudy:   '#9CA3AF',
@@ -18,6 +19,7 @@ module CalendarsHelper
   end
 
   def mood_icon_tag(key)
+    return unless key.present?
     style = {
       happy:   '#FACC15', # yellow-400
       relaxed: '#6EE7B7', # green-300

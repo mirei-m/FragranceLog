@@ -39,6 +39,13 @@ ja:
       title: 記録カレンダー
     new:
       title: 新しく記録する
+    show:
+      title: カレンダー詳細
+      blank: (記録なし)
+      record: の記録
   simple_calendar:
     previous: "<<"
     next: ">>"
+  time:
+    formats:
+      japanese: "%-m月%-d日(%a)"

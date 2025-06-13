@@ -1,5 +1,6 @@
 class CalendarsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_calendar, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @calendars = current_user.calendars.includes(:fragrance)
@@ -17,6 +18,18 @@ class CalendarsController < ApplicationController
       flash.now[:alert] = t("defaults.flash_message.not_created", item: Calendar.model_name.human)
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private

@@ -7,12 +7,16 @@
 
   <% calendars.each do |calendar| %>
     <div class="mt-1">
-      <div><%= calendar.fragrance.name %></div>
+      <%= link_to calendar_path(calendar), class: "text-sm text-green-800 font-semibold hover:underline" do %>
+        <%= calendar.fragrance.name %>
+      <% end %>
 
-      <% if calendar.fragrance.image.attached? %>
-        <%= image_tag calendar.fragrance.image, class: "w-24 h-24 object-contain rounded" %>
-      <% else %>
-        <%= image_tag "default_fragrance.png", class: "mt-1 rounded w-24 h-24 object-contain" %>
+      <%= link_to calendar_path(calendar) do %>
+        <% if calendar.fragrance.image.attached? %>
+          <%= image_tag calendar.fragrance.image, class: "w-24 h-24 object-contain rounded" %>
+        <% else %>
+          <%= image_tag "default_fragrance.png", class: "mt-1 rounded w-24 h-24 object-contain" %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
