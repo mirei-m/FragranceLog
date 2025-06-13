@@ -1,0 +1,11 @@
+<h2 class="text-xl font-bold mb-4">記録カレンダー</h2>
+
+<%= month_calendar events: @calendars do |date, calendars| %>
+  <%= date.day %>
+
+  <% calendars.each do |calendar| %>
+    <div>
+      <%= calendar.fragrance.name %>
+    </div>
+  <% end %>
+<% end %>

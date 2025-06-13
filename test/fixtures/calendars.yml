@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2025-06-13 14:00:45
+  weather: MyString
+  mood: MyString
+  memo: MyText
+  user: one
+  fragrance: one
+
+two:
+  start_time: 2025-06-13 14:00:45
+  weather: MyString
+  mood: MyString
+  memo: MyText
+  user: two
+  fragrance: two
