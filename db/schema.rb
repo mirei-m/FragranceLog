@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_13_050045) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_13_071946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,8 +44,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_13_050045) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "start_time", null: false
-    t.string "weather"
-    t.string "mood"
+    t.integer "weather"
+    t.integer "mood"
     t.text "memo"
     t.bigint "user_id", null: false
     t.bigint "fragrance_id", null: false
