@@ -10,6 +10,6 @@ class CreateCalendars < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
-    add_index :calendars, [:user_id, :start_time], unique: true
+    add_index :calendars, [ :user_id, :start_time ], unique: true
   end
 end
