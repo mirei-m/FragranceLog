@@ -4,8 +4,16 @@
   <%= date.day %>
 
   <% calendars.each do |calendar| %>
-    <div>
-      <%= calendar.fragrance.name %>
+    <div class="mt-1">
+      <div><%= calendar.fragrance.name %></div>
+
+      <% if calendar.fragrance.image.attached? %>
+        <%= image_tag calendar.fragrance.image, class: "mt-1 rounded" %>
+      <% else %>
+        <%= image_tag "default_fragrance.png", class: "mt-1 rounded w-24 h-24 object-contain" %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
+
+<%= link_to "新しく記録する", new_calendar_path, class: "btn btn-primary" %>

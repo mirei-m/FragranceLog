@@ -1,0 +1,74 @@
+<h2 class="text-xl font-bold mb-4">香水の使用記録を追加</h2>
+
+<%= form_with model: @calendar, local: true do |f| %>
+  <% if @calendar.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+      <ul>
+        <% @calendar.errors.full_messages.each do |message| %>
+          <li>・<%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- 日付 -->
+  <div class="mb-4">
+    <%= f.label :start_time, "日付", class: "block font-semibold mb-1" %>
+    <%= f.date_select :start_time, class: "w-full border rounded p-2" %>
+  </div>
+
+  <!-- 香水 -->
+  <div class="mb-4">
+    <%= f.label :fragrance_id, "使用した香水", class: "block font-semibold mb-1" %>
+    <%= f.collection_select :fragrance_id, current_user.fragrances, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
+  </div>
+
+  <!-- 天気 -->
+  <div class="mb-4">
+    <%= f.label :weather, "天気", class: "block font-semibold mb-1" %>
+    <div class="flex gap-4">
+      <% Calendar.weathers.each do |key, _value| %>
+        <label class="flex items-center gap-1">
+          <%= f.radio_button :weather, key %>
+          <%# 絵文字でラベル表示 %>
+          <%= {
+            sunny: "☀️",
+            cloudy: "☁️",
+            rainy: "☔️",
+            snowy: "❄️"
+          }[key.to_sym] %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 気分 -->
+  <div class="mb-4">
+    <%= f.label :mood, "気分", class: "block font-semibold mb-1" %>
+    <div class="flex flex-wrap gap-4">
+      <% Calendar.moods.each do |key, _value| %>
+        <label class="flex items-center gap-1">
+          <%= f.radio_button :mood, key %>
+          <%= {
+            happy: "😊",
+            relaxed: "😌",
+            neutral: "😐",
+            sad: "😢",
+            angry: "😠",
+            tired: "😴"
+          }[key.to_sym] %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- メモ -->
+  <div class="mb-4">
+    <%= f.label :memo, "メモ", class: "block font-semibold mb-1" %>
+    <%= f.text_area :memo, rows: 3, class: "w-full border rounded p-2" %>
+  </div>
+
+  <!-- ボタン -->
+  <div class="flex justify-end">
+    <%= f.submit "記録する", class: "btn btn-primary" %>
+  </div>
+<% end %>
