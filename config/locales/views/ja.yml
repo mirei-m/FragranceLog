@@ -25,6 +25,11 @@ ja:
     login: ログイン
     logout: ログアウト
     sign_up: アカウント登録
+  menu:
+    fragrance: マイ香水
+    calendar: カレンダー
+    diagnosis: 香り診断
+    review: レビュー
   fragrances:
     index:
       title: マイ香水一覧

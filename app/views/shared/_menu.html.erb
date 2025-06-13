@@ -2,25 +2,25 @@
   <li>
     <%= link_to fragrances_path, class:"mb-2 p-4 rounded" do %>
       <i class="fa-solid fa-spray-can-sparkles"></i>
-      <span>マイ香水</span>
+      <span><%= t('menu.fragrance') %></span>
     <% end %>
   </li>
   <li>
     <%= link_to calendars_path, class:"mb-2 p-4 rounded" do %>
       <i class="fa-solid fa-calendar"></i>
-      <span>カレンダー</span>
+      <span><%= t('menu.calendar') %></span>
     <% end %>
   </li>
   <li>
     <%= link_to '#', class:"mb-2 p-4 rounded" do %>
       <i class="fa-solid fa-magnifying-glass-plus"></i>
-      <span>香り診断</span>
+      <span><%= t('menu.diagnosis') %></span>
     <% end %>
   </li>
   <li>
     <%= link_to '#', class:"mb-2 p-4 rounded" do %>
       <i class="fa-solid fa-comments"></i>
-      <span>レビュー</span>
+      <span><%= t('menu.review') %></span>
     <% end %>
   </li>
 </ul>
