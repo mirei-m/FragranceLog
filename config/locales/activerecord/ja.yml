@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       fragrance: マイ香水
+      calendar: カレンダー
     attributes:
       user:
         name: アカウント名
@@ -13,3 +14,11 @@ ja:
         name: 香水名
         brand: ブランド名
         image: ボトル画像
+      calendar:
+        start_time: 日付
+        fragrance_id: 使用した香水
+        fragrance: 使用した香水
+        user_id: ""
+        weather: 天気
+        mood: 気分
+        memo: メモ
