@@ -25,6 +25,11 @@ ja:
     login: ログイン
     logout: ログアウト
     sign_up: アカウント登録
+  menu:
+    fragrance: マイ香水
+    calendar: カレンダー
+    diagnosis: 香り診断
+    review: レビュー
   fragrances:
     index:
       title: マイ香水一覧
@@ -39,6 +44,13 @@ ja:
       title: 記録カレンダー
     new:
       title: 新しく記録する
+    show:
+      title: カレンダー詳細
+      blank: (記録なし)
+      record: の記録
   simple_calendar:
     previous: "<<"
     next: ">>"
+  time:
+    formats:
+      japanese: "%-m月%-d日(%a)"

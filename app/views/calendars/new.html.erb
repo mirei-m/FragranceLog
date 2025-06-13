@@ -31,13 +31,7 @@
       <% Calendar.weathers.each do |key, _value| %>
         <label class="flex items-center gap-1">
           <%= f.radio_button :weather, key %>
-          <%# 絵文字でラベル表示 %>
-          <%= {
-            sunny: "☀️",
-            cloudy: "☁️",
-            rainy: "☔️",
-            snowy: "❄️"
-          }[key.to_sym] %>
+          <%= weather_icon_tag(key) %>
         </label>
       <% end %>
     </div>
@@ -50,14 +44,7 @@
       <% Calendar.moods.each do |key, _value| %>
         <label class="flex items-center gap-1">
           <%= f.radio_button :mood, key %>
-          <%= {
-            happy: "😊",
-            relaxed: "😌",
-            neutral: "😐",
-            sad: "😢",
-            angry: "😠",
-            tired: "😴"
-          }[key.to_sym] %>
+          <%= mood_icon_tag(key) %>
         </label>
       <% end %>
     </div>
