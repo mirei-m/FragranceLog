@@ -1,4 +1,6 @@
-<h2 class="text-xl font-bold mb-4">記録カレンダー</h2>
+<% content_for(:title, t('.title')) %>
+<h1><%= t('.title') %></h1>
+
 
 <%= month_calendar events: @calendars do |date, calendars| %>
   <%= date.day %>
@@ -8,7 +10,7 @@
       <div><%= calendar.fragrance.name %></div>
 
       <% if calendar.fragrance.image.attached? %>
-        <%= image_tag calendar.fragrance.image, class: "mt-1 rounded" %>
+        <%= image_tag calendar.fragrance.image, class: "w-24 h-24 object-contain rounded" %>
       <% else %>
         <%= image_tag "default_fragrance.png", class: "mt-1 rounded w-24 h-24 object-contain" %>
       <% end %>

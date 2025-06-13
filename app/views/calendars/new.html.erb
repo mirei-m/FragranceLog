@@ -1,4 +1,6 @@
-<h2 class="text-xl font-bold mb-4">香水の使用記録を追加</h2>
+<% content_for(:title, t('.title')) %>
+<h1><%= t('.title') %></h1>
+
 
 <%= form_with model: @calendar, local: true do |f| %>
   <% if @calendar.errors.any? %>
@@ -12,19 +14,19 @@
   <% end %>
   <!-- 日付 -->
   <div class="mb-4">
-    <%= f.label :start_time, "日付", class: "block font-semibold mb-1" %>
+    <%= f.label :start_time, class: "block font-semibold mb-1" %>
     <%= f.date_select :start_time, class: "w-full border rounded p-2" %>
   </div>
 
   <!-- 香水 -->
   <div class="mb-4">
-    <%= f.label :fragrance_id, "使用した香水", class: "block font-semibold mb-1" %>
+    <%= f.label :fragrance_id, class: "block font-semibold mb-1" %>
     <%= f.collection_select :fragrance_id, current_user.fragrances, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
   </div>
 
   <!-- 天気 -->
   <div class="mb-4">
-    <%= f.label :weather, "天気", class: "block font-semibold mb-1" %>
+    <%= f.label :weather, class: "block font-semibold mb-1" %>
     <div class="flex gap-4">
       <% Calendar.weathers.each do |key, _value| %>
         <label class="flex items-center gap-1">
@@ -43,7 +45,7 @@
 
   <!-- 気分 -->
   <div class="mb-4">
-    <%= f.label :mood, "気分", class: "block font-semibold mb-1" %>
+    <%= f.label :mood, class: "block font-semibold mb-1" %>
     <div class="flex flex-wrap gap-4">
       <% Calendar.moods.each do |key, _value| %>
         <label class="flex items-center gap-1">
@@ -63,12 +65,12 @@
 
   <!-- メモ -->
   <div class="mb-4">
-    <%= f.label :memo, "メモ", class: "block font-semibold mb-1" %>
+    <%= f.label :memo, class: "block font-semibold mb-1" %>
     <%= f.text_area :memo, rows: 3, class: "w-full border rounded p-2" %>
   </div>
 
   <!-- ボタン -->
   <div class="flex justify-end">
-    <%= f.submit "記録する", class: "btn btn-primary" %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

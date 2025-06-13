@@ -34,3 +34,11 @@ ja:
       title: マイ香水詳細
     edit:
       title: マイ香水編集
+  calendars:
+    index:
+      title: 記録カレンダー
+    new:
+      title: 新しく記録する
+  simple_calendar:
+    previous: "<<"
+    next: ">>"
