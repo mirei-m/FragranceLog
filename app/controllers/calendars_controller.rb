@@ -27,6 +27,12 @@ class CalendarsController < ApplicationController
   end
 
   def update
+    if @calendar.update(calendar_params)
+      redirect_to @calendar, notice: t("defaults.flash_message.updated", item: Calendar.model_name.human)
+    else
+      flash.now[:alert] = t("defaults.flash_message.not_updated", item: Calendar.model_name.human)
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

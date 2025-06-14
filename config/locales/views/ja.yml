@@ -48,6 +48,8 @@ ja:
       title: カレンダー詳細
       blank: (記録なし)
       record: の記録
+    edit:
+      title: カレンダー編集
   simple_calendar:
     previous: "<<"
     next: ">>"

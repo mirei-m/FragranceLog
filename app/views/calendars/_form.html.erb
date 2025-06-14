@@ -1,0 +1,60 @@
+<%= form_with model: @calendar, local: true do |f| %>
+  <% if @calendar.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+      <ul>
+        <% @calendar.errors.full_messages.each do |message| %>
+          <li>・<%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- 日付 -->
+  <div class="mb-4">
+    <%= f.label :start_time, class: "block font-semibold mb-1" %>
+    <%= f.date_select :start_time, class: "w-full border rounded p-2" %>
+  </div>
+
+  <!-- 香水 -->
+  <div class="mb-4">
+    <%= f.label :fragrance_id, class: "block font-semibold mb-1" %>
+    <%= f.collection_select :fragrance_id, current_user.fragrances, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
+  </div>
+
+  <!-- 天気 -->
+  <div class="mb-4">
+    <%= f.label :weather, class: "block font-semibold mb-1" %>
+    <div class="flex gap-4">
+      <% Calendar.weathers.each do |key, _value| %>
+        <label class="flex items-center gap-1">
+          <%= f.radio_button :weather, key %>
+          <%= weather_icon_tag(key) %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 気分 -->
+  <div class="mb-4">
+    <%= f.label :mood, class: "block font-semibold mb-1" %>
+    <div class="flex flex-wrap gap-4">
+      <% Calendar.moods.each do |key, _value| %>
+        <label class="flex items-center gap-1">
+          <%= f.radio_button :mood, key %>
+          <%= mood_icon_tag(key) %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- メモ -->
+  <div class="mb-4">
+    <%= f.label :memo, class: "block font-semibold mb-1" %>
+    <%= f.text_area :memo, maxlength: 1000, rows: 3, class: "w-full border rounded p-2" %>
+    <p class="text-sm text-gray-500">※1000文字以内</p>
+  </div>
+
+  <!-- ボタン -->
+  <div class="flex justify-end">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
