@@ -12,9 +12,9 @@
       <p class="text-xl font-bold"><%= @calendar.fragrance.name %></p>
 
       <% if @calendar.fragrance.image.attached? %>
-        <%= image_tag @calendar.fragrance.image, class: "w-48 h-48 object-cover rounded-xl mb-4" %>
+        <%= image_tag @calendar.fragrance.image.variant(resize_to_limit: [300, 300]), class: "w-48 h-42 object-cover rounded-xl mb-4" %>
       <% else %>
-        <%= image_tag "default_fragrance.png", class: "w-48 h-48 object-contain rounded" %>
+        <%= image_tag "default_fragrance.png", class: "w-48 h-42 object-contain rounded" %>
       <% end %>
 
     </div>
@@ -46,6 +46,7 @@
 
   <div class="text-center mt-8">
     <%= link_to t('defaults.edit'), edit_calendar_path(@calendar), class: "btn btn-outline" %>
+    <%= link_to t('defaults.delete'), calendar_path(@calendar), method: :delete, data: { confirm: t('defaults.delete_confirm') }, class: "btn btn-error" %>
     <%= link_to t('defaults.back_index'), calendars_path, class: "text-sm text-gray-500 underline" %>
   </div>
 </div>
