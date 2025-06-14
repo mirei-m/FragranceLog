@@ -46,6 +46,7 @@
 
   <div class="text-center mt-8">
     <%= link_to t('defaults.edit'), edit_calendar_path(@calendar), class: "btn btn-outline" %>
+    <%= link_to t('defaults.delete'), calendar_path(@calendar), method: :delete, data: { confirm: t('defaults.delete_confirm') }, class: "btn btn-error" %>
     <%= link_to t('defaults.back_index'), calendars_path, class: "text-sm text-gray-500 underline" %>
   </div>
 </div>

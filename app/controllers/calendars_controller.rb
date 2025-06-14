@@ -36,6 +36,8 @@ class CalendarsController < ApplicationController
   end
 
   def destroy
+    @calendar.destroy
+    redirect_to calendars_path, notice: t("defaults.flash_message.deleted", item: Calendar.model_name.human)
   end
 
   private
