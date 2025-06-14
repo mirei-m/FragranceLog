@@ -4,9 +4,9 @@
 <p><%= t('activerecord.attributes.fragrance.brand') %>: <%= @fragrance.brand %></p>
 <h2><%= t('activerecord.attributes.fragrance.name') %>： <%= @fragrance.name %></h2>
 <% if @fragrance.image.attached? %>
-  <%= image_tag @fragrance.image, class: "rounded shadow-md mb-4" %>
+  <%= image_tag @fragrance.image.variant(resize_to_limit: [300, 240]), class: "w-[300px] h-[240px] object-cover rounded shadow-md mb-4" %>
 <% else %>
-  <%= image_tag "default_fragrance.png", class: "rounded shadow-md mb-4" %>
+  <%= image_tag "default_fragrance.png", class: "w-[300px] h-[240px] object-cover rounded shadow-md mb-4" %>
 <% end %>
 
 <div class="mt-4 space-x-2">

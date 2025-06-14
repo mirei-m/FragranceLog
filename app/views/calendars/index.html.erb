@@ -13,9 +13,9 @@
 
       <%= link_to calendar_path(calendar) do %>
         <% if calendar.fragrance.image.attached? %>
-          <%= image_tag calendar.fragrance.image, class: "w-24 h-24 object-contain rounded" %>
+          <%= image_tag calendar.fragrance.image.variant(resize_to_limit: [150, 150]), class: "w-24 h-10 rounded object-contain rounded" %>
         <% else %>
-          <%= image_tag "default_fragrance.png", class: "mt-1 rounded w-24 h-24 object-contain" %>
+          <%= image_tag "default_fragrance.png", class: "rounded w-24 h-10 object-contain" %>
         <% end %>
       <% end %>
     </div>
