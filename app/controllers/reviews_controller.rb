@@ -28,9 +28,17 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    if @review.update(review_params)
+      redirect_to @review, notice: t("defaults.flash_message.updated", item: Review.model_name.human)
+    else
+      flash.now[:alert] = t("defaults.flash_message.not_updated", item: Review.model_name.human)
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @review.destroy
+    redirect_to reviews_path, notice: t("defaults.flash_message.deleted", item: Review.model_name.human)
   end
 
   private

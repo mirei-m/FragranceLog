@@ -62,5 +62,8 @@ ja:
       title: レビュー一覧
     new:
       title: レビューを書く
+      select: マイ香水から選択
     show:
       title: レビュー詳細
+    edit:
+      title: レビュー編集
