@@ -1,0 +1,6 @@
+<% content_for(:title, t('.title')) %>
+<h1><%= t('.title') %></h1>
+
+<%= render "form", review: @review %>
+
+<%= link_to t('defaults.back'), reviews_path, class: "text-blue-500 underline mt-4 inline-block" %>

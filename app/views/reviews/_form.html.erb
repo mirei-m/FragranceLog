@@ -1,0 +1,29 @@
+<%= form_with model: @review, local: true do |f| %>
+  <% if @review.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+      <ul>
+        <% @review.errors.full_messages.each do |message| %>
+          <li>・<%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- 香水 -->
+  <div class="mb-4">
+    <%= f.label :fragrance_id, class: "block font-semibold mb-1" %>
+    <%= f.collection_select :fragrance_id, current_user.fragrances, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
+  </div>
+
+  <!-- レビュー本文 -->
+  <div class="mb-4">
+    <%= f.label :body, class: "block font-semibold mb-1" %>
+    <%= f.text_area :body, maxlength: 1000, rows: 5, placeholder: "例）朝の気分をシャキッとさせたいときにぴったり。フルーティで爽やかな香りが長持ちします。職場にもおすすめです。", class: "w-full border rounded p-2" %>
+    <p class="text-sm text-gray-500">※1000文字以内</p>
+  </div>
+
+  <!-- ボタン -->
+  <div class="flex justify-end">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

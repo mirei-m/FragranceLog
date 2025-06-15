@@ -4,9 +4,11 @@
 <% if @reviews.any? %>
   <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
   <% @reviews.each do |review| %>
-    <%= render @reviews %>
+    <%= render review %>
   <% end %>
 </ul>
 <% else %>
   <p>まだレビューが投稿されていません。</p>
 <% end %>
+
+<%= link_to t("reviews.new.title"), new_review_path, class: "btn btn-primary" %>
