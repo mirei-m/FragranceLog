@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_13_071946) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_15_005805) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_13_071946) do
     t.index ["user_id"], name: "index_fragrances_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "fragrance_id", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fragrance_id"], name: "index_reviews_on_fragrance_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -83,4 +93,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_13_071946) do
   add_foreign_key "calendars", "fragrances"
   add_foreign_key "calendars", "users"
   add_foreign_key "fragrances", "users"
+  add_foreign_key "reviews", "fragrances"
+  add_foreign_key "reviews", "users"
 end
