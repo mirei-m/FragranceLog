@@ -1,0 +1,21 @@
+<li class="p-4 border rounded shadow-sm bg-white">
+  <% fragrance = review.fragrance %>
+  <strong><%= fragrance.brand %></strong> - <%= fragrance.name %>
+
+  <div class="h-[200px] overflow-hidden mb-4">
+    <% if fragrance.image.attached? %>
+      <%= image_tag fragrance.image.variant(resize_to_limit: [300, 300]), class: "w-full h-full object-cover rounded shadow" %>
+    <% else %>
+      <%= image_tag "default_fragrance.png", class: "w-full h-full object-cover rounded shadow" %>
+    <% end %>
+  </div>
+
+  <p class="text-sm text-gray-600 mb-2">
+    <i class="fa-solid fa-user mr-1"></i>
+    <%= review.user.name.presence || "匿名" %>
+  </p>
+
+  <p class="line-clamp-3 text-sm text-gray-800 mb-2"><%= simple_format(review.body) %></p>
+
+  <%= link_to t('defaults.show'), review_path(review), class: "btn btn-sm" %>
+</li>

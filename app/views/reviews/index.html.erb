@@ -1,0 +1,12 @@
+<% content_for(:title, t('.title')) %>
+<h1><%= t('.title') %></h1>
+
+<% if @reviews.any? %>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+  <% @reviews.each do |review| %>
+    <%= render @reviews %>
+  <% end %>
+</ul>
+<% else %>
+  <p>まだレビューが投稿されていません。</p>
+<% end %>
