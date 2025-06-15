@@ -62,3 +62,5 @@ ja:
       title: レビュー一覧
     new:
       title: レビューを書く
+    show:
+      title: レビュー詳細
