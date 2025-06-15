@@ -60,3 +60,5 @@ ja:
   reviews:
     index:
       title: レビュー一覧
+    new:
+      title: レビューを書く

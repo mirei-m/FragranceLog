@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = current_user.Reviews.build(review_params)
+    @review = current_user.reviews.build(review_params)
     if @review.save
       redirect_to reviews_path, notice: t("defaults.flash_message.created", item: Review.model_name.human)
     else
