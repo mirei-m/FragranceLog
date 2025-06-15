@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :fragrances, dependent: :destroy
   has_many :calendars, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 end
