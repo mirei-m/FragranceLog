@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       fragrance: マイ香水
       calendar: カレンダー
+      review: レビュー
     attributes:
       user:
         name: アカウント名
@@ -22,3 +23,5 @@ ja:
         weather: 天気
         mood: 気分
         memo: メモ
+      review:
+        body: レビュー本文

@@ -21,6 +21,7 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       require_login: ログインが必要です
+      not_authorized: 権限がありません
   header:
     login: ログイン
     logout: ログアウト
@@ -56,3 +57,6 @@ ja:
   time:
     formats:
       japanese: "%-m月%-d日(%a)"
+  reviews:
+    index:
+      title: レビュー一覧
