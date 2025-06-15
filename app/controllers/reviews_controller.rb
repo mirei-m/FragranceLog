@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
-  before_action :set_calendar, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_review, only: [ :show, :edit, :update, :destroy ]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def index
@@ -8,9 +8,17 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    @review = Review.new
   end
 
   def create
+    @review = current_user.Reviews.build(review_params)
+    if @review.save
+      redirect_to reviews_path, notice: t("defaults.flash_message.created", item: Review.model_name.human)
+    else
+      flash.now[:alert] = t("defaults.flash_message.not_created", item: Review.model_name.human)
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
