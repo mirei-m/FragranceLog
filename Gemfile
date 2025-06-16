@@ -64,3 +64,5 @@ gem "rails-i18n"
 gem "devise-i18n"
 
 gem "simple_calendar"
+
+gem "enum_help"
