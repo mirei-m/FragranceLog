@@ -1,4 +1,6 @@
-<% if current_user.fragrances.any? %>
+<% unpublished_fragrances = current_user.fragrances.unpublished %>
+
+<% if unpublished_fragrances.any? %>
   <%= form_with model: @review, local: true do |f| %>
     <% if @review.errors.any? %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
@@ -13,7 +15,7 @@
     <!-- 香水 -->
     <div class="mb-4">
       <%= f.label :fragrance_id, t('reviews.new.select'), class: "block font-semibold mb-1" %>
-      <%= f.collection_select :fragrance_id, current_user.fragrances, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
+      <%= f.collection_select :fragrance_id, current_user.fragrances.unpublished, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
     </div>
 
     <!-- レビュー本文 -->
@@ -28,6 +30,12 @@
       <%= f.submit class: "btn btn-primary" %>
     </div>
   <% end %>
+<% elsif current_user.fragrances.any? %>
+  <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+    <p>すでにすべての香水がレビュー済みです。</p>
+    <p>新しい香水を登録するか、レビューを編集してください。</p>
+    <%= link_to "マイ香水を追加", new_fragrance_path, class: "underline text-blue-600 hover:text-blue-800" %>
+  </div>
 <% else %>
   <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
     <p>レビューを投稿するには、まずマイ香水を登録してください。</p>
