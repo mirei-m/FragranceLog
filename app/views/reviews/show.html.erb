@@ -38,7 +38,7 @@
   <div class="text-center mt-8">
     <% if current_user == @review.user %>
       <%= link_to t('defaults.edit'), edit_review_path(@review), class: "btn btn-outline" %>
-      <%= link_to t('defaults.delete'), review_path(@review), method: :delete, data: { confirm: t('defaults.delete_confirm') }, class: "btn btn-error" %>
+      <%= link_to t('defaults.delete'), review_path(@review), method: :delete, data: { confirm: "レビューを削除してもマイ香水は消えません" }, class: "btn btn-error" %>
     <% end %>
     <%= link_to t('defaults.back_index'), reviews_path, class: "text-sm text-gray-500 underline" %>
   </div>

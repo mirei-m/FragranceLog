@@ -8,7 +8,11 @@
 <% else %>
   <%= image_tag "default_fragrance.png", class: "w-[300px] h-[240px] object-cover rounded shadow-md mb-4" %>
 <% end %>
-<p>レビュー公開設定：<%= @fragrance.status_i18n %></p>
+<p>レビュー公開設定：<%= @fragrance.status_i18n %><% if @fragrance.published? %>
+  <i class="fas fa-globe text-blue-500" title="公開中"></i>
+<% else %>
+  <i class="fas fa-lock text-gray-400" title="非公開"></i>
+<% end %></p>
 <% if @fragrance.unpublished? %>
   <%= link_to "レビューを書く", new_review_path(fragrance_id: @fragrance.id), class: "btn btn-primary mt-4" %>
 
