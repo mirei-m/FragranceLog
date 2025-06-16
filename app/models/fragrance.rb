@@ -7,5 +7,5 @@ class Fragrance < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_many :calendars, dependent: :destroy
-  has_many :reviews, dependent: :destroy
+  has_one :review, dependent: :destroy
 end

@@ -8,7 +8,13 @@
 <% else %>
   <%= image_tag "default_fragrance.png", class: "w-[300px] h-[240px] object-cover rounded shadow-md mb-4" %>
 <% end %>
-<p>公開設定：<%= @fragrance.status_i18n %></p>
+<p>レビュー公開設定：<%= @fragrance.status_i18n %></p>
+<% if @fragrance.unpublished? %>
+  <%= link_to "レビューを書く", new_review_path(fragrance_id: @fragrance.id), class: "btn btn-primary mt-4" %>
+
+<% elsif @fragrance.published? && (review = @fragrance.review) %>
+  <%= link_to "レビューを見る", review_path(review), class: "btn btn-outline" %>
+<% end %>
 
 <div class="mt-4 space-x-2">
   <%= link_to t('defaults.edit'), edit_fragrance_path(@fragrance), class: "btn btn-outline" %>

@@ -9,6 +9,9 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    if params[:fragrance_id]
+      @review.fragrance_id = params[:fragrance_id]
+    end
   end
 
   def create

@@ -15,7 +15,14 @@
     <!-- 香水 -->
     <div class="mb-4">
       <%= f.label :fragrance_id, t('reviews.new.select'), class: "block font-semibold mb-1" %>
-      <%= f.collection_select :fragrance_id, current_user.fragrances.unpublished, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
+      <% if @review.fragrance_id.present? %>
+        <!-- fragrance_id がすでに指定されていれば、非表示の hidden_field にして固定 -->
+        <%= f.hidden_field :fragrance_id %>
+        <p><%= current_user.fragrances.find(@review.fragrance_id).name %> を選択中</p>
+      <% else %>
+        <!-- fragrance_id がなければ通常のセレクトボックス -->
+        <%= f.collection_select :fragrance_id, current_user.fragrances.unpublished, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
+      <% end %>
     </div>
 
     <!-- レビュー本文 -->
