@@ -113,6 +113,8 @@ GEM
       devise (>= 4.9.0)
       rails-i18n
     drb (2.2.1)
+    enum_help (0.0.19)
+      activesupport (>= 3.0.0)
     erubi (1.13.1)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
@@ -352,6 +354,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
+  enum_help
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
