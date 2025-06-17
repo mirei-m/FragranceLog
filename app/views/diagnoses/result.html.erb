@@ -1,0 +1,10 @@
+<h1>あなたにおすすめの香りは…</h1>
+
+<% if @result %>
+  <h2><%= @result[:name] %></h2>
+  <p><%= @result[:description] %></p>
+  <p>代表的な香料: <%= @result[:notes].join(", ") %></p>
+<% else %>
+  <p>診断結果が見つかりませんでした。</p>
+<% end %>
+<%= link_to "もう一度診断する", new_diagnosis_path, class: "btn-btn-outline" %>
