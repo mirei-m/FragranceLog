@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :fragrances
   resources :calendars
   resources :reviews
-  resource :diagnosis, only: [:new, :create] do
+  resource :diagnosis, only: [ :new, :create ] do
     get :result
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
