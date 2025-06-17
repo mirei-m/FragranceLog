@@ -12,15 +12,15 @@
     <% end %>
   </li>
   <li>
-    <%= link_to new_diagnosis_path, class:"mb-2 p-4 rounded" do %>
-      <i class="fa-solid fa-magnifying-glass-plus"></i>
-      <span><%= t('menu.diagnosis') %></span>
-    <% end %>
-  </li>
-  <li>
     <%= link_to reviews_path, class:"mb-2 p-4 rounded" do %>
       <i class="fa-solid fa-comments"></i>
       <span><%= t('menu.review') %></span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to new_diagnosis_path, class:"mb-2 p-4 rounded" do %>
+      <i class="fa-solid fa-magnifying-glass-plus"></i>
+      <span><%= t('menu.diagnosis') %></span>
     <% end %>
   </li>
 </ul>

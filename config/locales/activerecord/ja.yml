@@ -22,7 +22,7 @@ ja:
         user_id: ""
         weather: 天気
         mood: 気分
-        memo: メモ
+        memo: ひとことメモ
       review:
         body: レビュー本文
         fragrance_id: 香水
