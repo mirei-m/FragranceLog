@@ -1,0 +1,22 @@
+<h1 class="text-3xl font-bold mb-6 text-center ">香り診断</h1>
+
+<%= form_with url: diagnosis_path, method: :post, class: "max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md" do %>
+
+  <% @questions.each do |key, data| %>
+    <fieldset class="mb-6">
+      <legend class="mb-2 text-lg font-semibold text-gray-700"><%= data[:question] %></legend>
+      <div class="space-y-2">
+        <% data[:options].each do |option_key, option_data| %>
+          <label class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 rounded px-3 py-2">
+            <%= radio_button_tag "answers[#{key}]", option_key, (@selected_answers && @selected_answers[key.to_s] == option_key), class: "form-radio text-indigo-600" %>
+            <span class="text-gray-800"><%= option_data[:text] %></span>
+          </label>
+        <% end %>
+      </div>
+    </fieldset>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <%= submit_tag "診断する", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<div class="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow-lg">
+  <h1 class="text-2xl font-bold text-center mb-6">あなたにおすすめの香りは…</h1>
+  <% if @result %>
+    <div class="grid md:grid-cols-2 gap-6 items-center">
+      <%= image_tag(@result[:image_path], alt: @result[:name], class: "w-full rounded-lg shadow-md") if @result[:image_path].present? %>
+
+      <div>
+        <h2 class="text-2xl font-semibold text-primary mb-2"><%= @result[:name] %></h2>
+        <p class="mb-4 text-base-content"><%= @result[:description] %></p>
+        <p class="mb-2 font-semibold text-sm">代表的な香料:</p>
+        <div class="flex flex-wrap gap-2">
+          <% @result[:notes].each do |note| %>
+            <span class="badge badge-accent"><%= note %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <p class="text-center text-error mt-4">診断結果が見つかりませんでした。</p>
+  <% end %>
+
+  <div class="text-center mt-8">
+    <%= link_to "もう一度診断する", new_diagnosis_path, class: "btn btn-outline btn-primary" %>
+  </div>
+</div>
