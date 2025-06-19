@@ -14,7 +14,7 @@ ja:
       fragrance:
         name: 香水名
         brand: ブランド名
-        image: ボトル画像
+        image: ボトル画像(任意)
       calendar:
         start_time: 日付
         fragrance_id: 使用した香水
@@ -22,7 +22,7 @@ ja:
         user_id: ""
         weather: 天気
         mood: 気分
-        memo: ひとことメモ
+        memo: ひとこと日記
       review:
         body: レビュー本文
         fragrance_id: 香水
