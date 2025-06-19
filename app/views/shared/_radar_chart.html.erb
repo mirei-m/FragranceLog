@@ -1,0 +1,40 @@
+<canvas id="<%= chart_id %>" width="400" height="400"></canvas>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const ctx = document.getElementById("<%= chart_id %>");
+    if (!ctx) return;
+
+    if (Chart.getChart(ctx)) {
+      Chart.getChart(ctx).destroy();
+    }
+
+
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['甘さ', '爽やか', '華やか', 'セクシー', 'スパイシー', '落ち着き'],
+        datasets: [{
+          label: '香りの印象',
+          data: [<%= data.map(&:to_i).join(", ") %>],
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1,
+          pointBackgroundColor: 'rgba(255, 99, 132, 1)'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            min: 0,
+            max: 5,
+            ticks: {
+              stepSize: 1
+            }
+          }
+        }
+      }
+    });
+  });
+</script>
