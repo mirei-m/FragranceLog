@@ -9,22 +9,98 @@
     </div>
   <% end %>
 
-  <div class="mb-4">
-    <%= form.label :brand, class: "block font-bold mb-1" %>
-    <%= form.text_field :brand, maxlength: 50, class: "border rounded w-full py-2 px-3" %>
-    <p class="text-sm text-gray-500">※50文字以内</p>
+  <!-- 横並びの2カラム -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- 左カラム：基本情報 -->
+    <div>
+      <div class="mb-4">
+        <%= form.label :brand, class: "block font-bold mb-1" %>
+        <%= form.text_field :brand, maxlength: 50, class: "border rounded w-full py-2 px-3" %>
+        <p class="text-sm text-gray-500">※50文字以内</p>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :name, class: "block font-bold mb-1" %>
+        <%= form.text_field :name, maxlength: 100, class: "border rounded w-full py-2 px-3" %>
+        <p class="text-sm text-gray-500">※100文字以内</p>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :image, class: "block font-bold mb-1" %>
+        <%= form.file_field :image, class: "file-input file-input-bordered w-full" %>
+      </div>
+    </div>
+
+    <!-- 右カラム：印象評価 -->
+    <div>
+      <h3 class="font-bold mb-2">香りの印象（1〜5、任意）
+        <span class="text-sm font-normal text-gray-500">(未入力でも登録できます)</span>
+      </h3>
+      <div class="flex justify-between text-sm text-gray-500 px-1">
+        <span>← 弱い</span>
+        <span>強い →</span>
+      </div>
+      <div class="flex justify-between text-xs text-gray-400 px-1 mb-2 select-none">
+        <% (1..5).each do |n| %>
+          <span><%= n %></span>
+        <% end %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :sweetness, "甘さ", class: "block mb-1 font-bold" %>
+        <div class="flex items-center gap-2">
+          <%= form.range_field :sweetness, in: 1..5, class: "range range-accent w-full", step: 1, value: @fragrance.sweetness || 3 %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :freshness, "爽やか", class: "block mb-1 font-bold" %>
+        <div class="flex items-center gap-2">
+          <%= form.range_field :freshness, in: 1..5, class: "range range-accent w-full", step: 1, value: @fragrance.freshness || 3 %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :floral, "華やか", class: "block mb-1 font-bold" %>
+        <div class="flex items-center gap-2">
+          <%= form.range_field :floral, in: 1..5, class: "range range-accent w-full", step: 1, value: @fragrance.floral || 3 %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :sexy, "セクシー", class: "block mb-1 font-bold" %>
+        <div class="flex items-center gap-2">
+          <%= form.range_field :sexy, in: 1..5, class: "range range-accent w-full", step: 1, value: @fragrance.sexy || 3 %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :spicy, "スパイシー", class: "block mb-1 font-bold" %>
+        <div class="flex items-center gap-2">
+          <%= form.range_field :spicy, in: 1..5, class: "range range-accent w-full", step: 1, value: @fragrance.spicy || 3 %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :calm, "落ち着き", class: "block mb-1 font-bold" %>
+        <div class="flex items-center gap-2">
+          <%= form.range_field :calm, in: 1..5, class: "range range-accent w-full", step: 1, value: @fragrance.calm || 3 %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="mb-4">
-    <%= form.label :name, class: "block font-bold mb-1" %>
-    <%= form.text_field :name, maxlength: 100, class: "border rounded w-full py-2 px-3" %>
-    <p class="text-sm text-gray-500">※100文字以内</p>
-  </div>
+  <div class="mt-8 flex justify-between items-center">
+    <% if @fragrance.persisted? %>
+    <!-- editの場合: 詳細ページに戻る -->
+      <%= link_to t('defaults.back'), fragrance_path(@fragrance), class: "btn btn-outline" %>
+    <% else %>
+    <!-- newの場合: 一覧に戻る -->
+      <%= link_to t('defaults.back'), fragrances_path, class: "btn btn-outline" %>
+    <% end %>
 
-  <div class="mb-4">
-    <%= form.label :image, class: "block font-bold mb-1" %>
-    <%= form.file_field :image, class: "file-input file-input-bordered w-full" %>
+    <%= form.submit @fragrance.persisted? ? "更新する" : "登録する", class: "btn btn-primary" %>
   </div>
-
-  <%= form.submit class: "btn btn-primary" %>
 <% end %>
+
+

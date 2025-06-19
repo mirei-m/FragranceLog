@@ -42,7 +42,7 @@ class FragrancesController < ApplicationController
   private
 
   def fragrance_params
-    params.require(:fragrance).permit(:name, :brand, :image)
+    params.require(:fragrance).permit(:name, :brand, :image, :sweetness, :freshness, :floral, :calm, :sexy, :spicy)
   end
 
   def set_fragrance
