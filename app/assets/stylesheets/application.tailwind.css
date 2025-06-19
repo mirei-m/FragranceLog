@@ -6,14 +6,14 @@
   prefersdark: false;
   color-scheme: "light";
   --color-base-100: oklch(97% 0.008 101.277);
-  --color-base-200: oklch(93% 0.008 101.277);
-  --color-base-300: oklch(94% 0.05 101.54);
+  --color-base-200: oklch(0.924 0.0086 128.56);
+  --color-base-300: oklch(0.7862 0.0526 146.8);
   --color-base-content: oklch(26% 0.05 172.552);
-  --color-primary: oklch(55% 0.118 165.612);
+  --color-primary: oklch(0.7862 0.0526 146.8);
   --color-primary-content: oklch(98% 0.02 120.757);
   --color-secondary: oklch(77.75% 0.17 111.09);
   --color-secondary-content: oklch(15.55% 0.039 111.09);
-  --color-accent: oklch(85.39% 0.15 100.73);
+  --color-accent: oklch(92% 0.12 95.746);
   --color-accent-content: oklch(17.078% 0.04 100.73);
   --color-neutral: oklch(45% 0.05 168.94);
   --color-neutral-content: oklch(90.196% 0.015 108.6);

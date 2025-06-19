@@ -15,6 +15,12 @@ ja:
         name: 香水名
         brand: ブランド名
         image: ボトル画像(任意)
+        sweetness: 甘さ
+        freshness: 爽やか
+        floral: 華やか
+        sexy: セクシー
+        spicy: スパイシー
+        calm: 落ち着き
       calendar:
         start_time: 日付
         fragrance_id: 使用した香水
