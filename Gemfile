@@ -68,3 +68,4 @@ gem "simple_calendar"
 gem "enum_help"
 
 gem "aws-sdk-s3", require: false
+gem "dotenv-rails"

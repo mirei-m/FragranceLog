@@ -130,6 +130,10 @@ GEM
     devise-i18n (1.13.0)
       devise (>= 4.9.0)
       rails-i18n
+    dotenv (3.1.8)
+    dotenv-rails (3.1.8)
+      dotenv (= 3.1.8)
+      railties (>= 6.1)
     drb (2.2.1)
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
@@ -374,6 +378,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
+  dotenv-rails
   enum_help
   image_processing (~> 1.2)
   jbuilder
