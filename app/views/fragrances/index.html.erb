@@ -3,10 +3,11 @@
 
 <% if @fragrances.any? %>
   <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <%= render @fragrances %>
+    <%= render partial: "fragrance", collection: @fragrances %>
   </ul>
 <% else %>
   <p>まだ香水が登録されていません。</p>
 <% end %>
 
 <%= link_to "香水を登録する", new_fragrance_path, class: "btn btn-primary" %>
+<%= paginate @fragrances %>
