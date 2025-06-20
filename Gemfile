@@ -66,3 +66,5 @@ gem "devise-i18n"
 gem "simple_calendar"
 
 gem "enum_help"
+
+gem "aws-sdk-s3", require: false
