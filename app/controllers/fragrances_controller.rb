@@ -2,7 +2,7 @@ class FragrancesController < ApplicationController
   before_action :set_fragrance, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @fragrances = current_user.fragrances
+    @fragrances = current_user.fragrances.order(created_at: :desc).page(params[:page])
   end
 
   def new

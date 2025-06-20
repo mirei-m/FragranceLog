@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def index
-    @reviews = Review.includes(:fragrance, :user).order(created_at: :desc)
+    @reviews = Review.includes(:fragrance, :user).order(created_at: :desc).page(params[:page])
   end
 
   def new
