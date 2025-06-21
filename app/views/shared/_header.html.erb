@@ -7,10 +7,19 @@
         <span class="text-sm font-semibold">
           <%= current_user.name %>さん
         </span>
-        <%= link_to t('header.logout'), destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline" %>
+        <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline" do %>
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <%= t('header.logout') %>
+        <% end %>
       <% else %>
-        <%= link_to t('header.sign_up'), new_user_registration_path, class: "btn btn-outline" %>
-        <%= link_to t('header.login'), new_user_session_path, class: "btn btn-outline" %>
+        <%= link_to new_user_registration_path, class: "btn btn-outline" do %>
+          <i class="fa-solid fa-user-plus"></i>
+          <%= t('header.sign_up') %>
+        <% end %>
+        <%= link_to new_user_session_path, class: "btn btn-outline" do %>
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <%= t('header.login') %>
+        <% end %>
       <% end %>
     </div>
   </header>
