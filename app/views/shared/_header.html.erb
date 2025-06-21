@@ -9,8 +9,8 @@
         </span>
         <%= link_to t('header.logout'), destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline" %>
       <% else %>
-        <%= link_to t('header.sign_up'), new_user_registration_path, class: "btn btn-primary" %>
-        <%= link_to t('header.login'), new_user_session_path, class: "btn btn-primary" %>
+        <%= link_to t('header.sign_up'), new_user_registration_path, class: "btn btn-outline" %>
+        <%= link_to t('header.login'), new_user_session_path, class: "btn btn-outline" %>
       <% end %>
     </div>
   </header>

@@ -3,8 +3,8 @@ ja:
     models:
       user: ユーザー
       fragrance: マイ香水
-      calendar: カレンダー
-      review: レビュー
+      calendar: 香り日記
+      review: みんなの香水
     attributes:
       user:
         name: アカウント名

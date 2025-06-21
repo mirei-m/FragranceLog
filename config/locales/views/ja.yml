@@ -34,7 +34,7 @@ ja:
     fragrance: マイ香水
     calendar: 香り日記
     diagnosis: 香り診断
-    review: レビュー
+    review: みんなの香水
   fragrances:
     index:
       title: マイ香水一覧
@@ -63,7 +63,7 @@ ja:
       japanese: "%-m月%-d日(%a)"
   reviews:
     index:
-      title: レビュー一覧
+      title: みんなの香水
     new:
       title: レビューを書く
       select: マイ香水から選択
