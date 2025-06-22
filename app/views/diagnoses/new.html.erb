@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
 <h1 class="text-3xl font-bold mb-6 text-center "><i class="fa-solid fa-magnifying-glass-plus"></i> <%= t('.title') %></h1>
 
-<%= form_with url: diagnosis_path, method: :post, class: "mg shadoax-w-xl mx-auto bg-white p-6 rounded-lw-md" do %>
+<%= form_with url: diagnosis_path, method: :post, class: "max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg" do %>
 
   <% @questions.each do |key, data| %>
     <fieldset class="mb-6">
