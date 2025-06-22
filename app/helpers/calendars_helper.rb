@@ -21,12 +21,12 @@ module CalendarsHelper
   def mood_icon_tag(key)
     return unless key.present?
     style = {
-      happy:   "#FACC15", # yellow-400
-      relaxed: "#6EE7B7", # green-300
-      neutral: "#9CA3AF", # gray-400
-      sad:     "#60A5FA", # blue-400
-      angry:   "#F87171", # red-400
-      tired:   "#A78BFA" # purple-400
+      happy:   "#FACC15",
+      relaxed: "#6EE7B7",
+      neutral: "#9CA3AF",
+      sad:     "#60A5FA",
+      angry:   "#F87171",
+      tired:   "#A78BFA"
     }[key.to_sym] || "#D1D5DB"
 
     icon = {

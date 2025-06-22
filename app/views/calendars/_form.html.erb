@@ -1,67 +1,82 @@
-<% if current_user.fragrances.any? %>
-  <%= form_with model: @calendar, local: true do |f| %>
-    <% if @calendar.errors.any? %>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
-        <ul>
-          <% @calendar.errors.full_messages.each do |message| %>
-            <li>・<%= message %></li>
+<section class="px-4 py-12 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full mx-auto bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+
+    <% if current_user.fragrances.any? %>
+      <%= form_with model: @calendar, local: true do |f| %>
+        <% if @calendar.errors.any? %>
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+            <ul>
+              <% @calendar.errors.full_messages.each do |message| %>
+                <li>・<%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- 日付 -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-1">
+            日付 <span class="text-red-500">*</span>
+          </label>
+          <%= f.date_select :start_time, class: "w-full border rounded p-2" %>
+        </div>
+
+        <!-- 香水 -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-1">
+            使用した香水 <span class="text-red-500">*</span>
+          </label>
+          <%= f.collection_select :fragrance_id, current_user.fragrances, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
+        </div>
+
+        <!-- 天気 -->
+        <div class="mb-4">
+          <%= f.label :weather, class: "block font-semibold mb-1" %>
+          <div class="flex gap-4">
+            <% Calendar.weathers.each do |key, _value| %>
+              <label class="flex items-center gap-1">
+                <%= f.radio_button :weather, key %>
+                <%= weather_icon_tag(key) %>
+              </label>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- 気分 -->
+        <div class="mb-4">
+          <%= f.label :mood, class: "block font-semibold mb-1" %>
+          <div class="flex flex-wrap gap-4">
+            <% Calendar.moods.each do |key, _value| %>
+              <label class="flex items-center gap-1">
+                <%= f.radio_button :mood, key %>
+                <%= mood_icon_tag(key) %>
+              </label>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- メモ -->
+        <div class="mb-4">
+          <%= f.label :memo, class: "block font-semibold mb-1" %>
+          <%= f.text_area :memo, maxlength: 1000, rows: 3, class: "w-full border rounded p-2" %>
+          <p class="text-sm text-gray-500">※1000文字以内</p>
+        </div>
+
+        <!-- ボタン -->
+        <div class="mt-8 flex justify-between items-center">
+          <% if @calendar.persisted? %>
+            <%= link_to t('defaults.back'), calendar_path(@calendar), class: "btn btn-outline" %>
+          <% else %>
+            <%= link_to t('defaults.back'), calendars_path, class: "btn btn-outline" %>
           <% end %>
-        </ul>
+          <%= f.submit @calendar.persisted? ? "更新する" : "日記をつける", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+        <p>カレンダーに記録するには、まずマイ香水を登録してください。</p>
+        <%= link_to "マイ香水を登録する", new_fragrance_path, class: "underline text-blue-600 hover:text-blue-800" %>
       </div>
     <% end %>
-    <!-- 日付 -->
-    <div class="mb-4">
-      <%= f.label :start_time, class: "block font-semibold mb-1" %>
-      <%= f.date_select :start_time, class: "w-full border rounded p-2" %>
-    </div>
-
-    <!-- 香水 -->
-    <div class="mb-4">
-      <%= f.label :fragrance_id, class: "block font-semibold mb-1" %>
-      <%= f.collection_select :fragrance_id, current_user.fragrances, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
-    </div>
-
-    <!-- 天気 -->
-    <div class="mb-4">
-      <%= f.label :weather, class: "block font-semibold mb-1" %>
-      <div class="flex gap-4">
-        <% Calendar.weathers.each do |key, _value| %>
-          <label class="flex items-center gap-1">
-            <%= f.radio_button :weather, key %>
-            <%= weather_icon_tag(key) %>
-          </label>
-        <% end %>
-      </div>
-    </div>
-
-    <!-- 気分 -->
-    <div class="mb-4">
-      <%= f.label :mood, class: "block font-semibold mb-1" %>
-      <div class="flex flex-wrap gap-4">
-        <% Calendar.moods.each do |key, _value| %>
-          <label class="flex items-center gap-1">
-            <%= f.radio_button :mood, key %>
-            <%= mood_icon_tag(key) %>
-          </label>
-        <% end %>
-      </div>
-    </div>
-
-    <!-- メモ -->
-      <div class="mb-4">
-      <%= f.label :memo, class: "block font-semibold mb-1" %>
-      <%= f.text_area :memo, maxlength: 1000, rows: 3, class: "w-full border rounded p-2" %>
-      <p class="text-sm text-gray-500">※1000文字以内</p>
-    </div>
-
-    <!-- ボタン -->
-    <div class="flex justify-end">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-  <% end %>
-<% else %>
-  <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
-    <p>カレンダーに記録するには、まずマイ香水を登録してください。</p>
-    <%= link_to "マイ香水を登録する", new_fragrance_path, class: "underline text-blue-600 hover:text-blue-800" %>
   </div>
-<% end %>
+</section>

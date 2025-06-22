@@ -39,8 +39,13 @@
         </div>
 
         <!-- ボタン -->
-        <div class="flex justify-end">
-          <%= f.submit "香水を紹介する", class: "btn btn-primary" %>
+        <div class="mt-8 flex justify-between items-center">
+          <% if @review.persisted? %>
+            <%= link_to t('defaults.back'), review_path(@review), class: "btn btn-outline" %>
+          <% else %>
+            <%= link_to t('defaults.back'), reviews_path, class: "btn btn-outline" %>
+          <% end %>
+          <%= f.submit @review.persisted? ? "更新する" : "香水を紹介する", class: "btn btn-primary" %>
         </div>
       <% end %>
 
