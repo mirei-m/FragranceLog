@@ -14,7 +14,7 @@ ja:
       fragrance:
         name: 香水名
         brand: ブランド名
-        image: ボトル画像(任意)
+        image: ボトル画像
         sweetness: 甘さ
         freshness: 爽やか
         floral: 華やか
