@@ -1,12 +1,14 @@
 <% content_for(:title, t('.title')) %>
-<div class="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow-lg">
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg">
   <h1 class="text-2xl font-bold text-center mb-6"><%= t('.title') %></h1>
   <% if @result %>
     <div class="grid md:grid-cols-2 gap-6 items-center">
       <%= image_tag(@result[:image_path], alt: @result[:name], class: "w-full rounded-lg shadow-md") if @result[:image_path].present? %>
 
       <div>
-        <h2 class="text-2xl font-semibold text-primary mb-2"><%= @result[:name] %></h2>
+        <h2 class="text-2xl font-semibold mb-2" style="color: <%= @result[:color_class] %>">
+          <%= @result[:name] %>
+        </h2>
         <p class="mb-4 text-base-content"><%= @result[:description] %></p>
         <p class="mb-2 font-semibold text-sm"><%= t('.note') %>:</p>
         <div class="flex flex-wrap gap-2">
@@ -21,6 +23,8 @@
   <% end %>
 
   <div class="text-center mt-8">
-    <%= link_to t('.again'), new_diagnosis_path, class: "btn btn-outline btn-primary" %>
+    <%= link_to t('.review'), reviews_path, class: "btn btn-outline mb-2" %>
+    <br>
+    <%= link_to t('.again'), new_diagnosis_path, class: "btn btn-primary" %>
   </div>
 </div>

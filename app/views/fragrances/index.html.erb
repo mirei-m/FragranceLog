@@ -1,13 +1,23 @@
 <% content_for(:title, t('.title')) %>
-<h1><%= t('.title') %></h1>
+
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-3xl font-bold">
+    <i class="fa-solid fa-spray-can-sparkles"></i>  <%= t('.title') %>
+  </h1>
+  <%= link_to new_fragrance_path, class: "btn btn-primary flex items-center gap-2" do %>
+    <i class="fa-solid fa-circle-plus"></i>
+    <span>香水を登録する</span>
+  <% end %>
+</div>
 
 <% if @fragrances.any? %>
   <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     <%= render partial: "fragrance", collection: @fragrances %>
   </ul>
 <% else %>
-  <p>まだ香水が登録されていません。</p>
+  <div class="flex justify-center items-center w-full py-10">
+    <p class="text-gray-600 text-xl font-bold text-center">マイ香水が登録されていません</p>
+  </div>
 <% end %>
 
-<%= link_to "香水を登録する", new_fragrance_path, class: "btn btn-primary" %>
 <%= paginate @fragrances %>

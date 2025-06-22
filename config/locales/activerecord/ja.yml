@@ -14,7 +14,7 @@ ja:
       fragrance:
         name: 香水名
         brand: ブランド名
-        image: ボトル画像(任意)
+        image: ボトル画像
         sweetness: 甘さ
         freshness: 爽やか
         floral: 華やか
@@ -30,7 +30,7 @@ ja:
         mood: 気分
         memo: ひとこと日記
       review:
-        body: レビュー本文
+        body: 香りの感想
         fragrance_id: 香水
         fragrance: 香水
   enums:

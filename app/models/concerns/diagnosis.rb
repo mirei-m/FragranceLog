@@ -6,49 +6,57 @@ module Diagnosis
       name: "シトラス（Citrus）",
       description: "柑橘系の爽やかで、軽やかに気分をリフレッシュしてくれる香り。",
       image_path: "diagnosis/citrus.jpg",
+      color_class: "#A68C3B",
       notes: [ "レモン", "オレンジ", "ベルガモット" ]
     },
     floral: {
       name: "フローラル（Floral）",
       description: "花束のように華やかで、やさしく包み込むような香り。",
       image_path: "diagnosis/floral.jpg",
-      notes: [ "ローズ", "ジャスミン", "スズラン" ]
+      color_class: "#B76BA3",
+      notes: [ "ローズ", "ジャスミン", "ラベンダー" ]
     },
     fruity: {
       name: "フルーティ（Fruity）",
       description: "みずみずしい果実の甘さが広がる、明るく親しみやすい香り。",
       image_path: "diagnosis/fruity.jpg",
+      color_class: "#A75D5D",
       notes: [ "ピーチ", "アップル", "ベリー" ]
     },
     woody: {
       name: "ウッディ（Woody）",
       description: "木や森を思わせる落ち着いた香り。芯のある大人の雰囲気に。",
       image_path: "diagnosis/woody.jpg",
+      color_class: "#6E5849",
       notes: [ "サンダルウッド", "シダーウッド", "パチュリ" ]
     },
     spicy: {
       name: "スパイシー（Spicy）",
       description: "スパイスの効いたエッジのある香り。刺激的で個性を引き立てます。",
       image_path: "diagnosis/spicy.jpg",
-      notes: [ "シナモン", "クローブ", "ブラックペッパー" ]
+      color_class: "#9C6B4F",
+      notes: [ "ナツメグ", "クローブ", "ブラックペッパー" ]
     },
     oriental: {
       name: "オリエンタル（Oriental）",
       description: "甘さと深みのあるエキゾチックな香り。魅惑的でミステリアス。",
       image_path: "diagnosis/oriental.jpg",
+      color_class: "#6D4C86",
       notes: [ "バニラ", "アンバー", "ムスク" ]
     },
     marine: {
       name: "マリン（Marine）",
       description: "海風のようにすっきりとした清潔感ある香り。夏にもぴったり。",
       image_path: "diagnosis/marine.jpg",
-      notes: [ "シーソルト", "アクアノート", "マリンノート" ]
+      color_class: "#5A7D9A",
+      notes: [ "マリティマ", "フローラルオゾン", "カロン" ]
     },
     green: {
       name: "グリーン（Green）",
       description: "草やハーブのような自然を感じる香り。すがすがしくナチュラル。",
       image_path: "diagnosis/green.jpg",
-      notes: [ "グリーンティー", "バジル", "フィグリーフ" ]
+      color_class: "#5C8A64",
+      notes: [ "ガルバナム", "バイオレットリーフ" ]
     }
   }.freeze
 
@@ -58,7 +66,7 @@ module Diagnosis
 
   QUESTIONS = {
     q1: {
-      question: "今日のあなたの気分に一番近いのは？",
+      question: "Q1.今日のあなたの気分に一番近いのは？",
       options: {
         "A" => { text: "やさしく穏やかに過ごしたい", categories: [ :floral, :green ] },
         "B" => { text: "楽しくワクワクしていたい", categories: [ :fruity, :citrus ] },
@@ -67,7 +75,7 @@ module Diagnosis
       }
     },
     q2: {
-      question: "今日のお出かけ先はどんなところ？",
+      question: "Q2.今日のお出かけ先はどんなところ？",
       options: {
         "A" => { text: "家でリラックス", categories: [ :floral, :woody ] },
         "B" => { text: "自然のある場所やアウトドア", categories: [ :green, :citrus ] },
@@ -76,7 +84,7 @@ module Diagnosis
       }
     },
     q3: {
-      question: "なりたい雰囲気は？",
+      question: "Q3.なりたい雰囲気は？",
       options: {
         "A" => { text: "清潔感があって爽やか", categories: [ :citrus, :marine ] },
         "B" => { text: "ミステリアスで個性的", categories: [ :oriental, :spicy ] },
@@ -85,7 +93,7 @@ module Diagnosis
       }
     },
     q4: {
-      question: "今の季節や天気は？",
+      question: "Q4.今の季節や天気は？",
       options: {
         "A" => { text: "暖かくて過ごしやすい", categories: [ :floral, :fruity ] },
         "B" => { text: "ちょっと肌寒い", categories: [ :woody, :oriental ] },

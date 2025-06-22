@@ -1,25 +1,31 @@
 <% content_for(:title, t('.title')) %>
-<h1><%= t('.title') %></h1>
 
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-3xl font-bold">
+    <i class="fa-solid fa-calendar"></i>  <%= t('.title') %>
+  </h1>
+  <%= link_to new_calendar_path, class: "btn btn-primary flex items-center gap-2" do %>
+    <i class="fa-solid fa-circle-plus"></i>
+    <span>日記をつける</span>
+  <% end %>
+</div>
 
 <%= month_calendar events: @calendars do |date, calendars| %>
   <%= date.day %>
 
   <% calendars.each do |calendar| %>
     <div class="mt-1">
-      <%= link_to calendar_path(calendar), class: "text-sm text-green-800 font-semibold hover:underline" do %>
+      <%= link_to calendar_path(calendar), class: "text-sm text-neutral font-semibold hover:underline" do %>
         <%= calendar.fragrance.name %>
       <% end %>
 
       <%= link_to calendar_path(calendar) do %>
         <% if calendar.fragrance.image.attached? %>
-          <%= image_tag calendar.fragrance.image.variant(resize_to_limit: [150, 150]), class: "w-24 h-10 rounded object-contain rounded" %>
+          <%= image_tag calendar.fragrance.image.variant(resize_to_limit: [48, 48]), class: "w-12 h-12 rounded-xl object-cover mx-auto" %>
         <% else %>
-          <%= image_tag "default_fragrance.png", class: "rounded w-24 h-10 object-contain" %>
+          <%= image_tag "default_fragrance.png", class: "rounded-xl w-12 h-12 object-cover mx-auto" %>
         <% end %>
       <% end %>
     </div>
   <% end %>
 <% end %>
-
-<%= link_to "新しく記録する", new_calendar_path, class: "btn btn-primary" %>

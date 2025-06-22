@@ -1,52 +1,64 @@
 <% content_for(:title, t('.title')) %>
 
-<div class="p-6 bg-ivory min-h-screen">
-  <h2 class="text-xl font-bold text-center text-green-800 mb-6">
-    <%= l(@calendar.start_time, format: :japanese) %><%= t('.record') %>
-  </h2>
 
-  <div class="flex flex-col md:flex-row gap-8 items-start justify-center">
-    <!-- 左側：香水情報 -->
-    <div class="flex flex-col items-center text-center">
-      <p class="text-sm font-semibold"><%= @calendar.fragrance.brand %></p>
-      <p class="text-xl font-bold"><%= @calendar.fragrance.name %></p>
+<section class="px-4 py-10 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+    <h1 class="text-2xl font-bold mb-4">
+      <%= l(@calendar.start_time, format: :japanese) %><%= t('.record') %>
+    </h1>
 
-      <% if @calendar.fragrance.image.attached? %>
-        <%= image_tag @calendar.fragrance.image.variant(resize_to_limit: [300, 300]), class: "w-48 h-42 object-cover rounded-xl mb-4" %>
-      <% else %>
-        <%= image_tag "default_fragrance.png", class: "w-48 h-42 object-contain rounded" %>
-      <% end %>
+    <div class="md:flex md:space-x-6">
+      <!-- 左側 (香水情報) -->
+      <div class="md:w-1/2">
+        <% if @calendar.fragrance.image.attached? %>
+          <%= image_tag @calendar.fragrance.image.variant(resize_to_limit: [600, 400]), class: "w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
+        <% else %>
+          <%= image_tag "default_fragrance.png", class: "w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
+        <% end %>
+        <p class="text-sm font-semibold"><%= @calendar.fragrance.brand %></p>
+        <span class="text-xl font-bold"><%= @calendar.fragrance.name %></span>
+      </div>
 
+      <!-- 右側 (天気・気分・ひとこと日記) -->
+      <div class="md:w-1/2 mt-6 md:mt-0">
+        <div class="flex items-center gap-4 mb-4">
+          <p class="font-semibold w-20"><%= t('activerecord.attributes.calendar.weather') %></p>
+          <%= weather_icon_tag(@calendar.weather) %>
+        </div>
+
+        <div class="flex items-center gap-4 mb-4">
+          <p class="font-semibold w-20"><%= t('activerecord.attributes.calendar.mood') %></p>
+          <%= mood_icon_tag(@calendar.mood) %>
+        </div>
+
+        <div class="mt-2">
+          <p class="font-semibold mb-1"><%= t('activerecord.attributes.calendar.memo') %></p>
+          <% if @calendar.memo.present? %>
+            <div class="p-2 border rounded-md text-sm text-gray-800 bg-white">
+              <%= simple_format(@calendar.memo) %>
+            </div>
+          <% else %>
+            <p class="text-gray-400 text-sm"><%= t('.blank') %></p>
+          <% end %>
+        </div>
+      </div>
     </div>
 
-    <!-- 右側：天気・気分・メモ -->
-    <div class="flex flex-col gap-4 w-full md:w-1/2">
-      <div class="flex items-center gap-4">
-        <p class="font-semibold w-20"><%= t('activerecord.attributes.calendar.weather') %></p>
-        <%= weather_icon_tag(@calendar.weather) %>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <p class="font-semibold w-20"><%= t('activerecord.attributes.calendar.mood') %></p>
-        <%= mood_icon_tag(@calendar.mood) %>
-      </div>
-
-      <div>
-        <p class="font-semibold mb-1"><%= t('activerecord.attributes.calendar.memo') %></p>
-        <% if @calendar.memo.present? %>
-          <div class="p-2 border rounded-md text-sm text-gray-800 bg-white">
-            <%= simple_format(@calendar.memo) %>
-          </div>
-        <% else %>
-          <p class="text-gray-400 text-sm"><%= t('.blank') %></p>
+    <!-- ボタン -->
+    <div class="mt-8 text-center space-y-4">
+      <div class="flex justify-center gap-6">
+        <%= link_to edit_calendar_path(@calendar), class: "btn btn-outline" do %>
+          <i class="fa-solid fa-pen"></i>
+          <span><%= t('defaults.edit') %></span>
+        <% end %>
+        <%= link_to calendar_path(@calendar), method: :delete, data: { confirm: t('defaults.delete_confirm') }, class: "btn btn-error" do %>
+          <i class="fa-solid fa-trash"></i>
+          <span><%= t('defaults.delete') %></span>
         <% end %>
       </div>
+      <div class="flex justify-center">
+        <%= link_to "香り日記に戻る", calendars_path, class: "btn py-2 px-6 rounded-lg shadow-md" %>
+      </div>
     </div>
   </div>
-
-  <div class="text-center mt-8">
-    <%= link_to t('defaults.edit'), edit_calendar_path(@calendar), class: "btn btn-outline" %>
-    <%= link_to t('defaults.delete'), calendar_path(@calendar), method: :delete, data: { confirm: t('defaults.delete_confirm') }, class: "btn btn-error" %>
-    <%= link_to t('defaults.back_index'), calendars_path, class: "text-sm text-gray-500 underline" %>
-  </div>
-</div>
+</section>

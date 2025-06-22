@@ -1,6 +1,4 @@
 <% content_for(:title, t('.title')) %>
-<h1><%= t('.title') %></h1>
+<h1 class="text-3xl font-bold mb-6 text-center"><i class="fa-solid fa-circle-plus"></i>  <%= t(".title") %></h1>
 
 <%= render "form", review: @review %>
-
-<%= link_to t('defaults.back'), reviews_path, class: "text-blue-500 underline mt-4 inline-block" %>

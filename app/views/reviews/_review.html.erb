@@ -1,23 +1,32 @@
-<li class="p-4 border rounded shadow-sm bg-white">
+<div class="bg-white backdrop-blur-m p-4 rounded-xl shadow-lg flex flex-col relative">
   <% fragrance = review.fragrance %>
-  <strong><%= fragrance.brand %></strong> - <%= fragrance.name %>
-
-  <div class="h-[200px] overflow-hidden mb-4">
-    <% if fragrance.image.attached? %>
-      <%= image_tag fragrance.image.variant(resize_to_limit: [300, 300]), class: "w-full h-full object-cover rounded shadow" %>
-    <% else %>
-      <%= image_tag "default_fragrance.png", class: "w-full h-full object-cover rounded shadow" %>
+  <!-- ボトル画像 -->
+  <div class="h-60 flex items-center justify-center rounded-md overflow-hidden">
+    <%= link_to review_path(review), data: { action: "click->loading#show" } do %>
+      <div class="object-cover w-full h-[200px] cursor-pointer transition hover:opacity-80">
+        <% if fragrance.image.attached? %>
+          <%= image_tag fragrance.image.variant(resize_to_limit: [600, 400]), class: "w-full h-full object-cover rounded-xl shadow" %>
+        <% else %>
+          <%= image_tag "default_fragrance.png", class: "w-full h-full object-cover rounded-xl shadow" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 
-  <p class="text-sm text-gray-600 mb-2">
-    <i class="fa-solid fa-user mr-1"></i>
-    <%= review.user.name.presence || "匿名" %>
-  </p>
+  <!-- ブランド名・香水名 -->
+  <div class="flex flex-grow flex-col px-3 mt-4">
+    <div class="flex items-start space-x-2 justify-start">
+      <h2 class="font-bold flex-grow text-gray-500"><%= fragrance.brand %></h2>
+      <span class="text-lg font-bold"><%= fragrance.name %></span>
+    </div>
+  </div>
 
   <p class="line-clamp-3 text-sm text-gray-800 mb-2">
     <%= simple_format(truncate(review.body, length: 100, omission: '…続きを読む')) %>
   </p>
 
-  <%= link_to t('defaults.show'), review_path(review), class: "btn btn-sm" %>
-</li>
+  <p class="text-sm text-gray-600 mb-2">
+    <i class="fa-solid fa-user mr-1"></i>
+    <%= review.user.name.presence || "匿名" %>
+  </p>
+</div>
