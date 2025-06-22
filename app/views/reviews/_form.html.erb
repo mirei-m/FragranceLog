@@ -1,51 +1,61 @@
 <% unpublished_fragrances = current_user.fragrances.unpublished %>
 
-<% if unpublished_fragrances.any? %>
-  <%= form_with model: @review, local: true do |f| %>
-    <% if @review.errors.any? %>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
-        <ul>
-          <% @review.errors.full_messages.each do |message| %>
-            <li>・<%= message %></li>
+<section class="px-4 py-12 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full mx-auto bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+    <% if unpublished_fragrances.any? %>
+      <%= form_with model: @review, local: true do |f| %>
+        <% if @review.errors.any? %>
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+            <ul>
+              <% @review.errors.full_messages.each do |message| %>
+                <li>・<%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- 香水 -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-1">
+            <%= t('reviews.new.select') %> <span class="text-red-500">*</span>
+          </label>
+          <% if @review.fragrance_id.present? %>
+            <!-- fragrance_id がすでに指定されていれば、非表示の hidden_field にして固定 -->
+            <%= f.hidden_field :fragrance_id %>
+            <p><%= current_user.fragrances.find(@review.fragrance_id).name %> を選択中</p>
+          <% else %>
+            <!-- fragrance_id がなければ通常のセレクトボックス -->
+            <%= f.collection_select :fragrance_id, current_user.fragrances.unpublished, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
           <% end %>
-        </ul>
+        </div>
+
+        <!-- 香りの感想 -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-1">
+            香りの感想 <span class="text-red-500">*</span>
+          </label>
+          <%= f.text_area :body, maxlength: 1000, rows: 5, placeholder: "例）朝の気分をシャキッとさせたいときにぴったり。フルーティで爽やかな香りが長持ちします。職場にもおすすめです。", class: "w-full border rounded p-2" %>
+          <p class="text-sm text-gray-500">※1000文字以内</p>
+        </div>
+
+        <!-- ボタン -->
+        <div class="flex justify-end">
+          <%= f.submit "香水を紹介する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+    <!-- 非公開のマイ香水が存在しない時 -->
+    <% elsif current_user.fragrances.any? %>
+      <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+        <p>すでにすべての香水がレビュー済みです。</p>
+        <p>新しい香水を登録するか、レビューを編集してください。</p>
+        <%= link_to "マイ香水を追加", new_fragrance_path, class: "underline text-blue-600 hover:text-blue-800" %>
+      </div>
+    <% else %>
+      <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+        <p>レビューを投稿するには、まずマイ香水を登録してください。</p>
+        <%= link_to "マイ香水を登録する", new_fragrance_path, class: "underline text-blue-600 hover:text-blue-800" %>
       </div>
     <% end %>
-
-    <!-- 香水 -->
-    <div class="mb-4">
-      <%= f.label :fragrance_id, t('reviews.new.select'), class: "block font-semibold mb-1" %>
-      <% if @review.fragrance_id.present? %>
-        <!-- fragrance_id がすでに指定されていれば、非表示の hidden_field にして固定 -->
-        <%= f.hidden_field :fragrance_id %>
-        <p><%= current_user.fragrances.find(@review.fragrance_id).name %> を選択中</p>
-      <% else %>
-        <!-- fragrance_id がなければ通常のセレクトボックス -->
-        <%= f.collection_select :fragrance_id, current_user.fragrances.unpublished, :id, :name, { prompt: "選択してください" }, class: "w-full border rounded p-2" %>
-      <% end %>
-    </div>
-
-    <!-- レビュー本文 -->
-    <div class="mb-4">
-      <%= f.label :body, class: "block font-semibold mb-1" %>
-      <%= f.text_area :body, maxlength: 1000, rows: 5, placeholder: "例）朝の気分をシャキッとさせたいときにぴったり。フルーティで爽やかな香りが長持ちします。職場にもおすすめです。", class: "w-full border rounded p-2" %>
-      <p class="text-sm text-gray-500">※1000文字以内</p>
-    </div>
-
-    <!-- ボタン -->
-    <div class="flex justify-end">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-  <% end %>
-<% elsif current_user.fragrances.any? %>
-  <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
-    <p>すでにすべての香水がレビュー済みです。</p>
-    <p>新しい香水を登録するか、レビューを編集してください。</p>
-    <%= link_to "マイ香水を追加", new_fragrance_path, class: "underline text-blue-600 hover:text-blue-800" %>
   </div>
-<% else %>
-  <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
-    <p>レビューを投稿するには、まずマイ香水を登録してください。</p>
-    <%= link_to "マイ香水を登録する", new_fragrance_path, class: "underline text-blue-600 hover:text-blue-800" %>
-  </div>
-<% end %>
+</section>

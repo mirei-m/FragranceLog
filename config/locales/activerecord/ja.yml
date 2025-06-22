@@ -30,7 +30,7 @@ ja:
         mood: 気分
         memo: ひとこと日記
       review:
-        body: レビュー本文
+        body: 香りの感想
         fragrance_id: 香水
         fragrance: 香水
   enums:
