@@ -1,8 +1,6 @@
-<% unpublished_fragrances = current_user.fragrances.unpublished %>
-
 <section class="px-4 py-12 sm:px-6 lg:px-8">
   <div class="max-w-md w-full mx-auto bg-white p-4 sm:p-6 rounded-xl shadow-lg">
-    <% if unpublished_fragrances.any? %>
+    <% if current_user.fragrances.any? %>
       <%= form_with model: @review, local: true do |f| %>
         <% if @review.errors.any? %>
           <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
@@ -49,13 +47,7 @@
         </div>
       <% end %>
 
-    <!-- 非公開のマイ香水が存在しない時 -->
-    <% elsif current_user.fragrances.any? %>
-      <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
-        <p>すでにすべての香水がレビュー済みです。</p>
-        <p>新しい香水を登録するか、レビューを編集してください。</p>
-        <%= link_to "マイ香水を追加", new_fragrance_path, class: "underline text-blue-600 hover:text-blue-800" %>
-      </div>
+    <!-- マイ香水がないとき -->
     <% else %>
       <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
         <p>レビューを投稿するには、まずマイ香水を登録してください。</p>
