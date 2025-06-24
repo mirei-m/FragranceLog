@@ -18,6 +18,7 @@ ja:
     back_index: 一覧に戻る
     search_word: 検索
     delete_confirm: 削除しますか？
+    unpublished_confirm: 非公開にしてもマイ香水は消えません。本当に非公開にしますか？
     flash_message:
       created: "%{item}を登録しました"
       not_created: "%{item}を登録できませんでした"
