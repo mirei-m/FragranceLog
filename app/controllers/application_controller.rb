@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def health
-    render json: { status: 'ok', timestamp: Time.current }, status: :ok
+    render json: { status: "ok", timestamp: Time.current }, status: :ok
   end
 end
