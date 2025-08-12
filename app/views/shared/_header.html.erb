@@ -5,7 +5,7 @@
     <div class="flex-none space-x-2">
       <% if user_signed_in? %>
         <span class="text-sm font-semibold">
-          <%= current_user.name %>さん
+          <%= link_to "#{current_user.name}さん", profile_path, class: "hover:underline" %>
         </span>
         <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline" do %>
           <i class="fa-solid fa-right-from-bracket"></i>
