@@ -82,3 +82,6 @@ ja:
       review: みんなのおすすめ香水を見る
       no_result: 診断結果が見つかりませんでした
       note: 代表的な香料
+  profiles:
+    show:
+      title: プロフィール
