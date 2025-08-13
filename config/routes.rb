@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get :result
   end
 
-  resource :profile, only: %i[show]
+  resource :profile, only: %i[show edit update]
 
   get "/health", to: "application#health"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
