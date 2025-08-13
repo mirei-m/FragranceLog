@@ -1,25 +1,62 @@
 <header class="navbar bg-base-300 px-4 shadow-sm">
-    <div class="flex-1">
-      <%= link_to "FragranceLog", root_path, class: "text-2xl font-bold" %>
-    </div>
-    <div class="flex-none space-x-2">
-      <% if user_signed_in? %>
-        <span class="text-sm font-semibold">
-          <%= link_to "#{current_user.name}さん", profile_path, class: "hover:underline" %>
-        </span>
-        <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline" do %>
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <%= t('header.logout') %>
-        <% end %>
-      <% else %>
-        <%= link_to new_user_registration_path, class: "btn btn-outline" do %>
-          <i class="fa-solid fa-user-plus"></i>
-          <%= t('header.sign_up') %>
-        <% end %>
-        <%= link_to new_user_session_path, class: "btn btn-outline" do %>
-          <i class="fa-solid fa-right-to-bracket"></i>
-          <%= t('header.login') %>
-        <% end %>
+  <div class="flex-1">
+    <%= link_to "FragranceLog", root_path, class: "text-2xl font-bold" %>
+  </div>
+  <div class="flex-none space-x-2">
+    <% if user_signed_in? %>
+      <!-- プロフィールドロップダウン -->
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-sm flex items-center space-x-2 px-2">
+          <!-- アバター -->
+          <div class="avatar">
+            <div class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
+              <% if current_user.profile_image.attached? %>
+                <%= image_tag current_user.profile_image, alt: current_user.name %>
+              <% else %>
+                <div class="bg-neutral text-neutral-content rounded-full w-8 h-8 flex items-center justify-center">
+                  <i class="fas fa-user text-xs"></i>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <!-- ユーザー名 -->
+          <span class="text-sm font-semibold hidden sm:inline">
+            <%= current_user.name %>さん
+          </span>
+          <!-- ドロップダウン矢印 -->
+          <i class="fas fa-chevron-down text-xs"></i>
+        </div>
+
+        <!-- ドロップダウンメニュー -->
+        <ul tabindex="0" class="dropdown-content menu menu-sm bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-base-300">
+          <li class="menu-title">
+            <span class="text-xs text-base-content/70">アカウント</span>
+          </li>
+          <li>
+            <%= link_to profile_path, class: "flex items-center space-x-2" do %>
+              <i class="fas fa-user text-sm w-4"></i>
+              <span>マイページ</span>
+            <% end %>
+          </li>
+          <div class="divider my-1"></div>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "flex items-center space-x-2 text-error" do %>
+              <i class="fas fa-sign-out-alt text-sm w-4"></i>
+              <span>ログアウト</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      <!-- 未ログイン時の表示 -->
+      <%= link_to new_user_registration_path, class: "btn btn-outline btn-sm" do %>
+        <i class="fa-solid fa-user-plus"></i>
+        <%= t('header.sign_up') %>
       <% end %>
-    </div>
-  </header>
+      <%= link_to new_user_session_path, class: "btn btn-primary btn-sm" do %>
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <%= t('header.login') %>
+      <% end %>
+    <% end %>
+  </div>
+</header>
