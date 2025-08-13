@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: [ :show :edit, :update ]
+  before_action :set_user, only: [ :show, :edit, :update ]
 
   def show
   end
@@ -9,9 +9,9 @@ class ProfilesController < ApplicationController
 
   def update
     if @user.update(profile_params)
-      redirect_to profile_path, success: t("defaults.flash_message.updated", item: User.model_name.human)
+      redirect_to profile_path, notice: t("defaults.flash_message.updated", item: User.model_name.human)
     else
-      flash.now[:danger] = t("defaults.flash_message.not_updated", item: User.model_name.human)
+      flash.now[:alert] = t("defaults.flash_message.not_updated", item: User.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end
