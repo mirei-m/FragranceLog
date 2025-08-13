@@ -71,3 +71,5 @@ gem "aws-sdk-s3", require: false
 gem "dotenv-rails"
 
 gem "kaminari"
+
+gem "active_storage_validations"

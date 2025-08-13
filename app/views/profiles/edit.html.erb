@@ -16,7 +16,11 @@
           <div class="avatar">
             <div class="w-48 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <% if @user.profile_image.attached? %>
-                <%= image_tag @user.profile_image, alt: "プロフィール画像" %>
+                <% begin %>
+                  <%= image_tag @user.profile_image, alt: "プロフィール画像" %>
+                <% rescue ArgumentError %>
+                  <%= image_tag "default_profile_image.png", alt: "デフォルトプロフィール画像" %>
+                <% end %>
               <% else %>
                 <%= image_tag "default_profile_image.png", alt: "デフォルトプロフィール画像" %>
               <% end %>

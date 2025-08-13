@@ -11,4 +11,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   validates :name, presence: true, length: { maximum: 255 }
+  validates :profile_image, content_type: { in: %w[image/jpeg image/gif image/png] },
+                          size: { less_than: 5.megabytes },
+                          if: -> { profile_image.attached? }
 end

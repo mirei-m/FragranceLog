@@ -11,7 +11,13 @@
           <div class="avatar">
             <div class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
               <% if current_user.profile_image.attached? %>
-                <%= image_tag current_user.profile_image, alt: current_user.name %>
+                <% begin %>
+                  <%= image_tag current_user.profile_image, alt: "プロフィール画像" %>
+                <% rescue ArgumentError %>
+                  <div class="bg-neutral text-neutral-content rounded-full w-8 h-8 flex items-center justify-center">
+                    <i class="fas fa-user text-xs"></i>
+                  </div>
+                <% end %>
               <% else %>
                 <div class="bg-neutral text-neutral-content rounded-full w-8 h-8 flex items-center justify-center">
                   <i class="fas fa-user text-xs"></i>
@@ -28,9 +34,9 @@
         </div>
 
         <!-- ドロップダウンメニュー -->
-        <ul tabindex="0" class="dropdown-content menu menu-sm bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-base-300">
+        <ul tabindex="0" class="dropdown-content menu menu-sm bg-white rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-base-300 opacity-100 backdrop-blur-none">
           <li class="menu-title">
-            <span class="text-xs text-base-content/70">アカウント</span>
+            <span class="text-xs text-base-content">アカウント</span>
           </li>
           <li>
             <%= link_to profile_path, class: "flex items-center space-x-2" do %>
@@ -40,7 +46,7 @@
           </li>
           <div class="divider my-1"></div>
           <li>
-            <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "flex items-center space-x-2 text-error" do %>
+            <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "flex items-center space-x-2" do %>
               <i class="fas fa-sign-out-alt text-sm w-4"></i>
               <span>ログアウト</span>
             <% end %>
