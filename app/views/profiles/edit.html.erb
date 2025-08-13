@@ -1,0 +1,35 @@
+<% content_for(:title, t('.title')) %>
+
+<section class="px-4 py-12 sm:px-6 lg:px-8">
+  <h1 class="text-3xl font-bold mb-6 text-center">
+    <i class="fa-solid fa-pen"></i>
+    <%= t('.title') %>
+  </h1>
+
+  <div class="max-w-md w-full mx-auto bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+    <%= form_with model: @user, url: profile_path, method: :put do |f| %>
+      <%= render "devise/shared/error_messages", resource: @user %>
+
+      <!-- 名前 -->
+      <div>
+        <label class="block font-semibold mb-1">
+          <i class="fa-solid fa-user"></i> ユーザー名 <span class="text-red-500">*</span>
+        </label>
+        <%= f.text_field :name, autofocus: true, class: "w-full p-3 border border-gray-300 rounded-md shadow-sm", placeholder: "表示名を入力してください" %>
+      </div>
+
+      <!-- メール -->
+      <div>
+        <label class="block font-semibold mb-1">
+          <i class="fa-solid fa-envelope"></i> メールアドレス <span class="text-red-500">*</span>
+        </label>
+        <%= f.email_field :email, autocomplete: "email", class: "w-full p-3 border border-gray-300 rounded-md shadow-sm", placeholder: "メールアドレスを入力してください" %>
+      </div>
+
+      <!-- ボタン -->
+      <div class="mt-8 flex justify-between items-center">
+        <%= link_to t('defaults.back'), profile_path, class: "btn btn-outline" %>
+        <%= f.submit "更新する", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+</section>

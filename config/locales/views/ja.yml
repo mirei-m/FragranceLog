@@ -85,6 +85,8 @@ ja:
   profiles:
     show:
       title: プロフィール
+    edit:
+      title: プロフィール編集
   static_pages:
     terms_of_service:
       title: 利用規約
