@@ -10,6 +10,42 @@
     <%= form_with model: @user, url: profile_path, method: :put do |f| %>
       <%= render "devise/shared/error_messages", resource: @user %>
 
+      <!-- 現在の画像表示 -->
+      <div class="form-group text-center">
+        <div class="profile-avatar mb-4 flex justify-center">
+          <div class="avatar">
+            <div class="w-48 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <% if @user.profile_image.attached? %>
+                <% begin %>
+                  <%= image_tag @user.profile_image, alt: "プロフィール画像" %>
+                <% rescue ArgumentError %>
+                  <%= image_tag "default_profile_image.png", alt: "デフォルトプロフィール画像" %>
+                <% end %>
+              <% else %>
+                <%= image_tag "default_profile_image.png", alt: "デフォルトプロフィール画像" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 画像アップロード -->
+      <div class="form-group">
+        <%= f.label :profile_image, "プロフィール画像", class: "block font-bold mb-1" %>
+        <%= f.file_field :profile_image,
+            class: "file-input file-input-bordered w-full",
+            accept: "image/*",
+            onchange: "previewImage(this)" %>
+        <small class="form-text text-muted mt-1 block">
+          JPEG、PNG、GIF形式のファイルをアップロードできます（5MB以下）
+        </small>
+      </div>
+
+      <!-- 画像プレビュー -->
+      <div class="form-group text-center">
+        <img id="preview" class="rounded-circle" style="display: none; object-fit: cover;" width="150" height="150">
+      </div>
+
       <!-- 名前 -->
       <div>
         <label class="block font-semibold mb-1">
@@ -33,3 +69,20 @@
       </div>
     <% end %>
 </section>
+
+<script>
+// 画像プレビュー機能
+function previewImage(input) {
+  const preview = document.getElementById('preview');
+  const file = input.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+    }
+    reader.readAsDataURL(file);
+  }
+}
+</script>

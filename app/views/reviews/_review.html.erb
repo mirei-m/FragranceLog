@@ -23,8 +23,19 @@
     <%= simple_format(truncate(review.body, length: 100, omission: '…続きを読む')) %>
   </p>
 
-  <p class="text-sm text-gray-600 mb-2">
-    <i class="fa-solid fa-user mr-1"></i>
-    <%= review.user.name.presence || "匿名" %>
-  </p>
+  <!-- ユーザー情報 -->
+  <div class="flex items-center text-sm text-gray-600 mb-2">
+    <div class="avatar mr-2">
+      <div class="w-6 rounded-full">
+        <% if review.user.profile_image.attached? %>
+          <%= image_tag review.user.profile_image, alt: review.user.name %>
+        <% else %>
+          <div class="bg-neutral text-neutral-content rounded-full w-6 h-6 flex items-center justify-center">
+            <i class="fa-solid fa-user text-xs"></i>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <span><%= review.user.name.presence || "匿名" %></span>
+  </div>
 </div>

@@ -11,6 +11,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
+        profile_image: プロフィール画像
       fragrance:
         name: 香水名
         brand: ブランド名
@@ -33,6 +34,18 @@ ja:
         body: 香りの感想
         fragrance_id: 香水
         fragrance: 香水
+    errors:
+      models:
+        user:
+          attributes:
+            profile_image:
+              content_type_invalid: "はJPEG、PNG、GIF形式のファイルを選択してください"
+              file_size_out_of_range: "のファイルサイズが大きすぎます（5MB以下にしてください）"
+        fragrance:
+          attributes:
+            image:
+              content_type_invalid: "はJPEG、PNG、GIF形式のファイルを選択してください"
+              file_size_out_of_range: "のファイルサイズが大きすぎます（5MB以下にしてください）"
   enums:
     fragrance:
       status:
