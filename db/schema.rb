@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_19_015916) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_14_050213) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_19_015916) do
     t.index ["fragrance_id"], name: "index_calendars_on_fragrance_id"
     t.index ["user_id", "start_time"], name: "index_calendars_on_user_id_and_start_time", unique: true
     t.index ["user_id"], name: "index_calendars_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "review_id", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_comments_on_review_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "fragrances", force: :cascade do |t|
@@ -100,6 +110,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_19_015916) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "calendars", "fragrances"
   add_foreign_key "calendars", "users"
+  add_foreign_key "comments", "reviews"
+  add_foreign_key "comments", "users"
   add_foreign_key "fragrances", "users"
   add_foreign_key "reviews", "fragrances"
   add_foreign_key "reviews", "users"
