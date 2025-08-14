@@ -73,3 +73,5 @@ gem "dotenv-rails"
 gem "kaminari"
 
 gem "active_storage_validations"
+
+gem "ransack"
