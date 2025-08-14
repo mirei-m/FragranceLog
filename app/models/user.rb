@@ -15,4 +15,8 @@ class User < ApplicationRecord
   validates :profile_image, content_type: { in: %w[image/jpeg image/gif image/png] },
                           size: { less_than: 5.megabytes },
                           if: -> { profile_image.attached? }
+
+  def own?(object)
+    id == object.user_id
+  end
 end
