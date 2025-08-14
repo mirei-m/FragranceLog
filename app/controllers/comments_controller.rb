@@ -30,6 +30,8 @@ class CommentsController < ApplicationController
   end
 
   def authorize_user!
-    redirect_to @comment.review, alert: t("defaults.flash_message.not_authorized") unless unless current_user.own?(@comment)
+    unless current_user.own?(@comment)
+      redirect_to @comment.review, alert: t("defaults.flash_message.not_authorized")
+    end
   end
 end
