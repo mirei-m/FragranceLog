@@ -1,47 +1,45 @@
-<div class="card mb-6 shadow-lg">
-  <div class="card-body">
-    <h2 class="card-title text-lg mb-4">
-      <i class="fas fa-search mr-2"></i>
-      レビューを検索
-    </h2>
+<div class="flex justify-center px-4 sm:px-6 md:px-8 mt-6">
+  <div class="w-full max-w-5xl space-y-4 p-6 bg-white backdrop-blur-md rounded-lg shadow-lg mb-4">
 
     <%= search_form_for q, url: reviews_path, method: :get, class: "space-y-4", local: true do |f| %>
       <div class="form-control">
         <%= f.label :fragrance_name_or_fragrance_brand_cont, "香水名・ブランド名", class: "label" %>
-        <div class="input-group">
+        <div class="flex gap-2">
           <%= f.search_field :fragrance_name_or_fragrance_brand_cont,
-              class: "input input-bordered flex-1",
+              class: "input input-bordered flex-1 w-full p-3 border border-gray-300 rounded-xl shadow-sm",
               placeholder: "検索ワードを入力" %>
+          <!-- 検索ボタンを横並びに -->
           <button type="submit" class="btn btn-primary">
             <i class="fas fa-search"></i>
             検索
           </button>
         </div>
       </div>
-
-      <!-- 検索条件がある場合のクリアボタン -->
-      <% if params[:q].present? %>
-        <div class="text-center">
-          <%= link_to reviews_path, class: "btn btn-outline btn-sm" do %>
-            <i class="fas fa-times mr-1"></i>
-            検索条件をクリア
-          </button>
-        </div>
-      <% end %>
     <% end %>
 
-    <!-- 検索結果の件数表示 -->
-      <% if params[:q].present? %>
-        <div class="alert alert-info">
+    <!-- 検索状態の表示エリア -->
+    <% if params[:q].present? %>
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+        <!-- 検索結果の件数表示 -->
+        <div class="alert alert-info flex-1">
           <i class="fa-solid fa-info-circle"></i>
           <span>
             検索結果: <strong><%= @reviews.total_count %></strong>件
-            <% if params[:q][:fragrance_name_or_fragrance_brand_name_cont].present? %>
-              （「<strong><%= params[:q][:fragrance_name_or_fragrance_brand_name_cont] %></strong>」を含む）
+            <% if params[:q][:fragrance_name_or_fragrance_brand_cont].present? %>
+              （「<strong><%= params[:q][:fragrance_name_or_fragrance_brand_cont] %></strong>」を含む）
             <% end %>
           </span>
         </div>
-      <% end %>
+
+        <!-- 検索条件をクリアするボタン -->
+        <div>
+          <%= link_to reviews_path, class: "btn btn-outline btn-sm" do %>
+            <i class="fas fa-times mr-1"></i>
+            検索条件をクリア
+          <% end %>
+        </div>
+      </div>
     <% end %>
+
   </div>
 </div>
