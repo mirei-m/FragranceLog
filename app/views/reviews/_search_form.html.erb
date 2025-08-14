@@ -1,0 +1,33 @@
+<div class="card mb-6 shadow-lg">
+  <div class="card-body">
+    <h2 class="card-title text-lg mb-4">
+      <i class="fas fa-search mr-2"></i>
+      レビューを検索
+    </h2>
+
+    <%= search_form_for q, url: reviews_path, method: :get, class: "space-y-4" do |f| %>
+      <div class="form-control">
+        <%= f.label :fragrance_name_or_fragrance_brand_cont, "香水名・ブランド名", class: "label" %>
+        <div class="input-group">
+          <%= f.search_field :fragrance_name_or_fragrance_brand_cont,
+              class: "input input-bordered flex-1",
+              placeholder: "検索ワードを入力(香水名・ブランド名)" %>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+            検索
+          </button>
+        </div>
+      </div>
+
+      <!-- 検索条件がある場合のクリアボタン -->
+      <% if params[:q].present? %>
+        <div class="text-center">
+          <%= link_to reviews_path, class: "btn btn-outline btn-sm" do %>
+            <i class="fas fa-times mr-1"></i>
+            検索条件をクリア
+          </button>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
