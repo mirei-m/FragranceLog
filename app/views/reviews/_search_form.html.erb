@@ -5,13 +5,13 @@
       レビューを検索
     </h2>
 
-    <%= search_form_for q, url: reviews_path, method: :get, class: "space-y-4" do |f| %>
+    <%= search_form_for q, url: reviews_path, method: :get, class: "space-y-4", local: true do |f| %>
       <div class="form-control">
         <%= f.label :fragrance_name_or_fragrance_brand_cont, "香水名・ブランド名", class: "label" %>
         <div class="input-group">
           <%= f.search_field :fragrance_name_or_fragrance_brand_cont,
               class: "input input-bordered flex-1",
-              placeholder: "検索ワードを入力(香水名・ブランド名)" %>
+              placeholder: "検索ワードを入力" %>
           <button type="submit" class="btn btn-primary">
             <i class="fas fa-search"></i>
             検索
@@ -26,6 +26,20 @@
             <i class="fas fa-times mr-1"></i>
             検索条件をクリア
           </button>
+        </div>
+      <% end %>
+    <% end %>
+
+    <!-- 検索結果の件数表示 -->
+      <% if params[:q].present? %>
+        <div class="alert alert-info">
+          <i class="fa-solid fa-info-circle"></i>
+          <span>
+            検索結果: <strong><%= @reviews.total_count %></strong>件
+            <% if params[:q][:fragrance_name_or_fragrance_brand_name_cont].present? %>
+              （「<strong><%= params[:q][:fragrance_name_or_fragrance_brand_name_cont] %></strong>」を含む）
+            <% end %>
+          </span>
         </div>
       <% end %>
     <% end %>

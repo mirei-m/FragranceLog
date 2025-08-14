@@ -10,11 +10,11 @@ class Review < ApplicationRecord
 
   # ransackの検索設定
   def self.ransackable_attributes(auth_object = nil)
-    %w[]
+    %w[body]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[fragrances users]
+    %w[fragrance user]
   end
 
   private
