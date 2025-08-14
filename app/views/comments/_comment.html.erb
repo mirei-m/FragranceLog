@@ -1,0 +1,50 @@
+<div class="comment-item py-3 border-b border-gray-100 last:border-b-0">
+  <div class="flex items-start space-x-3">
+    <!-- 小さめのアイコン -->
+    <div class="w-6 h-6 rounded-full flex-shrink-0 mt-1">
+      <% if comment.user.profile_image.attached? %>
+        <%= image_tag comment.user.profile_image,
+              alt: comment.user.name,
+              class: "w-full h-full object-cover rounded-full" %>
+      <% else %>
+        <div class="bg-gray-400 text-white rounded-full w-6 h-6 flex items-center justify-center">
+          <i class="fa-solid fa-user text-xs"></i>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- コンテンツ -->
+    <div class="flex-1">
+      <div class="flex items-baseline space-x-2">
+        <span class="text-sm font-medium text-gray-900">
+          <%= comment.user.name.presence || "匿名" %>
+        </span>
+        <span class="text-xs text-gray-500">
+          <%= time_ago_in_words(comment.created_at) %>前
+        </span>
+      </div>
+
+      <div class="text-sm text-gray-700">
+        <% limit = request.user_agent.match?(/Mobile/) ? 100 : 200 %>
+        <% if comment.body.length > limit %>
+          <div id="comment-body-<%= comment.id %>">
+            <p><%= simple_format(truncate(comment.body, length: 200)) %></p>
+            <button onclick="toggleComment(<%= comment.id %>)"
+                    class="text-blue-600 hover:underline text-xs mt-1">
+              続きを読む
+            </button>
+          </div>
+          <div id="comment-full-<%= comment.id %>" style="display: none;">
+            <p><%= simple_format(comment.body) %></p>
+            <button onclick="toggleComment(<%= comment.id %>)"
+                    class="text-blue-600 hover:underline text-xs mt-1">
+              折りたたむ
+            </button>
+          </div>
+        <% else %>
+          <p><%= simple_format(comment.body) %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

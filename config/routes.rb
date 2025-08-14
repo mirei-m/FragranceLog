@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root "static_pages#top"
   resources :fragrances
   resources :calendars
-  resources :reviews
+  resources :reviews do
+    resources :comments, only: [ :create ]
+  end
   resource :diagnosis, only: [ :new, :create ] do
     get :result
   end
