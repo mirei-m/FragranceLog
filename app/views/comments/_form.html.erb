@@ -2,7 +2,7 @@
   <% if user_signed_in? %>
     <div id="comment_form">
       <%= form_with(model: [review, Comment.new], local: true, class: "flex flex-col space-y-2") do |f| %>
-        <div class="bg-gray-100 rounded shadow-sm">
+        <div class="bg-gray-100 rounded-lg shadow-sm">
           <%= f.text_area :body,
                 placeholder: "コメントを入力してください",
                 rows: 1,

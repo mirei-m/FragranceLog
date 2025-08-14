@@ -26,6 +26,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
+  @comments = @review.comments.includes(:user).order(created_at: :desc)
+  @comment = Comment.new
   end
 
   def edit

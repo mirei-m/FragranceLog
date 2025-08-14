@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :fragrances
   resources :calendars
   resources :reviews do
-    resources :comments, only: [ :create ]
+    resources :comments, only: [ :create, :destroy ], shallow: true
   end
   resource :diagnosis, only: [ :new, :create ] do
     get :result
