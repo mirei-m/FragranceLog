@@ -7,7 +7,7 @@
               alt: comment.user.name,
               class: "w-full h-full object-cover rounded-full" %>
       <% else %>
-        <div class="bg-gray-400 text-white rounded-full w-6 h-6 flex items-center justify-center">
+        <div class="bg-neutral text-neutral-content rounded-full w-6 h-6 flex items-center justify-center">
           <i class="fa-solid fa-user text-xs"></i>
         </div>
       <% end %>
@@ -27,17 +27,16 @@
         </div>
 
         <!-- 右側：編集・削除ボタン -->
-        <% if current_user.own?(comment) %>
-          <div class="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            <%= link_to review_comment_path(comment),
-                  method: :delete,
-                  data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "本当に削除しますか？"
-                  },
-                  class: "text-red-500 hover:text-red-700 p-1 rounded hover:bg-red-50 transition-colors duration-200",
-                  title: "削除" do %>
-              <i class="fas fa-trash-alt" style="color: #f4a69e;" ></i>
+        <% if current_user && current_user.own?(comment) %>
+          <div class="flex items-center space-x-1">
+            <%= link_to comment_path(comment),
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "本当に削除しますか？"
+              },
+              class: "text-red-500 hover:text-red-700 p-1 rounded hover:bg-red-50 transition-colors duration-200",
+              title: "削除" do %>
+              <i class="fas fa-trash-alt" style="color: #f4a69e;"></i>
             <% end %>
           </div>
         <% end %>
