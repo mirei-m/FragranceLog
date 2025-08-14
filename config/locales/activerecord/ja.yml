@@ -5,6 +5,7 @@ ja:
       fragrance: マイ香水
       calendar: 香り日記
       review: みんなの香水
+      comment: コメント
     attributes:
       user:
         name: アカウント名
@@ -34,6 +35,8 @@ ja:
         body: 香りの感想
         fragrance_id: 香水
         fragrance: 香水
+      comment:
+        body: コメント
     errors:
       models:
         user:

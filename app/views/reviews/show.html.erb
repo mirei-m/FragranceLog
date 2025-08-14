@@ -57,6 +57,21 @@
       </div>
     </div>
 
+    <!--  コメントセクション -->
+    <div class="mt-8 border-t border-gray p-4">
+      <h3 class="text-md font-semibold mb-4">コメント (<%= @review.comments.count %>)</h3>
+
+      <!-- コメントフォーム -->
+      <%= render 'comments/form', review: @review %>
+
+      <!-- コメント一覧 -->
+      <div class="mt-6">
+        <% @review.comments.includes(:user).order(created_at: :desc).each do |comment| %>
+          <%= render 'comments/comment', comment: comment %>
+        <% end %>
+      </div>
+    </div>
+
     <!-- ボタン -->
     <div class="mt-8 text-center space-y-4">
       <div class="flex justify-center gap-6">

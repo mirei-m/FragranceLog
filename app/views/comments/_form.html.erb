@@ -1,0 +1,30 @@
+<div class="w-full max-w-2xl mx-auto px-4">
+  <% if user_signed_in? %>
+    <div id="comment_form">
+      <%= form_with(model: [review, Comment.new], local: true, class: "flex flex-col space-y-2") do |f| %>
+        <div class="bg-gray-100 rounded shadow-sm">
+          <%= f.text_area :body,
+                placeholder: "コメントを入力してください",
+                rows: 1,
+                class: "w-full bg-transparent text-sm border-none focus:outline-none px-3 py-2 resize-none" %>
+        </div>
+
+        <div class="text-right">
+          <%= f.submit "投稿",
+                class: "btn btn-primary py-2 px-6 shadow-md transition duration-200 max-w-xs" %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center mb-4 p-4 border rounded-md text-gray-700">
+      <i class="fa-regular fa-user text-gray-400 mb-2"></i>
+      <p class="text-gray-600">
+        コメントを投稿するには
+        <%= link_to "ログイン", new_user_session_path, class: "text-blue-600 hover:underline" %>
+        または
+        <%= link_to "新規登録", new_user_registration_path, class: "text-blue-600 hover:underline" %>
+        が必要です
+      </p>
+    </div>
+  <% end %>
+</div>
