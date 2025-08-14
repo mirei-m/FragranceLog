@@ -8,6 +8,15 @@ class Review < ApplicationRecord
   after_create :make_fragrance_public
   after_destroy :revert_fragrance_status
 
+  # ransackの検索設定
+  def self.ransackable_attributes(auth_object = nil)
+    %w[]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[fragrances users]
+  end
+
   private
 
   def make_fragrance_public
