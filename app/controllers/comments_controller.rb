@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:destroy]
-  before_action :authorize_user!, only: [:destroy]
+  before_action :set_comment, only: [ :destroy ]
+  before_action :authorize_user!, only: [ :destroy ]
 
   def create
     @review = Review.find(params[:review_id])
