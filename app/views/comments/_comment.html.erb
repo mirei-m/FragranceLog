@@ -1,6 +1,6 @@
-<div class="comment-item py-3 border-b border-gray-100 last:border-b-0">
+<div id="comment-<%= comment.id %>" class="comment-item py-3 border-b border-gray-100 last:border-b-0">
   <div class="flex items-start space-x-3">
-    <!-- 小さめのアイコン -->
+    <!-- アイコン -->
     <div class="w-6 h-6 rounded-full flex-shrink-0 mt-1">
       <% if comment.user.profile_image.attached? %>
         <%= image_tag comment.user.profile_image,
@@ -29,6 +29,19 @@
         <!-- 右側：編集・削除ボタン -->
         <% if current_user && current_user.own?(comment) %>
           <div class="flex items-center space-x-1">
+
+            <!-- 編集ボタン -->
+            <%= link_to edit_comment_path(comment),
+              data: {
+                turbo_method: :get,
+                turbo_stream: true
+              },
+              class: "text-blue-500 hover:text-blue-700 p-1 rounded hover:bg-blue-50 transition-colors duration-200",
+              title: "編集" do %>
+              <i class="fas fa-edit" style="color: #74C0FC;"></i>
+            <% end %>
+
+            <!-- 削除ボタン -->
             <%= link_to comment_path(comment),
               data: {
                 turbo_method: :delete,

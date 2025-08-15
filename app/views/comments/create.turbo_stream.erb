@@ -1,0 +1,15 @@
+<% if @comment.persisted? %>
+  <!-- 成功時：コメントを追加してフォームをリセット -->
+  <%= turbo_stream.prepend "comments-list" do %>
+    <%= render "comments/comment", comment: @comment %>
+  <% end %>
+
+  <%= turbo_stream.replace "comment-form" do %>
+    <%= render "comments/form", review: @review, comment: Comment.new %>
+  <% end %>
+<% else %>
+  <!-- 失敗時：エラーメッセージ付きフォームを表示 -->
+  <%= turbo_stream.replace "comment-form" do %>
+    <%= render "comments/form", review: @review, comment: @comment %>
+  <% end %>
+<% end %>
