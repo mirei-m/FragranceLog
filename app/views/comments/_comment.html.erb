@@ -1,6 +1,6 @@
-<div class="comment-item py-3 border-b border-gray-100 last:border-b-0">
+<div id="comment-<%= comment.id %>" class="comment-item py-3 border-b border-gray-100 last:border-b-0">
   <div class="flex items-start space-x-3">
-    <!-- 小さめのアイコン -->
+    <!-- アイコン -->
     <div class="w-6 h-6 rounded-full flex-shrink-0 mt-1">
       <% if comment.user.profile_image.attached? %>
         <%= image_tag comment.user.profile_image,

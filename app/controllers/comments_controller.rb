@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
 
 
   def destroy
+    @review = @comment.review
     @comment.destroy!
   end
 

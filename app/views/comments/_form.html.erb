@@ -1,7 +1,19 @@
 <div class="w-full max-w-2xl mx-auto px-4">
   <% if user_signed_in? %>
-    <div id="comment_form">
-      <%= form_with(model: [review, Comment.new], local: true, class: "flex flex-col space-y-2") do |f| %>
+    <div id="comment-form">
+      <%= form_with(model: [review, comment], class: "flex flex-col space-y-2") do |f| %>
+
+        <!-- エラーメッセージ表示 -->
+        <% if comment.errors.any? %>
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-3">
+            <ul class="list-none">
+              <% comment.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <div class="bg-gray-100 rounded-lg shadow-sm">
           <%= f.text_area :body,
                 placeholder: "コメントを入力してください",
@@ -15,6 +27,8 @@
         </div>
       <% end %>
     </div>
+
+  <!-- 未ログインの場合 -->
   <% else %>
     <div class="text-center mb-4 p-4 border rounded-md text-gray-700">
       <i class="fa-regular fa-user text-gray-400 mb-2"></i>

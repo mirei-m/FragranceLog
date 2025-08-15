@@ -62,10 +62,12 @@
       <h3 class="text-md font-semibold mb-4">コメント (<%= @review.comments.count %>)</h3>
 
       <!-- コメントフォーム -->
-      <%= render 'comments/form', review: @review %>
+      <div id="comment-form">
+        <%= render 'comments/form', review: @review, comment: @comment %>
+      </div>
 
       <!-- コメント一覧 -->
-      <div class="mt-6">
+      <div class="mt-6" id="comments-list">
         <% @review.comments.includes(:user).order(created_at: :desc).each do |comment| %>
           <%= render 'comments/comment', comment: comment %>
         <% end %>
