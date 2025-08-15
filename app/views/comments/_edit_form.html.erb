@@ -1,5 +1,9 @@
 <div id="comment-<%= comment.id %>" class="comment-item py-3 border-b border-gray-100 last:border-b-0">
-  <%= form_with model: comment, data: { turbo: true }, class: "w-full" do |f| %>
+  <%= form_with model: comment,
+      url: comment_path(comment),
+      method: :patch,
+      data: { turbo: true },
+      class: "w-full" do |f| %>
     <div class="flex items-start space-x-3">
       <!-- アイコン部分 -->
       <div class="w-6 h-6 rounded-full flex-shrink-0 mt-1">
@@ -25,25 +29,28 @@
           </span>
         </div>
 
-        <!-- テキストエリア -->
-        <div class="mb-3">
-          <%= f.text_area :body,
-                class: "w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-                rows: 3,
-                placeholder: "コメントを編集..." %>
-
-          <!-- エラーメッセージ -->
-          <% if comment.errors.any? %>
-            <div class="mt-1 text-sm text-red-600">
+        <!-- エラーメッセージ -->
+        <% if comment.errors.any? %>
+          <div class="mb-3 p-2 bg-red-100 border border-red-400 rounded-md">
+            <div class="text-sm text-red-700">
+              <i class="fas fa-exclamation-circle mr-1"></i>
               <%= comment.errors.full_messages.first %>
             </div>
-          <% end %>
+          </div>
+        <% end %>
+
+        <!-- テキストエリア -->
+        <div class="bg-gray-100 rounded-lg shadow-sm mb-2">
+          <%= f.text_area :body,
+              class: "w-full bg-transparent text-sm border-none focus:outline-none px-3 py-2 resize-none",
+              rows: 2,
+              placeholder: "コメントを編集..." %>
         </div>
 
         <!-- 更新ボタン -->
-        <div class="flex items-center">
+        <div class="text-right">
           <%= f.submit "更新",
-                class: "px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors duration-200" %>
+                class: "btn btn-primary py-2 px-6 shadow-md transition duration-200 max-w-xs" %>
         </div>
       </div>
     </div>
