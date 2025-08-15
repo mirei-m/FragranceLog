@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [ :destroy ]
-  before_action :authorize_user!, only: [ :destroy ]
+  before_action :set_comment, only: [ :destroy, :edit, :update ]
+  before_action :authorize_user!, only: [ :destroy, :edit, :update ]
 
   def create
     @review = Review.find(params[:review_id])
@@ -13,6 +13,14 @@ class CommentsController < ApplicationController
       redirect_to @review, alert: t("defaults.flash_message.not_created", item: Comment.model_name.human)
     end
   end
+
+  def edit
+  end
+
+  def update
+    @comment.update(comment_params)
+  end
+
 
   def destroy
     @comment.destroy!
