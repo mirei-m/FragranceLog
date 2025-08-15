@@ -6,12 +6,7 @@ class CommentsController < ApplicationController
     @review = Review.find(params[:review_id])
     @comment = @review.comments.build(comment_params)
     @comment.user = current_user
-
-    if @comment.save
-      redirect_to @review, notice: t("defaults.flash_message.created", item: Comment.model_name.human)
-    else
-      redirect_to @review, alert: t("defaults.flash_message.not_created", item: Comment.model_name.human)
-    end
+    @comment.save
   end
 
   def edit
@@ -24,7 +19,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy!
-    redirect_to @comment.review, notice: t("defaults.flash_message.deleted", item: Comment.model_name.human)
   end
 
   private

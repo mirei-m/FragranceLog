@@ -1,0 +1,51 @@
+<div id="comment-<%= comment.id %>" class="comment-item py-3 border-b border-gray-100 last:border-b-0">
+  <%= form_with model: comment, data: { turbo: true }, class: "w-full" do |f| %>
+    <div class="flex items-start space-x-3">
+      <!-- アイコン部分 -->
+      <div class="w-6 h-6 rounded-full flex-shrink-0 mt-1">
+        <% if comment.user.profile_image.attached? %>
+          <%= image_tag comment.user.profile_image,
+                alt: comment.user.name,
+                class: "w-full h-full object-cover rounded-full" %>
+        <% else %>
+          <div class="bg-neutral text-neutral-content rounded-full w-6 h-6 flex items-center justify-center">
+            <i class="fa-solid fa-user text-xs"></i>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- 編集フォーム -->
+      <div class="flex-1">
+        <div class="flex items-baseline space-x-2 mb-2">
+          <span class="text-sm font-medium text-gray-900">
+            <%= comment.user.name.presence || "匿名" %>
+          </span>
+          <span class="text-xs text-gray-500">
+            <%= time_ago_in_words(comment.created_at) %>前
+          </span>
+        </div>
+
+        <!-- テキストエリア -->
+        <div class="mb-3">
+          <%= f.text_area :body,
+                class: "w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                rows: 3,
+                placeholder: "コメントを編集..." %>
+
+          <!-- エラーメッセージ -->
+          <% if comment.errors.any? %>
+            <div class="mt-1 text-sm text-red-600">
+              <%= comment.errors.full_messages.first %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- 更新ボタン -->
+        <div class="flex items-center">
+          <%= f.submit "更新",
+                class: "px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors duration-200" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
