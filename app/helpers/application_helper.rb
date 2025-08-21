@@ -8,7 +8,7 @@ module ApplicationHelper
     end
   end
 
-  #タグ表示用
+  # タグ表示用
   def display_tags(fragrance)
     return content_tag(:span, "カテゴリ未設定", class: "text-gray-500 text-sm") if fragrance.tags.empty?
 

@@ -30,7 +30,7 @@ class Fragrance < ApplicationRecord
   # タグの数を最大3つに制限
   def tags_count_within_limit
     if tags.size > 3
-      errors.add(:tags, 'は3つまでしか選択できません')
+      errors.add(:tags, "は3つまでしか選択できません")
     end
   end
 end

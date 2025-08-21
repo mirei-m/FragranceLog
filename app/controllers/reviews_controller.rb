@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
 
   def index
     @q = Review.ransack(params[:q])
-    @reviews = @q.result(distinct: true).includes([:user, fragrance: :tags]).order(created_at: :desc).page(params[:page])
+    @reviews = @q.result(distinct: true).includes([ :user, fragrance: :tags ]).order(created_at: :desc).page(params[:page])
   end
 
   def new
@@ -50,7 +50,7 @@ class ReviewsController < ApplicationController
   private
 
   def set_review
-    @review = Review.includes([:user, fragrance: :tags]).find(params[:id])
+    @review = Review.includes([ :user, fragrance: :tags ]).find(params[:id])
   end
 
   def review_params

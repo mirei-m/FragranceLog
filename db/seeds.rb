@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-#香水のタグ
+# 香水のタグ
 puts "タグデータを作成中..."
 
 fragrance_categories = [
