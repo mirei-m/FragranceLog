@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# 香水のタグ
+puts "タグデータを作成中..."
+
+fragrance_categories = [
+  "フローラル", "シトラス", "フルーティ", "ウッディ",
+  "スパイシー", "オリエンタル", "マリン", "グリーン"
+]
+
+fragrance_categories.each do |category|
+  tag = Tag.find_or_create_by(name: category)
+  puts "  ✓ #{category}" if tag.persisted?
+end
+
+puts "タグデータ作成完了: #{Tag.count}件"

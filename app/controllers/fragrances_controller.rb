@@ -2,7 +2,7 @@ class FragrancesController < ApplicationController
   before_action :set_fragrance, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @fragrances = current_user.fragrances.order(created_at: :desc).page(params[:page])
+    @fragrances = current_user.fragrances.includes(:tags).order(created_at: :desc).page(params[:page])
   end
 
   def new
@@ -42,10 +42,10 @@ class FragrancesController < ApplicationController
   private
 
   def fragrance_params
-    params.require(:fragrance).permit(:name, :brand, :image, :sweetness, :freshness, :floral, :calm, :sexy, :spicy)
+    params.require(:fragrance).permit(:name, :brand, :image, :sweetness, :freshness, :floral, :calm, :sexy, :spicy, tag_ids: [])
   end
 
   def set_fragrance
-    @fragrance = current_user.fragrances.find(params[:id])
+    @fragrance = current_user.fragrances.includes(:tags).find(params[:id])
   end
 end

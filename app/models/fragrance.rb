@@ -11,6 +11,10 @@ class Fragrance < ApplicationRecord
   has_one_attached :image
   has_many :calendars, dependent: :destroy
   has_one :review, dependent: :destroy
+  has_many :fragrance_tags, dependent: :destroy
+  has_many :tags, through: :fragrance_tags
+
+  validate :tags_count_within_limit
 
   # ransack用の検索設定
   def self.ransackable_attributes(auth_object = nil)
@@ -19,5 +23,14 @@ class Fragrance < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     %w[reviews]
+  end
+
+  private
+
+  # タグの数を最大3つに制限
+  def tags_count_within_limit
+    if tags.size > 3
+      errors.add(:tags, "は3つまでしか選択できません")
+    end
   end
 end

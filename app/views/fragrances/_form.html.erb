@@ -36,6 +36,19 @@
             <%= form.label :image, class: "block font-bold mb-1" %>
             <%= form.file_field :image, class: "file-input file-input-bordered w-full" %>
           </div>
+
+          <div class="mb-4">
+            <%= form.label :tag_ids, "香りのカテゴリ（最大3つまで）", class: "block font-bold mb-1" %>
+            <div class="grid grid-cols-2 gap-2">
+              <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+                <div class="flex items-center">
+                  <%= b.check_box(class: "mr-2") %>
+                  <%= b.label(class: "text-sm") %>
+                </div>
+              <% end %>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">※最大3つまで選択できます</p>
+          </div>
         </div>
 
         <!-- 右カラム：印象評価 -->
@@ -111,3 +124,27 @@
   </div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const checkboxes = document.querySelectorAll('input[name="fragrance[tag_ids][]"]');
+  const maxSelections = 3;
+
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      const checkedBoxes = document.querySelectorAll('input[name="fragrance[tag_ids][]"]:checked');
+
+      if (checkedBoxes.length >= maxSelections) {
+        checkboxes.forEach(function(cb) {
+          if (!cb.checked) {
+            cb.disabled = true;
+          }
+        });
+      } else {
+        checkboxes.forEach(function(cb) {
+          cb.disabled = false;
+        });
+      }
+    });
+  });
+});
+</script>

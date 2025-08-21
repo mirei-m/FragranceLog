@@ -7,6 +7,12 @@
       <%= @fragrance.name %>
     </h1>
 
+    <!-- タグ -->
+    <div class="mb-4">
+      <span class="text-sm font-medium text-gray-700 mr-2">カテゴリ:</span>
+      <%= display_tags(@fragrance) %>
+    </div>
+
     <div class="md:flex md:space-x-6">
       <!-- 左側 -->
       <div class="md:w-1/2">
