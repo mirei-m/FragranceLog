@@ -31,12 +31,24 @@
       <%= render 'shared/header' %>
 
       <div class="flex flex-1">
-      <%= render 'shared/menu' %> <!-- 左メニュー -->
-      <main class="flex-1 px-4 py-6">
-        <%= render "shared/flash_messages" %>
-        <%= yield %>
-      </main>
-    </div>
+        <!-- デスクトップ: 常時表示 -->
+        <div class="hidden md:block">
+          <%= render 'shared/menu' %>
+        </div>
+
+        <!-- モバイル用メニュー -->
+        <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden hidden">
+          <div class="fixed inset-0 bg-black opacity-50" onclick="toggleMenu()"></div>
+          <div class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg">
+            <%= render 'shared/menu' %>
+          </div>
+        </div>
+
+        <main class="flex-1 px-4 py-6">
+          <%= render "shared/flash_messages" %>
+          <%= yield %>
+        </main>
+      </div>
 
       <%= render 'shared/footer' %>
     </div>

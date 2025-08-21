@@ -1,8 +1,18 @@
 <header class="navbar bg-base-300 px-4 shadow-sm">
-  <div class="flex-1">
+  <!-- モバイル用ハンバーガーボタン（左端） -->
+  <div class="navbar-start">
+    <button class="btn btn-ghost btn-sm md:hidden" onclick="toggleMenu()">
+      <i class="fas fa-bars text-lg"></i>
+    </button>
+  </div>
+
+    <!-- ロゴ -->
+  <div class="navar-center">
     <%= link_to "FragranceLog", root_path, class: "text-2xl font-bold" %>
   </div>
-  <div class="flex-none space-x-2">
+
+  <!-- 右側のユーザーメニュー -->
+  <div class="navbar-end space-x-2">
     <% if user_signed_in? %>
       <!-- プロフィールドロップダウン -->
       <div class="dropdown dropdown-end">

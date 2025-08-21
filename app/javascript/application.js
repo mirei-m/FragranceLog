@@ -5,6 +5,7 @@ import "./chart"
 import Rails from "@rails/ujs"
 Rails.start()
 
+// コメント非同期
 function toggleComment(commentId) {
   const shortVersion = document.getElementById(`comment-body-${commentId}`);
   const fullVersion = document.getElementById(`comment-full-${commentId}`);
@@ -20,4 +21,33 @@ function toggleComment(commentId) {
   }
 }
 
+// ハンバーガーメニュー
+function toggleMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu) {
+    menu.classList.toggle('hidden');
+
+    if (menu.classList.contains('hidden')) {
+      document.body.style.overflow = '';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+  }
+}
+
+// メニュー外クリックで閉じる
+document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('click', function(event) {
+    const menu = document.getElementById('mobile-menu');
+    const menuButton = event.target.closest('button[onclick="toggleMenu()"]');
+
+    if (menu && !menu.classList.contains('hidden') && !menuButton && !menu.contains(event.target)) {
+      menu.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+
 window.toggleComment = toggleComment;
+window.toggleMenu = toggleMenu;
