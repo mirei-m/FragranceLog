@@ -46,6 +46,6 @@ class FragrancesController < ApplicationController
   end
 
   def set_fragrance
-    @fragrance = current_user.fragrances.find(params[:id])
+    @fragrance = current_user.fragrances.includes(:tags).find(params[:id])
   end
 end
