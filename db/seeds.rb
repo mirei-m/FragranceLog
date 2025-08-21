@@ -17,7 +17,8 @@ fragrance_categories = [
 ]
 
 fragrance_categories.each do |category|
-  Tag.find_or_create_by(name: category)
+  tag = Tag.find_or_create_by(name: category)
+  puts "  ✓ #{category}" if tag.persisted?
 end
 
 puts "タグデータ作成完了: #{Tag.count}件"
