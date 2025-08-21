@@ -17,6 +17,11 @@
   <div class="flex flex-grow flex-col px-3 mt-4">
     <p class="text-sm text-gray-500 font-semibold"><%= fragrance.brand %></p>
     <p class="text-xl font-bold"><%= fragrance.name %></p>
+
+    <!-- タグ -->
+    <div class="mt-2 mb-3">
+      <%= display_tags(review.fragrance) %>
+    </div>
   </div>
 
   <p class="line-clamp-3 text-sm text-gray-800 mb-2">
