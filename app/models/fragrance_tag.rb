@@ -1,0 +1,2 @@
+class FragranceTag < ApplicationRecord
+end
