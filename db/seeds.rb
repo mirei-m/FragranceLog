@@ -9,6 +9,8 @@
 #   end
 
 #香水のタグ
+puts "タグデータを作成中..."
+
 fragrance_categories = [
   "フローラル", "シトラス", "フルーティ", "ウッディ",
   "スパイシー", "オリエンタル", "マリン", "グリーン"
@@ -17,3 +19,5 @@ fragrance_categories = [
 fragrance_categories.each do |category|
   Tag.find_or_create_by(name: category)
 end
+
+puts "タグデータ作成完了: #{Tag.count}件"
