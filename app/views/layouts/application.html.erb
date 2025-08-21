@@ -32,14 +32,14 @@
 
       <div class="flex flex-1">
         <!-- デスクトップ: 常時表示 -->
-        <div class="hidden md:block">
+        <div class="hidden md:block w-48 bg-[#e4e7e1] shadow-sm">
           <%= render 'shared/menu' %>
         </div>
 
         <!-- モバイル用メニュー -->
         <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden hidden">
           <div class="fixed inset-0 bg-black opacity-50" onclick="toggleMenu()"></div>
-          <div class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg">
+          <div class="fixed left-0 top-0 h-full w-64 bg-[#e4e7e1] shadow-lg">
             <%= render 'shared/menu' %>
           </div>
         </div>
