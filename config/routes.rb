@@ -14,12 +14,8 @@ Rails.application.routes.draw do
     get :result
   end
 
-  # プロフィールページ（お気に入り一覧も表示）
-  resource :profile, only: %i[show edit update] do
-    collection do
-      get :favorites
-    end
-  end
+  resource :profile, only: %i[show edit update]
+  get "profile/favorites", to: "profiles#favorites", as: "profile_favorites"
 
   get "/health", to: "application#health"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
