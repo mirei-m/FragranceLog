@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
 
   def show
     # プロフィールページでは最新のお気に入り数件を表示
-    @recent_favorites = current_user.favorite_reviews.includes(:fragrance, :user).limit(4).order(created_at: :desc)
+    @recent_favorites = current_user.favorite_reviews.includes(:fragrance, :user).limit(6).order(created_at: :desc)
   end
 
   def edit

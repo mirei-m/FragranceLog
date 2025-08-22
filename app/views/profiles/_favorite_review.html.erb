@@ -1,6 +1,6 @@
 <div class="bg-white from-pink-50 to-purple-50 backdrop-blur-m p-4 rounded-xl shadow-lg flex flex-col relative">
   <!-- お気に入り追加日を表示 -->
-  <div class="absolute top-2 right-2 bg-pink-200 text-pink-700 text-xs px-2 py-1 rounded-full">
+  <div class="absolute top-2 right-2 bg-base text-base-content text-xs px-2 py-1 rounded-full">
     <i class="fa-solid fa-star mr-1"></i>
     <%= time_ago_in_words(current_user.favorites.find_by(review: review).created_at) %>前
   </div>
@@ -54,9 +54,6 @@
 
     <!-- お気に入りボタン（解除ボタンとして機能） -->
     <div class="flex items-center space-x-2">
-      <%= link_to review_path(review), class: "btn btn-xs btn-outline btn-primary" do %>
-      詳細
-      <% end %>
       <%= render 'shared/favorite_button', review: review %>
     </div>
   </div>

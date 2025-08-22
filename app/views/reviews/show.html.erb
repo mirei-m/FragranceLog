@@ -2,13 +2,9 @@
 
 <section class="px-4 py-10 sm:px-6 lg:px-8">
   <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-lg">
-    <div class="absolute top-4 right-4 z-10">
-      <%= render 'shared/favorite_button', review: @review,
-                  class: "bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-white/90 transition-all" %>
-    </div>
-
     <div class="flex items-start justify-between mb-4">
       <div class="flex-1">
+        <%= render 'shared/favorite_button', review: @review %>
         <h1 class="text-2xl font-bold">
           <span class="text-base text-gray-500 mr-2"><%= @review.fragrance.brand %></span>
           <%= @review.fragrance.name %>
