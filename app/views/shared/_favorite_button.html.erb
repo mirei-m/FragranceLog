@@ -6,7 +6,7 @@
                   data: { turbo_method: :delete },
                   class: "favorite-btn favorited",
                   title: "お気に入りを解除" do %>
-        <i class="fas fa-star text-warning"></i>
+        <i class="fas fa-star" style="color: #fde484;"></i>
         <span class="favorite-count"><%= review.favorites.count %></span>
       <% end %>
     <% else %>
