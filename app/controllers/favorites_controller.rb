@@ -12,9 +12,9 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = current_user.favorites.find(params[:id])
-    @review = @favorite.review
-    @favorite.destroy
+    @review = Review.find(params[:review_id])
+    @favorite = current_user.favorites.find_by(review: @review)
+    @favorite&.destroy
 
     respond_to do |format|
       format.turbo_stream

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :fragrances
   resources :calendars
   resources :reviews do
-    resources :favorites, only: %i[create destroy]
+    resource :favorite, only: %i[create destroy]
     resources :comments, only: %i[create destroy edit update], shallow: true
   end
   resource :diagnosis, only: %i[new create ] do
