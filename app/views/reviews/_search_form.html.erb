@@ -3,12 +3,20 @@
 
     <%= search_form_for q, url: reviews_path, method: :get, class: "space-y-4", local: true do |f| %>
       <div class="form-control">
+        <!-- 香水名・ブランド名検索 -->
         <%= f.label :fragrance_name_or_fragrance_brand_cont, "香水名・ブランド名", class: "label" %>
         <div class="flex gap-2">
           <%= f.search_field :fragrance_name_or_fragrance_brand_cont,
               class: "input input-bordered flex-1 w-full p-3 border border-gray-300 rounded-xl shadow-sm",
               placeholder: "検索ワードを入力" %>
-          <!-- 検索ボタンを横並びに -->
+
+          <!-- タグ検索ドロップダウン -->
+          <%= f.collection_select :tags_id_eq,
+              Tag.all, :id, :name,
+              { prompt: "タグを選択してください" },
+              { class: "form-control" } %>
+
+          <!-- 検索ボタン -->
           <button type="submit" class="btn btn-primary">
             <i class="fas fa-search"></i>
             検索
