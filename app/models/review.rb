@@ -3,6 +3,8 @@ class Review < ApplicationRecord
   belongs_to :fragrance
 
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user
 
   validates :body, presence: true, length: { maximum: 1000 }
   validates :fragrance_id, uniqueness: { scope: :user_id, message: "はすでにレビュー済みです" }

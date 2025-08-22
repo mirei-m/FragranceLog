@@ -1,0 +1,29 @@
+<div id="favorite-button-<%= review.id %>" class="favorite-button-container">
+  <% if user_signed_in? %>
+    <% if current_user.favorites.exists?(review: review) %>
+      <!-- お気に入り済み -->
+      <%= link_to review_favorite_path(review),
+                  data: { turbo_method: :delete },
+                  class: "favorite-btn favorited",
+                  title: "お気に入りを解除" do %>
+        <i class="fas fa-star text-warning"></i>
+        <span class="favorite-count"><%= review.favorites.count %></span>
+      <% end %>
+    <% else %>
+      <!-- 未お気に入り -->
+      <%= link_to review_favorite_path(review),
+                  data: { turbo_method: :post },
+                  class: "favorite-btn",
+                  title: "お気に入りに追加" do %>
+        <i class="far fa-star text-muted"></i>
+        <span class="favorite-count"><%= review.favorites.count %></span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <!-- 未ログイン時：お気に入り数のみ表示 -->
+    <span class="favorite-display">
+      <i class="far fa-star text-muted"></i>
+      <span class="favorite-count"><%= review.favorites.count %></span>
+    </span>
+  <% end %>
+</div>

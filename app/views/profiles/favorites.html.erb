@@ -1,0 +1,67 @@
+<% content_for(:title, "お気に入り一覧") %>
+
+<section class="px-4 py-12 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto mb-8">
+    <!-- 戻るボタン -->
+    <div class="mb-6">
+      <%= link_to profile_path, class: "btn btn-ghost btn-sm text-gray-600 hover:text-gray-800" do %>
+        <i class="fa-solid fa-arrow-left mr-2"></i>
+        プロフィールに戻る
+      <% end %>
+    </div>
+
+    <!-- ページタイトル -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2">
+        <i class="fa-solid fa-star mr-3"></i>
+        お気に入り一覧
+      </h1>
+      <p class="text-gray-600">
+        あなたがお気に入りに追加した香水のレビュー
+      </p>
+      <% if @favorite_reviews.present? %>
+        <p class="text-sm text-gray-500 mt-2">
+          全<span class="font-semibold text-pink-600"><%= @favorite_reviews.count %></span>件のレビュー
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- お気に入りレビュー一覧 -->
+  <div class="max-w-6xl mx-auto mt-4">
+    <% if @favorite_reviews.present? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% @favorite_reviews.each do |review| %>
+          <%= render 'profiles/favorite_review',
+              review: review,
+              show_favorite_date: true,
+              compact_mode: false %>
+        <% end %>
+      </div>
+    <% else %>
+      <!-- 空の状態 -->
+      <div class="text-center py-16">
+        <div class="mb-6">
+          <i class="fa-solid fa-heart-crack text-gray-300 text-8xl mb-4"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-600 mb-3">
+          まだお気に入りのレビューがありません
+        </h3>
+        <p class="text-gray-500 mb-6 max-w-md mx-auto">
+          気になる香りのレビューを見つけて、<br>
+          お気に入りに追加してみましょう！
+        </p>
+        <div class="space-y-3">
+          <%= link_to reviews_path, class: "btn btn-primary mr-3" do %>
+            <i class="fa-solid fa-search mr-2"></i>
+            レビューを探す
+          <% end %>
+          <%= link_to profile_path, class: "btn btn-outline btn-secondary" do %>
+            <i class="fa-solid fa-user mr-2"></i>
+            プロフィールに戻る
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

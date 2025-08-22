@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :calendars, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_reviews, through: :favorites, source: :review
 
   has_one_attached :profile_image
 

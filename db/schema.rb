@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_21_062949) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_22_021610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_21_062949) do
     t.datetime "updated_at", null: false
     t.index ["review_id"], name: "index_comments_on_review_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "review_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_favorites_on_review_id"
+    t.index ["user_id", "review_id"], name: "index_favorites_on_user_id_and_review_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "fragrance_tags", force: :cascade do |t|
@@ -129,6 +139,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_21_062949) do
   add_foreign_key "calendars", "users"
   add_foreign_key "comments", "reviews"
   add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "reviews"
+  add_foreign_key "favorites", "users"
   add_foreign_key "fragrance_tags", "fragrances"
   add_foreign_key "fragrance_tags", "tags"
   add_foreign_key "fragrances", "users"
