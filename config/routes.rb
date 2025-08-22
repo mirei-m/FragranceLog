@@ -7,13 +7,19 @@ Rails.application.routes.draw do
   resources :fragrances
   resources :calendars
   resources :reviews do
+    resources :favorites, only: %i[create destroy]
     resources :comments, only: %i[create destroy edit update], shallow: true
   end
-  resource :diagnosis, only: [ :new, :create ] do
+  resource :diagnosis, only: %i[new create ] do
     get :result
   end
 
-  resource :profile, only: %i[show edit update]
+  # プロフィールページ（お気に入り一覧も表示）
+  resource :profile, only: %i[show edit update] do
+    collection do
+      get :favorites
+    end
+  end
 
   get "/health", to: "application#health"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
