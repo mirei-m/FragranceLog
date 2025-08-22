@@ -1,2 +1,2 @@
-module FavoriteHelper
+module FavoritesHelper
 end

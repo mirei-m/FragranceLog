@@ -29,18 +29,25 @@
   </p>
 
   <!-- ユーザー情報 -->
-  <div class="flex items-center text-sm text-gray-600 mb-2">
-    <div class="avatar mr-2">
-      <div class="w-6 rounded-full">
-        <% if review.user.profile_image.attached? %>
-          <%= image_tag review.user.profile_image, alt: review.user.name %>
-        <% else %>
-          <div class="bg-neutral text-neutral-content rounded-full w-6 h-6 flex items-center justify-center">
-            <i class="fa-solid fa-user text-xs"></i>
-          </div>
-        <% end %>
+  <div class="flex items-center justify-between text-sm text-gray-600 mb-2">
+    <div class="flex items-center">
+      <div class="avatar mr-2">
+        <div class="w-6 rounded-full">
+          <% if review.user.profile_image.attached? %>
+            <%= image_tag review.user.profile_image, alt: review.user.name %>
+          <% else %>
+            <div class="bg-neutral text-neutral-content rounded-full w-6 h-6 flex items-center justify-center">
+              <i class="fa-solid fa-user text-xs"></i>
+            </div>
+          <% end %>
+        </div>
       </div>
+      <span><%= review.user.name.presence || "匿名" %></span>
     </div>
-    <span><%= review.user.name.presence || "匿名" %></span>
+
+    <!-- お気に入りボタン -->
+    <div class="ml-auto">
+      <%= render 'shared/favorite_button', review: review %>
+    </div>
   </div>
 </div>
