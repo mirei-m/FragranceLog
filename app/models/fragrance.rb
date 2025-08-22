@@ -22,7 +22,7 @@ class Fragrance < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[reviews]
+    %w[review tags user fragrance_tags]
   end
 
   private

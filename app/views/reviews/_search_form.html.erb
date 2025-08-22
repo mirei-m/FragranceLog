@@ -13,7 +13,7 @@
           <!-- タグ検索ドロップダウン -->
           <%= f.collection_select :tags_id_eq,
               Tag.all, :id, :name,
-              { prompt: "タグを選択してください" },
+              { prompt: "香りのカテゴリを選択" },
               { class: "form-control" } %>
 
           <!-- 検索ボタン -->
