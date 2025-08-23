@@ -27,6 +27,18 @@ ja:
       deleted: "%{item}を削除しました"
       require_login: ログインが必要です
       not_authorized: 権限がありません
+  devise:
+    passwords:
+      new:
+        title: パスワード再設定
+      edit:
+        title: パスワード再設定
+    registrations:
+      new:
+        title: アカウント登録
+    sessions:
+      new:
+        title: ログイン
   header:
     login: ログイン
     logout: ログアウト
@@ -87,6 +99,8 @@ ja:
       title: プロフィール
     edit:
       title: プロフィール編集
+    favorites:
+      title: お気に入り一覧
   static_pages:
     terms_of_service:
       title: 利用規約
