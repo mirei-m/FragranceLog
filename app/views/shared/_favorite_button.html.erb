@@ -6,7 +6,7 @@
                   data: { turbo_method: :delete },
                   class: "favorite-btn favorited",
                   title: "お気に入りを解除" do %>
-        <i class="fas fa-star" style="color: #fde484;"></i>
+        <i class="fas fa-heart" style="color: #fde484;"></i>
         <span class="favorite-count"><%= review.favorites.count %></span>
       <% end %>
     <% else %>
@@ -15,7 +15,7 @@
                   data: { turbo_method: :post },
                   class: "favorite-btn",
                   title: "お気に入りに追加" do %>
-        <i class="far fa-star text-muted"></i>
+        <i class="far fa-heart text-muted"></i>
         <span class="favorite-count"><%= review.favorites.count %></span>
       <% end %>
     <% end %>
