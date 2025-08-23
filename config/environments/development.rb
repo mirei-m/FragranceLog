@@ -35,7 +35,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
@@ -45,9 +45,21 @@ Rails.application.configure do
 
   # :letter_opener_web を使って、メールを実際に送信せずブラウザで確認する
   config.action_mailer.delivery_method = :letter_opener_web
+  # config.action_mailer.delivery_method = :smtp
 
-  # メール処理を実行する（false にするとメール生成自体をスキップする）
+  # メール処理を実行する
   config.action_mailer.perform_deliveries = true
+
+  # Gmail SMTP設定（本番と同じテスト）
+  # config.action_mailer.smtp_settings = {
+  # address: "smtp.gmail.com",
+  #  domain: "gmail.com",
+  #  port: 587,
+  #  user_name: ENV["MAILER_SENDER"],
+  #  password: ENV["MAILER_PASSWORD"],
+  #  authentication: :plain,
+  #  enable_starttls_auto: true
+  # }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
