@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "users/registrations",
-    sessions: "users/sessions"
+    sessions: "users/sessions",
+    passwords: "users/passwords"
   }
   root "static_pages#top"
   resources :fragrances
@@ -31,4 +32,9 @@ Rails.application.routes.draw do
   # 利用規約とプライバシーポリシー
   get "terms_of_service", to: "static_pages#terms_of_service"
   get "privacy_policy", to: "static_pages#privacy_policy"
+
+  # ブラウザ上で送信メールの履歴一覧を確認できるようにするための設定
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
