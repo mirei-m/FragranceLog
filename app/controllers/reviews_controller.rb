@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
   before_action :set_review, only: [ :show, :edit, :update, :destroy ]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
-  before_action :setup_meta_tags, only: [:show]
+  before_action :setup_meta_tags, only: [ :show ]
 
   def index
     @q = Review.ransack(params[:q])
@@ -101,7 +101,7 @@ class ReviewsController < ApplicationController
         protocol: request.protocol
       )
     else
-      view_context.image_url('default_fragrance.png')
+      view_context.image_url("default_fragrance.png")
     end
   end
 end
