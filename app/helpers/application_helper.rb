@@ -29,4 +29,32 @@ module ApplicationHelper
       end
     end.join(" ").html_safe
   end
+
+  # OGP設定
+  def default_meta_tags
+    {
+      site: "FragranceLog",
+      title: "香水レビュー・記録・管理アプリ",
+      reverse: true,
+      charset: "utf-8",
+      description: "FragranceLogは、香水の記録・レビュー・診断によって香水ライフをもっと楽しくするアプリです。あなたにぴったりの香りを見つけましょう",
+      keywords: "香水,レビュー,診断,記録,香り",
+      canonical: request.original_url,
+      separator: "|",
+      og: {
+        site_name: :site,
+        title: :title,
+        description: :description,
+        type: "website",
+        url: request.original_url,
+        image: image_url("ogp.png"),
+        locale: "ja_JP"
+      },
+      twitter: {
+        card: "summary_large_image",
+        site: "@", # アプリの公式アカウントがあれば
+        image: image_url("ogp.png")
+      }
+    }
+  end
 end
