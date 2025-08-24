@@ -87,7 +87,7 @@ Rails.application.configure do
 
   # ホスト名（アプリのドメイン）
   config.action_mailer.default_url_options = {
-    host: "fragrancelog.onrender.com",
+    host: "fragrancelog.com",
     protocol: "https"
   }
   # Gmail SMTP設定
