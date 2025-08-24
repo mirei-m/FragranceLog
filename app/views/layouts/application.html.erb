@@ -24,8 +24,18 @@
     <%= favicon_link_tag "apple-touch-icon.png", rel: "apple-touch-icon", sizes: "180x180" %>
     <%= favicon_link_tag "android-chrome-512x512.png", rel: "icon", sizes: "512x512", type: "image/png" %>
     <%= favicon_link_tag "android-chrome-192x192.png", rel: "icon", sizes: "192x192", type: "image/png" %>
-    <!-- OGP用 -->
+    <!-- OGP -->
     <%= display_meta_tags(default_meta_tags) %>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZHK8CQW71"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6ZHK8CQW71');
+    </script>
   </head>
 
   <body class="min-h-screen">
