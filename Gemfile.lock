@@ -209,6 +209,8 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    meta-tags (2.22.1)
+      actionpack (>= 6.0.0, < 8.1)
     mini_magick (5.2.0)
       benchmark
       logger
@@ -421,6 +423,7 @@ DEPENDENCIES
   jsbundling-rails
   kaminari
   letter_opener_web
+  meta-tags
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.1)
