@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
   before_action :set_review, only: [ :show, :edit, :update, :destroy ]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
+  before_action :setup_meta_tags, only: [:show]
 
   def index
     @q = Review.ransack(params[:q])
@@ -61,7 +62,7 @@ class ReviewsController < ApplicationController
     redirect_to reviews_path, alert: t("defaults.flash_message.not_authorized") unless @review.user == current_user
   end
 
-  def set_meta_tags
+  def setup_meta_tags
     # レビュー本文を適切な長さに切り取り
     description = truncate_description(@review.body)
 
@@ -93,16 +94,14 @@ class ReviewsController < ApplicationController
   end
 
   def fragrance_image_url(review)
-    if review.fragrance.image.present?
-      # 画像が添付されている場合
-      Rails.env.production? ?
-        review.fragrance.image.url :
-        "#{request.protocol}#{request.host_with_port}#{review.fragrance.image.url}"
+    if review.fragrance.image.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(
+        review.fragrance.image,
+        host: request.host_with_port,
+        protocol: request.protocol
+      )
     else
-      # デフォルト画像
-      Rails.env.production? ?
-        image_url("default_fragrance.png") :
-        "#{request.protocol}#{request.host_with_port}#{image_path("default_fragrance.png")}"
+      view_context.image_url('default_fragrance.png')
     end
   end
 end

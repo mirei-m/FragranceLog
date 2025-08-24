@@ -34,7 +34,7 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: "FragranceLog",
-      title: "香水レビュー・記録・管理アプリ",
+      title: "香水記録・管理・レビューアプリ",
       reverse: true,
       charset: "utf-8",
       description: "FragranceLogは、香水の記録・レビュー・診断によって香水ライフをもっと楽しくするアプリです。あなたにぴったりの香りを見つけましょう",
