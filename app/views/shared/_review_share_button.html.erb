@@ -1,0 +1,21 @@
+<%
+  perfume_name = "#{review.fragrance.name} - #{review.fragrance.brand}"
+  review_excerpt = truncate(review.body, length: 50)
+  share_text = <<~TEXT.strip
+    🌸 香水レビュー
+    #{perfume_name}
+
+    #{review_excerpt}
+
+    #香水レビュー #FragranceLog #香水
+  TEXT
+  share_url = request.original_url
+  twitter_url = "https://twitter.com/intent/tweet?text=#{CGI.escape(share_text)}&url=#{CGI.escape(share_url)}"
+%>
+
+<%= link_to twitter_url, target: '_blank', rel: 'noopener',
+    class: 'btn btn-primary gap-2',
+    data: { turbo: false } do %>
+  <i class="fa-brands fa-square-x-twitter"></i>
+  レビューをシェア
+<% end %>
