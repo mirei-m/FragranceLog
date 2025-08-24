@@ -37,7 +37,7 @@ module ApplicationHelper
       title: "香水レビュー・記録・管理アプリ",
       reverse: true,
       charset: "utf-8",
-      description: "あなたにぴったりの香りを見つけよう",
+      description: "FragranceLogは、香水の記録・レビュー・診断によって香水ライフをもっと楽しくするアプリです。あなたにぴったりの香りを見つけましょう",
       keywords: "香水,レビュー,診断,記録,香り",
       canonical: request.original_url,
       separator: "|",
