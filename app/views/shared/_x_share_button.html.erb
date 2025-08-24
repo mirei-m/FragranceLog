@@ -1,9 +1,9 @@
 <%
-  share_text = "私にぴったりの香りは「#{@result[:name]}」。#{@result[:description]} #香水診断 #FragranceLog"
+  share_text = "私にぴったりの香りは「#{@result[:name]}」 #{@result[:description]} #香水診断 #FragranceLog"
   share_url = request.original_url
   twitter_url = "https://twitter.com/intent/tweet?text=#{CGI.escape(share_text)}&url=#{CGI.escape(share_url)}"
 %>
 
-<%= link_to twitter_url, target: '_blank', rel: 'noopener', class: "x-share-btn mt-2" do %>
-  <i class="fa-brands fa-square-x-twitter"></i></> 診断結果をXでシェア
+<%= link_to twitter_url, target: '_blank', rel: 'noopener', class: "btn btn-primary gap-2 mt-2" do %>
+  <i class="fa-brands fa-square-x-twitter"></i></> 診断結果をシェア
 <% end %>
