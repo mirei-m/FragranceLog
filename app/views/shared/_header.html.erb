@@ -62,11 +62,7 @@
       </div>
     <% else %>
       <!-- 未ログイン時の表示 -->
-      <%= link_to new_user_registration_path, class: "btn btn-outline btn-sm" do %>
-        <i class="fa-solid fa-user-plus"></i>
-        <%= t('header.sign_up') %>
-      <% end %>
-      <%= link_to new_user_session_path, class: "btn btn-primary btn-sm" do %>
+      <%= link_to new_user_session_path, class: "btn btn-outline btn-sm" do %>
         <i class="fa-solid fa-right-to-bracket"></i>
         <%= t('header.login') %>
       <% end %>
