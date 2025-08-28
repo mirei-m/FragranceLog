@@ -1,7 +1,7 @@
 <% content_for(:title, @fragrance.name) %>
 
-<section class="px-2 py-10 sm:px-6 lg:px-8">
-  <div class="max-w-4xl mx-auto bg-white p-3 sm:p-6 rounded-xl shadow-lg">
+<section class="px-1 py-10 sm:px-6 lg:px-8">
+  <div class="max-w-full mx-auto bg-white p-2 sm:p-6 rounded-xl shadow-lg">
     <h1 class="text-xl sm:text-2xl font-bold break-words">
       <span class="text-sm sm:text-base text-gray-500 mr-2"><%= @fragrance.brand %></span>
       <%= @fragrance.name %>
@@ -15,14 +15,14 @@
 
     <div class="md:flex md:space-x-6">
       <!-- 左側 -->
-      <div class="md:w-1/2">
+      <div class="md:w-1/2 w-full">
         <% if @fragrance.image.attached? %>
-          <%= image_tag @fragrance.image.variant(resize_to_limit: [800, 600]), class: "w-full max-w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
+          <%= image_tag @fragrance.image.variant(resize_to_limit: [800, 600]), class: "w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
         <% else %>
-          <%= image_tag "default_fragrance.png", class: "w-full max-w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
+          <%= image_tag "default_fragrance.png", class: "w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
         <% end %>
 
-        <p class="break-words">公開設定：<%= @fragrance.status_i18n %>
+        <p class="break-words text-sm sm:text-base">公開設定：<%= @fragrance.status_i18n %>
         <% if @fragrance.published? %>
           <i class="fas fa-globe" style="color: #74C0FC;" title="公開中"></i>
         <% else %>
@@ -30,12 +30,12 @@
         <% end %></p>
 
         <% if @fragrance.unpublished? %>
-          <%= link_to new_review_path(fragrance_id: @fragrance) , class: "btn btn-outline btn-sm w-full sm:w-auto" do %>
+          <%= link_to new_review_path(fragrance_id: @fragrance) , class: "btn btn-outline btn-sm w-full sm:w-auto mt-2" do %>
             <i class="fa-solid fa-comments"></i>
             <span>香りを紹介する</span>
           <% end %>
         <% elsif @fragrance.published? && (review = @fragrance.review) %>
-          <%= link_to review_path(review), class: "btn btn-outline btn-sm w-full sm:w-auto" do %>
+          <%= link_to review_path(review), class: "btn btn-outline btn-sm w-full sm:w-auto mt-2" do %>
             <i class="fa-solid fa-comments"></i>
             <span>この香水の紹介を見る</span>
           <% end %>
@@ -43,8 +43,8 @@
       </div>
 
       <!-- 右側（チャート） -->
-      <div class="md:w-1/2 mt-6 md:mt-0">
-        <div class="p-3 sm:p-4 border-gray rounded bg-white shadow overflow-hidden">
+      <div class="md:w-1/2 w-full mt-6 md:mt-0">
+        <div class="p-2 sm:p-4 border-gray rounded bg-white shadow overflow-hidden w-full">
           <%= render "shared/radar_chart",
             chart_id: "fragrance_chart_#{@fragrance.id}",
             data: [
@@ -72,7 +72,7 @@
         <% end %>
       </div>
       <div class="flex justify-center mt-4">
-        <%= link_to "マイ香水一覧に戻る", fragrances_path, class: "btn py-2 px-6 rounded-lg shadow-md w-full sm:" %>
+        <%= link_to "マイ香水一覧に戻る", fragrances_path, class: "btn py-2 px-4 rounded-lg shadow-md w-full sm:w-auto" %>
       </div>
     </div>
   </div>

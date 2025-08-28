@@ -1,7 +1,7 @@
 <% content_for(:title, @review.fragrance.name) %>
 
-<section class="px-2 py-10 sm:px-6 lg:px-8">
-  <div class="max-w-4xl mx-auto bg-white p-3 sm:p-6 rounded-xl shadow-lg">
+<section class="px-1 py-10 sm:px-6 lg:px-8">
+  <div class="max-w-full mx-auto bg-white p-2 sm:p-6 rounded-xl shadow-lg">
     <div class="flex items-start justify-between mb-4">
       <div class="flex-1">
         <%= render 'shared/favorite_button', review: @review %>
@@ -20,11 +20,11 @@
 
     <div class="md:flex md:space-x-6">
       <!-- 左側 -->
-      <div class="md:w-1/2">
+      <div class="md:w-1/2 w-full">
         <% if @review.fragrance.image.attached? %>
-          <%= image_tag @review.fragrance.image.variant(resize_to_limit: [800, 600]), class: "w-full max-w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
+          <%= image_tag @review.fragrance.image.variant(resize_to_limit: [800, 600]), class: "w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
         <% else %>
-          <%= image_tag "default_fragrance.png", class: "w-full max-w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
+          <%= image_tag "default_fragrance.png", class: "w-full h-[250px] object-cover rounded-xl shadow-md mb-4" %>
         <% end %>
 
         <!-- ユーザー名 -->
@@ -45,8 +45,8 @@
       </div>
 
       <!-- 右側（チャート） -->
-      <div class="md:w-1/2 mt-6 md:mt-0">
-        <div class="p-3 sm:p-4 border-gray rounded bg-white shadow overflow-hidden">
+      <div class="md:w-1/2 w-full mt-6 md:mt-0">
+        <div class="p-2 sm:p-4 border-gray rounded bg-white shadow overflow-hidden w-full">
           <%= render "shared/radar_chart",
             chart_id: "fragrance_chart_#{@review.fragrance.id}",
             data: [
@@ -63,7 +63,7 @@
 
     <div class="mt-4">
       <p class="font-semibold mb-1"><%= t('activerecord.attributes.review.body') %></p>
-      <div class="p-2 border rounded-md text-sm text-gray-800 bg-white break-words">
+      <div class="p-2 border rounded-md text-sm text-gray-800 bg-white break-words w-full">
         <%= simple_format(@review.body) %>
       </div>
 
@@ -74,16 +74,16 @@
     </div>
 
     <!--  コメントセクション -->
-    <div class="mt-8 border-t border-gray p-3 sm:p-4">
+    <div class="mt-8 border-t border-gray p-2 sm:p-4">
       <h3 class="text-md font-semibold mb-4">コメント (<%= @review.comments.count %>)</h3>
 
       <!-- コメントフォーム -->
-      <div id="comment-form">
+      <div id="comment-form" class="w-full">
         <%= render 'comments/form', review: @review, comment: @comment %>
       </div>
 
       <!-- コメント一覧 -->
-      <div class="mt-6" id="comments-list">
+      <div class="mt-6 w-full" id="comments-list">
         <% @review.comments.includes(:user).order(created_at: :desc).each do |comment| %>
           <%= render 'comments/comment', comment: comment %>
         <% end %>
@@ -105,7 +105,7 @@
         <% end %>
       </div>
       <div class="flex justify-center mt-4">
-        <%= link_to "みんなの香水に戻る", reviews_path, class: "btn py-2 px-6 rounded-lg shadow-md w-full sm:w-auto" %>
+        <%= link_to "みんなの香水に戻る", reviews_path, class: "btn py-2 px-4 rounded-lg shadow-md w-full sm:w-auto" %>
       </div>
     </div>
   </div>
