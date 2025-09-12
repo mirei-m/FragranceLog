@@ -3,7 +3,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # callback for google
   def google_oauth2
-    @user = User.from_omniauth(request.env["omniauth.auth"])
+    auth = request.env["omniauth.auth"]
+    @user = User.from_omniauth(auth)
 
     if @user.persisted?
       flash[:notice] = "Google認証に成功しました"
@@ -11,7 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       if User.exists?(email: auth.info.email)
         # 同じメールで登録済みの場合
-        redirect_to new_user_session_path, alert: "このメールアドレスは別のログイン方法で既に登録されています。登録時の方法（通常登録またはSNS認証）でログインしてください。"
+        redirect_to new_user_session_path, alert: "このメールアドレスは別のログイン方法で既に登録されています。"
       else
         # その他の失敗
         redirect_to new_user_registration_path, alert: "認証に失敗しました。もう一度お試しください。"
