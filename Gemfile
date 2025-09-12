@@ -62,6 +62,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  # テストカバレッジ可視化
+  gem "simplecov", require: false
 end
 
 gem "devise"
