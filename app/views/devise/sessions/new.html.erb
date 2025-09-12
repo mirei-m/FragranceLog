@@ -36,5 +36,21 @@
     <div class="text-center mt-4">
       <%= link_to "アカウント登録はこちら", new_registration_path(resource_name), class: "btn bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-6 shadow-md transition duration-200 w-full" %>
     </div>
+
+    <!-- 区切り線 -->
+    <div class="flex items-center my-10">
+      <div class="flex-grow border-t border-gray-600"></div>
+      <span class="mx-4 text-gray-600 text-sm">または</span>
+      <div class="flex-grow border-t border-gray-600"></div>
+    </div>
+
+    <!-- Googleログイン -->
+    <% if devise_mapping.omniauthable? %>
+      <div class="flex flex-col items-center space-y-6">
+        <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "rounded-md overflow-hidden transition transform hover:scale-105 w-fit" do %>
+          <%= image_tag("web_light_rd_SI@1x.png", alt: "Googleでログイン", class: "w-[200px] h-[44px]") %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </section>
