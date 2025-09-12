@@ -98,3 +98,8 @@ gem "ransack"
 
 # OGP
 gem "meta-tags"
+
+# google認証
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
