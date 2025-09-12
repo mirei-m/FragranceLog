@@ -40,6 +40,9 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
+  # デバッグ用
+  gem "pry-byebug"
+
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
@@ -66,22 +69,32 @@ group :test do
   gem "simplecov", require: false
 end
 
+# 追加したgemは以下
+# ユーザー認証
 gem "devise"
 
+# i18n
 gem "rails-i18n"
 gem "devise-i18n"
-
-gem "simple_calendar"
-
 gem "enum_help"
 
+# カレンダー表示
+gem "simple_calendar"
+
+# Amazon S3
 gem "aws-sdk-s3", require: false
+
+# .envで環境変数を管理
 gem "dotenv-rails"
 
+# ページネーション
 gem "kaminari"
 
+# 画像のバリデーション
 gem "active_storage_validations"
 
+# 検索
 gem "ransack"
 
+# OGP
 gem "meta-tags"

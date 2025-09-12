@@ -5,7 +5,7 @@ class Fragrance < ApplicationRecord
           allow_nil: true,
           numericality: { only_integer: true, greater_than: 0, less_than: 6 }
 
-  enum status: { unpublished: 0, published: 1 }
+  enum :status, { unpublished: 0, published: 1 }
 
   belongs_to :user
   has_one_attached :image
