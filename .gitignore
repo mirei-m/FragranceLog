@@ -42,3 +42,5 @@
 .DS_Store
 /vendor/bundle
 coverage/
+tmp/capybara/
+tmp/screenshots/
