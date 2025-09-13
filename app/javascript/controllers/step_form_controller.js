@@ -38,13 +38,24 @@ export default class extends Controller {
       }
     })
     this.updateProgressIndicator()
+    this.updateProgressBar()
     this.updateNextButtonState()
   }
 
+  // プログレスインジゲーターの数値更新
   updateProgressIndicator() {
     const indicator = this.element.querySelector('.progress-indicator')
     if (indicator) {
       indicator.textContent = `${this.currentStepValue}/${this.totalStepsValue}`
+    }
+  }
+
+  // プログレスバーの更新
+  updateProgressBar() {
+    const progressBar = this.element.querySelector('.progress-bar')
+    if (progressBar) {
+      const percentage = (this.currentStepValue / this.totalStepsValue) * 100
+      progressBar.style.width = `${percentage}%`
     }
   }
 

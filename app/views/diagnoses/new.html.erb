@@ -8,8 +8,17 @@
       data-controller="step-form">
 
   <!-- プログレスインジケーター -->
-  <div class="mb-6 text-center">
-    <span class="progress-indicator text-lg font-semibold text-indigo-600"></span>
+  <div class="mb-8">
+    <!-- 数値表示 -->
+    <div class="text-center mb-3">
+      <span class="progress-indicator text-lg font-semibold text-primary"></span>
+    </div>
+
+    <!-- プログレスバー -->
+    <div class="w-full bg-gray-200 rounded-full h-3">
+      <div class="progress-bar bg-primary h-3 rounded-full transition-all duration-300 ease-in-out" 
+            style="width: 0%"></div>
+    </div>
   </div>
 
   <%= form_with url: diagnosis_path, method: :post do %>
