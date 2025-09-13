@@ -4,23 +4,28 @@
     <%= search_form_for q, url: reviews_path, method: :get, class: "mb-6", local: true do |f| %>
       <div class="space-y-4">
         <!-- 香水名・ブランド名検索（上段） -->
-        <div class="form-control"
-              data-controller="auto-complete"
-              data-auto-complete-url-value="<%= autocomplete_reviews_path %>">
+        <div class="form-control">
           <%= f.label :fragrance_name_or_fragrance_brand_cont, "香水名・ブランド名", class: "label font-semibold text-gray-700" %>
-          <div class="flex gap-2">
-            <%= f.search_field :fragrance_name_or_fragrance_brand_cont,
-              class: "input input-bordered flex-1",
-              placeholder: "例：シャネル",
-              data: {
-                auto_complete_target: "input",
-                action: "input->auto-complete#handleInput focus->auto-complete#handleInput keydown->auto-complete#handleKeydown"
-              } %>
 
-            <!-- オートコンプリート結果表示 -->
-            <div data-auto-complete-target="results"
-                  class="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto hidden"
-                  style="margin-top: 1px;">
+          <div class="flex gap-2">
+            <!-- オートコンプリート全体のコンテナ -->
+            <div class="flex-1 relative"
+                  data-controller="auto-complete"
+                  data-auto-complete-url-value="<%= autocomplete_reviews_path %>">
+
+              <!-- 入力フィールド -->
+              <%= f.search_field :fragrance_name_or_fragrance_brand_cont,
+                class: "input input-bordered w-full",
+                placeholder: "例：シャネル",
+                data: {
+                  auto_complete_target: "input",
+                  action: "input->auto-complete#handleInput focus->auto-complete#handleInput keydown->auto-complete#handleKeydown"
+                } %>
+
+              <!-- オートコンプリート結果表示（入力フィールドの真下） -->
+              <div data-auto-complete-target="results"
+                    class="bg-white border border-gray-300 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto hidden mt-1">
+              </div>
             </div>
 
             <!-- 検索ボタン -->

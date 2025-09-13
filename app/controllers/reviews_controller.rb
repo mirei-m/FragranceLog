@@ -56,20 +56,20 @@ class ReviewsController < ApplicationController
       return
     end
 
-    fragrances = Fragrance.published
+    fragrances = Fragrance.where(status: :published)
                           .where(
                             "name ILIKE ? OR brand ILIKE ?",
                             "%#{term}%", "%#{term}%"
                           )
-                          .limit(10)
                           .distinct
+                          .limit(10)
 
     results = fragrances.map do |fragrance|
       {
         id: fragrance.id,
         perfume_name: fragrance.name,
-        brand_name: fragrance.brand.name,
-        value: "#{fragrance.brand.name} #{fragrance.name}"
+        brand_name: fragrance.brand,
+        value: "#{fragrance.brand} #{fragrance.name}"
       }
     end
 
