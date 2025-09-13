@@ -49,7 +49,7 @@ class ReviewsController < ApplicationController
   end
 
   def autocomplete
-    term = params[:term]
+    term = params[:term] || params[:q]  # パラメータ名を両方対応
 
     if term.blank? || term.length < 2
       render json: []
@@ -64,14 +64,32 @@ class ReviewsController < ApplicationController
                           .distinct
                           .limit(10)
 
-    results = fragrances.map do |fragrance|
-      {
-        id: fragrance.id,
-        perfume_name: fragrance.name,
-        brand_name: fragrance.brand,
-        value: "#{fragrance.brand} #{fragrance.name}"
-      }
+    # 🎯 ブランド名と香水名を個別に抽出
+    brands = []
+    names = []
+
+    fragrances.each do |fragrance|
+      # ブランド名が検索語に一致する場合
+      if fragrance.brand.downcase.include?(term.downcase)
+        brands << {
+          value: fragrance.brand,
+          type: "brand",
+          label: "#{fragrance.brand}（ブランド）"
+        }
+      end
+
+      # 香水名が検索語に一致する場合
+      if fragrance.name.downcase.include?(term.downcase)
+        names << {
+          value: fragrance.name,
+          type: "name",
+          label: "#{fragrance.name}（香水名）"
+        }
+      end
     end
+
+    # 🎯 重複を除去して結合
+    results = (brands + names).uniq { |item| item[:value] }[0, 8]
 
     render json: results
   end

@@ -70,8 +70,7 @@ export default class extends Controller {
         )
 
         element.innerHTML = `
-          <div class="font-semibold text-gray-800">${this.escapeHtml(item.brand_name)}</div>
-          <div class="text-sm text-gray-600">${this.escapeHtml(item.perfume_name)}</div>
+          <div class="font-semibold text-gray-800">${this.escapeHtml(item.value)}</div>
         `
 
         element.dataset.index = index
