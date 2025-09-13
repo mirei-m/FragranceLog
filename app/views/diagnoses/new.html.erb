@@ -1,23 +1,61 @@
 <% content_for(:title, t('.title')) %>
-<h1 class="text-3xl font-bold mb-6 text-center "><i class="fa-solid fa-magnifying-glass-plus"></i> <%= t('.title') %></h1>
 
-<%= form_with url: diagnosis_path, method: :post, class: "max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg" do %>
+<h1 class="text-3xl font-bold mb-6 text-center">
+  <i class="fa-solid fa-magnifying-glass-plus"></i> <%= t('.title') %>
+</h1>
 
-  <% @questions.each do |key, data| %>
-    <fieldset class="mb-6">
-      <legend class="mb-2 text-lg font-semibold text-gray-700"><%= data[:question] %></legend>
-      <div class="space-y-2">
-        <% data[:options].each do |option_key, option_data| %>
-          <label class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 rounded px-3 py-2">
-            <%= radio_button_tag "answers[#{key}]", option_key, (@selected_answers && @selected_answers[key.to_s] == option_key), class: "form-radio text-indigo-600" %>
-            <span class="text-gray-800"><%= option_data[:text] %></span>
-          </label>
-        <% end %>
-      </div>
-    </fieldset>
-  <% end %>
+<div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg"
+    data-controller="step-form">
 
-  <div class="flex justify-between items-center">
-    <%= submit_tag t('.submit'), class: "btn btn-primary" %>
+  <!-- プログレスインジケーター -->
+  <div class="mb-6 text-center">
+    <span class="progress-indicator text-lg font-semibold text-indigo-600"></span>
   </div>
-<% end %>
+
+  <%= form_with url: diagnosis_path, method: :post do %>
+
+    <% @questions.each_with_index do |(key, data), index| %>
+      <div class="step" data-step-form-target="step" style="display: none;">
+        <fieldset class="mb-6">
+          <legend class="mb-4 text-xl font-semibold text-gray-700 text-center">
+            <%= data[:question] %>
+          </legend>
+          <div class="space-y-3">
+            <% data[:options].each do |option_key, option_data| %>
+              <label class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 rounded px-3 py-2">
+                <%= radio_button_tag "answers[#{key}]", option_key,
+                    (@selected_answers && @selected_answers[key.to_s] == option_key), 
+                    class: "form-radio text-indigo-600" %>
+                <span class="text-gray-800"><%= option_data[:text] %></span>
+              </label>
+            <% end %>
+          </div>
+        </fieldset>
+
+        <!-- ナビゲーションボタン -->
+        <div class="flex justify-between items-center mt-6">
+          <% if index > 0 %>
+            <button type="button"
+                    data-action="click->step-form#previous"
+                    class="btn btn-secondary">
+              前へ
+            </button>
+          <% else %>
+            <div></div>
+          <% end %>
+
+          <% if index < @questions.length - 1 %>
+            <button type="button"
+                    data-action="click->step-form#next"
+                    class="btn btn-primary">
+              次へ
+            </button>
+          <% else %>
+            <%= submit_tag t('.submit'), class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+  <% end %>
+</div>
