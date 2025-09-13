@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show ]
+  skip_before_action :authenticate_user!, only: [ :index, :show, :autocomplete ]
   before_action :set_review, only: [ :show, :edit, :update, :destroy ]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
   before_action :setup_meta_tags, only: [ :show ]
@@ -46,6 +46,52 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     redirect_to reviews_path, notice: t("defaults.flash_message.deleted", item: Review.model_name.human)
+  end
+
+  def autocomplete
+    term = params[:term] || params[:q]  # パラメータ名を両方対応
+
+    if term.blank? || term.length < 2
+      render json: []
+      return
+    end
+
+    fragrances = Fragrance.where(status: :published)
+                          .where(
+                            "name ILIKE ? OR brand ILIKE ?",
+                            "%#{term}%", "%#{term}%"
+                          )
+                          .distinct
+                          .limit(10)
+
+    # 🎯 ブランド名と香水名を個別に抽出
+    brands = []
+    names = []
+
+    fragrances.each do |fragrance|
+      # ブランド名が検索語に一致する場合
+      if fragrance.brand.downcase.include?(term.downcase)
+        brands << {
+          value: fragrance.brand,
+          type: "brand",
+          label: "#{fragrance.brand}（ブランド）"
+        }
+      end
+
+      # 香水名が検索語に一致する場合
+      if fragrance.name.downcase.include?(term.downcase)
+        names << {
+          value: fragrance.name,
+          type: "name",
+          label: "#{fragrance.name}（香水名）"
+        }
+      end
+    end
+
+    # 🎯 重複を除去して結合
+    results = (brands + names).uniq { |item| item[:value] }[0, 8]
+
+    render json: results
   end
 
   private
