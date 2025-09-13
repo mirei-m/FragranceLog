@@ -3,82 +3,104 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="auto-complete"
 export default class extends Controller {
   static targets = ["input", "results"]
-  static values = { url: String, delay: { type: Number, default: 300 } }
+  static values = { url: String }
 
   connect() {
     console.log("AutoCompleteが接続されました")
-    this.resultsTarget.hidden = true
-    this.timeout = null // デバウンス用のタイマー
+    this.resultsTarget.classList.add('hidden')
+    this.timeout = null
+    this.selectedIndex = -1
 
-    this.inputTarget.addEventListener("input", this.handleInput.bind(this))
-    this.inputTarget.addEventListener("focus", this.handleInput.bind(this))
     document.addEventListener("click", this.hideResults.bind(this))
   }
 
+  disconnect() {
+    document.removeEventListener("click", this.hideResults.bind(this))
+    if (this.timeout) {
+      clearTimeout(this.timeout)
+    }
+  }
+
   handleInput() {
-    // 前回のタイマーをクリア
     clearTimeout(this.timeout)
 
-    // 新しいタイマーを設定
     this.timeout = setTimeout(() => {
       this.search()
-    }, this.delayValue)
+    }, 300)
   }
 
   async search() {
     const query = this.inputTarget.value.trim()
     if (query.length < 2) {
-      this.resultsTarget.hidden = true
+      this.resultsTarget.classList.add('hidden')
       return
     }
 
     try {
-      const url = this.urlValue || `/reviews/autocomplete?term=${encodeURIComponent(query)}`
+      const url = `${this.urlValue}?term=${encodeURIComponent(query)}`
       const response = await fetch(url)
       const data = await response.json()
 
       this.displayResults(data)
     } catch (error) {
       console.error("オートコンプリートエラー:", error)
-      this.resultsTarget.hidden = true
+      this.resultsTarget.classList.add('hidden')
     }
   }
 
   displayResults(data) {
     this.resultsTarget.innerHTML = ""
+    this.selectedIndex = -1
 
     if (data.length > 0) {
-      this.resultsTarget.hidden = false
+      this.resultsTarget.classList.remove('hidden')
 
-      data.forEach(item => {
+      data.forEach((item, index) => {
         const element = document.createElement("div")
-        element.classList.add("autocomplete-item", "p-2", "hover:bg-gray-100", "cursor-pointer", "border-b")
+        element.classList.add(
+          "autocomplete-item",
+          "p-3",
+          "border-b",
+          "border-gray-200",
+          "cursor-pointer",
+          "hover:bg-gray-50",
+          "transition-colors",
+          "duration-150"
+        )
 
-        // 香水の場合はブランド名と商品名を分けて表示
         element.innerHTML = `
-          <div class="font-medium">${item.brand_name}</div>
-          <div class="text-sm text-gray-600">${item.perfume_name}</div>
+          <div class="font-semibold text-gray-800">${this.escapeHtml(item.brand_name)}</div>
+          <div class="text-sm text-gray-600">${this.escapeHtml(item.perfume_name)}</div>
         `
 
-        element.dataset.id = item.id
+        element.dataset.index = index
         element.addEventListener("click", () => this.selectResult(item))
+        element.addEventListener("mouseenter", () => {
+          this.selectedIndex = index
+          this.updateSelection()
+        })
+
         this.resultsTarget.appendChild(element)
       })
     } else {
-      // 検索結果がない場合
       const noResultElement = document.createElement("div")
-      noResultElement.classList.add("p-2", "text-gray-500", "text-center")
+      noResultElement.classList.add("p-4", "text-gray-500", "text-center", "text-sm")
       noResultElement.textContent = "該当する香水が見つかりませんでした"
       this.resultsTarget.appendChild(noResultElement)
-      this.resultsTarget.hidden = false
+      this.resultsTarget.classList.remove('hidden')
     }
   }
 
   selectResult(item) {
-    // ブランド名と香水名を組み合わせて表示
-    this.inputTarget.value = `${item.brand_name} ${item.perfume_name}`
-    this.resultsTarget.hidden = true
-
+    this.inputTarget.value = item.value
+    this.resultsTarget.classList.add('hidden')
     this.inputTarget.focus()
+  }
+
+  hideResults(event) {
+    if (!this.element.contains(event.target)) {
+      this.resultsTarget.classList.add('hidden')
+      this.selectedIndex = -1
+    }
   }
 }
