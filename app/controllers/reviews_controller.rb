@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show ]
+  skip_before_action :authenticate_user!, only: [ :index, :show, :autocomplete ]
   before_action :set_review, only: [ :show, :edit, :update, :destroy ]
   before_action :authorize_user!, only: [ :edit, :update, :destroy ]
   before_action :setup_meta_tags, only: [ :show ]
@@ -46,6 +46,34 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     redirect_to reviews_path, notice: t("defaults.flash_message.deleted", item: Review.model_name.human)
+  end
+
+  def autocomplete
+    term = params[:term]
+
+    if term.blank? || term.length < 2
+      render json: []
+      return
+    end
+
+    fragrances = Fragrance.published
+                          .where(
+                            "name ILIKE ? OR brand ILIKE ?",
+                            "%#{term}%", "%#{term}%"
+                          )
+                          .limit(10)
+                          .distinct
+
+    results = fragrances.map do |fragrance|
+      {
+        id: fragrance.id,
+        perfume_name: fragrance.name,
+        brand_name: fragrance.brand.name,
+        value: "#{fragrance.brand.name} #{fragrance.name}"
+      }
+    end
+
+    render json: results
   end
 
   private

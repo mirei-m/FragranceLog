@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :reviews do
     resource :favorite, only: %i[create destroy]
     resources :comments, only: %i[create destroy edit update], shallow: true
+    collection do
+      get :autocomplete
+    end
   end
   resource :diagnosis, only: %i[new create ] do
     get :result
