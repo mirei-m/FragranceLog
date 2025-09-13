@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["step"]
+  static targets = ["step", "nextButton"]
   static values = { currentStep: Number, totalSteps: Number }
 
   connect() {
@@ -11,7 +11,7 @@ export default class extends Controller {
   }
 
   next() {
-    if (this.currentStepValue < this.totalStepsValue) {
+    if (this.canProceed() && this.currentStepValue < this.totalStepsValue) {
       this.currentStepValue++
       this.showCurrentStep()
     }
@@ -24,6 +24,11 @@ export default class extends Controller {
     }
   }
 
+  // 回答状況をチェックするメソッド（ラジオボタンの変更時に呼び出される）
+  checkAnswer() {
+    this.updateNextButtonState()
+  }
+
   showCurrentStep() {
     this.stepTargets.forEach((step, index) => {
       if (index === this.currentStepValue - 1) {
@@ -33,12 +38,38 @@ export default class extends Controller {
       }
     })
     this.updateProgressIndicator()
+    this.updateNextButtonState()
   }
 
   updateProgressIndicator() {
     const indicator = this.element.querySelector('.progress-indicator')
     if (indicator) {
       indicator.textContent = `${this.currentStepValue}/${this.totalStepsValue}`
+    }
+  }
+
+  // 現在のステップで回答が選択されているかチェック
+  canProceed() {
+    const currentStepElement = this.stepTargets[this.currentStepValue - 1]
+    const radioButtons = currentStepElement.querySelectorAll('input[type="radio"]')
+    return Array.from(radioButtons).some(radio => radio.checked)
+  }
+
+  // 進むボタンの有効/無効を切り替え
+  updateNextButtonState() {
+    const currentStepElement = this.stepTargets[this.currentStepValue - 1]
+    const nextButton = currentStepElement.querySelector('[data-step-form-target="nextButton"]')
+
+    if (nextButton) {
+      if (this.canProceed()) {
+        nextButton.disabled = false
+        nextButton.classList.remove('btn-disabled', 'opacity-70', 'cursor-not-allowed')
+        nextButton.classList.add('btn-primary')
+      } else {
+        nextButton.disabled = true
+        nextButton.classList.add('btn-disabled', 'opacity-70', 'cursor-not-allowed')
+        nextButton.classList.remove('btn-primary')
+      }
     }
   }
 }

@@ -5,7 +5,7 @@
 </h1>
 
 <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg"
-    data-controller="step-form">
+      data-controller="step-form">
 
   <!-- プログレスインジケーター -->
   <div class="mb-6 text-center">
@@ -25,7 +25,8 @@
               <label class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 rounded px-3 py-2">
                 <%= radio_button_tag "answers[#{key}]", option_key,
                     (@selected_answers && @selected_answers[key.to_s] == option_key), 
-                    class: "form-radio text-indigo-600" %>
+                    class: "form-radio text-indigo-600",
+                    data: { action: "change->step-form#checkAnswer" } %>
                 <span class="text-gray-800"><%= option_data[:text] %></span>
               </label>
             <% end %>
@@ -37,7 +38,7 @@
           <% if index > 0 %>
             <button type="button"
                     data-action="click->step-form#previous"
-                    class="btn btn-secondary">
+                    class="btn btn-outline">
               前へ
             </button>
           <% else %>
@@ -47,11 +48,16 @@
           <% if index < @questions.length - 1 %>
             <button type="button"
                     data-action="click->step-form#next"
-                    class="btn btn-primary">
+                    data-step-form-target="nextButton"
+                    class="btn btn-disabled opacity-70 cursor-not-allowed"
+                    disabled>
               次へ
             </button>
           <% else %>
-            <%= submit_tag t('.submit'), class: "btn btn-primary" %>
+            <%= submit_tag t('.submit'),
+                class: "btn btn-disabled opacity-70 cursor-not-allowed",
+                data: { step_form_target: "nextButton" },
+                disabled: true %>
           <% end %>
         </div>
       </div>
