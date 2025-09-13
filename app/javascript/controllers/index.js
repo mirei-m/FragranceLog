@@ -9,3 +9,6 @@ application.register("auto-complete", AutoCompleteController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import StepFormController from "./step_form_controller"
+application.register("step-form", StepFormController)
