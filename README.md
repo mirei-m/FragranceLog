@@ -240,3 +240,11 @@ Figma：https://www.figma.com/design/JgVPqQJR4IKZjYn4MqqM16/Untitled?node-id=0-1
 ## ER図
 https://drive.google.com/file/d/1b6N3M7ooy3jwg23Yeb78RvLS1b1RQF3H/view?usp=sharing
 <img width="639" height="610" alt="Image" src="https://github.com/user-attachments/assets/28d55ed3-8360-4bc4-81eb-5bdecf65de31" />
+
+
+# ◾️ 今後の機能拡張予定
+- [ ] レーダーチャートで好みの香り統計を表示
+- [ ] 香水のレコメンド機能（協調フィルタリング）
+- [ ] ユーザー同士のフォロー機能
+- [ ] プッシュ通知による使用記録のリマインダー
+
