@@ -2,7 +2,7 @@
   <% fragrance = review.fragrance %>
   <!-- ボトル画像 -->
   <div class="h-60 flex items-center justify-center rounded-md overflow-hidden">
-    <%= link_to review_path(review), data: { action: "click->loading#show" } do %>
+    <%= link_to review_path(review) do %>
       <div class="object-cover w-full h-[200px] cursor-pointer transition hover:opacity-80">
         <% if fragrance.image.attached? %>
           <%= image_tag fragrance.image.variant(resize_to_limit: [600, 400]), class: "w-full h-full object-cover rounded-xl shadow" %>
@@ -15,8 +15,10 @@
 
   <!-- ブランド名・香水名 -->
   <div class="flex flex-grow flex-col px-3 mt-4">
-    <p class="text-sm text-gray-500 font-semibold"><%= fragrance.brand %></p>
-    <p class="text-xl font-bold"><%= fragrance.name %></p>
+    <%= link_to review_path(review) do %>
+      <p class="text-sm text-gray-500 font-semibold"><%= fragrance.brand %></p>
+      <p class="text-xl font-bold"><%= fragrance.name %></p>
+    <% end %>
 
     <!-- タグ -->
     <div class="mt-2 mb-3">
