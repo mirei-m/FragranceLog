@@ -15,7 +15,9 @@
             <% if @user.profile_image.attached? %>
               <%= image_tag @user.profile_image, alt: "プロフィール画像" %>
             <% else %>
-              <%= image_tag "default_profile_image.png", alt: "デフォルトプロフィール画像" %>
+              <div class="bg-neutral text-neutral-content rounded-full w-48 h-48 flex items-center justify-center">
+                <i class="fa-solid fa-user text-6xl"></i>
+              </div>
             <% end %>
           </div>
         </div>
