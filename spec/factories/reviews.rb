@@ -4,7 +4,7 @@ FactoryBot.define do
     association :user
     association :fragrance
 
-    trait :max_length do
+    trait :long_body do
       body { "a" * 1000 }
     end
 
