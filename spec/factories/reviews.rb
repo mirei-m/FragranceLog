@@ -8,7 +8,7 @@ FactoryBot.define do
       body { "a" * 1000 }
     end
 
-    trait :too_long do
+    trait :too_long_body do
       body { "a" * 1001 }
     end
 
