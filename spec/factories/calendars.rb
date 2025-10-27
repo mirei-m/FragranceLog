@@ -8,16 +8,12 @@ FactoryBot.define do
     memo { "今日は良い香りでした。" }
   end
 
-  trait :with_long_memo do
-    memo { "a" * 500 }
+  trait :long_memo do
+    memo { "a" * 1000 }
   end
 
-  trait :with_different_weather do
-    weather { :rainy }
-  end
-
-  trait :with_different_mood do
-    mood { :relaxed }
+  trait :too_long_memo do
+    memo { "a" * 1001 }
   end
 
   trait :without_memo do
