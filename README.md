@@ -1,6 +1,8 @@
 # FragranceLog
 サービスURL：https://fragrancelog.com/
-Qiita記事：https://qiita.com/mirei-m/items/e985aae8385bd5a6705b
+
+- このアプリを詳しく紹介したQiita記事はこちら！
+  - [【個人開発】香水オタクから初心者まで楽しめる香り記録・レビューアプリを作りました](https://qiita.com/mirei-m/items/e985aae8385bd5a6705b)
 
 <img width="1200" alt="Image" src="https://github.com/user-attachments/assets/45e6793d-25eb-4e5a-ab8a-c0972effca85" />
 
