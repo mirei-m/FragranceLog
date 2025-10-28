@@ -1,5 +1,6 @@
 # FragranceLog
 サービスURL：https://fragrancelog.com/
+Qiita記事：https://qiita.com/mirei-m/items/e985aae8385bd5a6705b
 
 <img width="1200" alt="Image" src="https://github.com/user-attachments/assets/45e6793d-25eb-4e5a-ab8a-c0972effca85" />
 
