@@ -69,6 +69,7 @@ jobs:
     env:
       RAILS_ENV: test
       SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
+      CI: true
       # DATABASE_URL: postgres://postgres:postgres@localhost:5432/myapp_test
 
     steps:

@@ -87,26 +87,17 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   # system spec用の設定
-
-  Capybara.configure do |config|
-    config.server_host = IPSocket.getaddress(Socket.gethostname)
-    config.server_port = 4445
-  end
-
   config.before(:each, type: :system) do
     if ENV['CI'] # GitHub Actions環境の場合
       driven_by :remote_chrome_ci
+      Capybara.app_host = 'http://0.0.0.0:3000'
     else # ローカル環境の場合
       driven_by :remote_chrome
-      Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
-      Capybara.server_port = 4445
-      Capybara.app_host = "http://#{Capybara.server_host}:4445"
     end
     Capybara.ignore_hidden_elements = false
   end
 
   config.after(:each, type: :system) do
-    # ブラウザセッションをクリーンアップ
     Capybara.current_session.driver.quit if Capybara.current_session.driver.respond_to?(:quit)
     Capybara.reset_sessions!
     Capybara.use_default_driver

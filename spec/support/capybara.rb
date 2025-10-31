@@ -33,7 +33,7 @@ Capybara.register_driver :remote_chrome_ci do |app|
   options.add_argument('--disable-extensions')
   options.add_argument('--disable-dev-tools')
   options.add_argument('--no-first-run')
-  options.add_argument('--window-size=1400,1400')
+  options.add_argument('--window-size=1920,1080')
   options.add_argument('--disable-background-timer-throttling')
   options.add_argument('--disable-renderer-backgrounding')
   options.add_argument('--disable-backgrounding-occluded-windows')
@@ -49,10 +49,9 @@ end
 if ENV['CI']
   # CI環境（GitHub Actions）用の設定
   Capybara.configure do |config|
-    config.default_max_wait_time = 10
+    config.default_max_wait_time = 15
     config.server_host = '0.0.0.0'
     config.server_port = 3000
-    config.app_host = 'http://0.0.0.0:3000'
   end
 else
   # ローカル環境（Docker）用の設定
@@ -60,5 +59,6 @@ else
     config.default_max_wait_time = 10
     config.server_host = IPSocket.getaddress(Socket.gethostname)
     config.server_port = 4445
+    Capybara.app_host = "http://#{Capybara.server_host}:4445"
   end
 end
