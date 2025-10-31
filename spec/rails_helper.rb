@@ -90,7 +90,6 @@ RSpec.configure do |config|
   config.before(:each, type: :system) do
     if ENV['CI'] # GitHub Actions環境の場合
       driven_by :remote_chrome_ci
-      Capybara.app_host = 'http://127.0.0.1:3000'
     else # ローカル環境の場合
       driven_by :remote_chrome
     end

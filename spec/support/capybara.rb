@@ -50,7 +50,7 @@ if ENV['CI']
   # CI環境（GitHub Actions）用の設定
   Capybara.configure do |config|
     config.default_max_wait_time = 15
-    config.server_host = '127.0.0.1'
+    config.server_host = '0.0.0.0'
     config.server_port = 3000
   end
 else
