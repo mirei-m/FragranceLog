@@ -22,8 +22,43 @@ Capybara.register_driver :remote_chrome do |app|
   )
 end
 
-Capybara.configure do |config|
-  config.default_max_wait_time = 10
-  config.server_host = IPSocket.getaddress(Socket.gethostname)
-  config.server_port = 4445
+
+# CI環境用のドライバー設定
+Capybara.register_driver :remote_chrome_ci do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--no-sandbox')
+  options.add_argument('--headless')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--disable-extensions')
+  options.add_argument('--disable-dev-tools')
+  options.add_argument('--no-first-run')
+  options.add_argument('--window-size=1400,1400')
+  options.add_argument('--disable-background-timer-throttling')
+  options.add_argument('--disable-renderer-backgrounding')
+  options.add_argument('--disable-backgrounding-occluded-windows')
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :remote,
+    url: ENV['SELENIUM_DRIVER_URL'] || 'http://localhost:4444/wd/hub',
+    capabilities: options
+  )
+end
+
+if ENV['CI']
+  # CI環境（GitHub Actions）用の設定
+  Capybara.configure do |config|
+    config.default_max_wait_time = 10
+    config.server_host = '0.0.0.0'
+    config.server_port = 3000
+    config.app_host = 'http://0.0.0.0:3000'
+  end
+else
+  # ローカル環境（Docker）用の設定
+  Capybara.configure do |config|
+    config.default_max_wait_time = 10
+    config.server_host = IPSocket.getaddress(Socket.gethostname)
+    config.server_port = 4445
+  end
 end

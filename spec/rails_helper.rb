@@ -94,10 +94,14 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do
-    driven_by :remote_chrome
-    Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
-    Capybara.server_port = 4445
-    Capybara.app_host = "http://#{Capybara.server_host}:4445"
+    if ENV['CI'] # GitHub Actions環境の場合
+      driven_by :remote_chrome_ci
+    else # ローカル環境の場合
+      driven_by :remote_chrome
+      Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+      Capybara.server_port = 4445
+      Capybara.app_host = "http://#{Capybara.server_host}:4445"
+    end
     Capybara.ignore_hidden_elements = false
   end
 
