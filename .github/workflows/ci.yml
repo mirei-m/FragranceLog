@@ -96,6 +96,12 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:migrate
 
+      - name: Start Rails server
+        run: |
+          bundle exec rails server -e test -p 4000 -b 0.0.0.0 &
+          sleep 15
+          curl -f http://localhost:4000 || (echo "Rails server failed to start" && exit 1)
+
       - name: Run rspec
         run: bundle exec rspec
 

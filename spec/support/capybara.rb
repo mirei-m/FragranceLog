@@ -50,8 +50,8 @@ if ENV['CI']
   # CI環境（GitHub Actions）用の設定
   Capybara.configure do |config|
     config.default_max_wait_time = 15
-    config.server_host = '0.0.0.0'
-    config.server_port = 3000
+    config.run_server = false  # 自動サーバー起動を無効化
+    config.app_host = 'http://localhost:4000'  # 手動起動したサーバーのURL
   end
 else
   # ローカル環境（Docker）用の設定
