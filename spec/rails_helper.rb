@@ -10,6 +10,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+require 'devise'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -86,11 +87,24 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   # system spec用の設定
+
+  Capybara.configure do |config|
+    config.server_host = IPSocket.getaddress(Socket.gethostname)
+    config.server_port = 4445
+  end
+
   config.before(:each, type: :system) do
     driven_by :remote_chrome
     Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
-    Capybara.server_port = 4444
-    Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
+    Capybara.server_port = 4445
+    Capybara.app_host = "http://#{Capybara.server_host}:4445"
     Capybara.ignore_hidden_elements = false
+  end
+
+  config.after(:each, type: :system) do
+    # ブラウザセッションをクリーンアップ
+    Capybara.current_session.driver.quit if Capybara.current_session.driver.respond_to?(:quit)
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
   end
 end

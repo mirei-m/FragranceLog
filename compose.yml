@@ -26,12 +26,25 @@ services:
       - bundle_data:/usr/local/bundle:cached
       - node_modules:/myapp/node_modules
     environment:
-      TZ: Asia/Tokyo
+      TZ: Asia/Tokyo # タイムゾーンを日本に設定
+      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub #SeleniumドライバーのURL設定
     ports:
       - "3000:3000"
     depends_on:
       db:
         condition: service_healthy
+      chrome: # chromeコンテナへの依存を追加
+        condition: service_started
+  # システムスペックに対応
+  chrome: # Selenium Chromeコンテナの設定
+    image: seleniarm/standalone-chromium:121.0
+    ports:
+      - "4444:4444" # Seleniumのポート設定
+    shm_size: 2gb
+    platform: linux/arm64
+    environment:
+      - SE_NODE_MAX_SESSIONS=2
+    mem_limit: 2g
 volumes:
   bundle_data:
   postgresql_data:
