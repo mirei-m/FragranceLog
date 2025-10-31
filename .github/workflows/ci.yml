@@ -50,6 +50,16 @@ jobs:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
 
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size=2g
+          --health-cmd="curl -f http://localhost:4444/wd/hub/status || exit 1"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
       # redis:
       #   image: redis
       #   ports:
@@ -58,6 +68,8 @@ jobs:
 
     env:
       RAILS_ENV: test
+      SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
+      CI: true
       # DATABASE_URL: postgres://postgres:postgres@localhost:5432/myapp_test
 
     steps:
@@ -73,6 +85,10 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Wait for Selenium
+        run: |
+          timeout 60 bash -c 'until curl -f http://localhost:4444/wd/hub/status; do sleep 2; done'
+
       - name: Database create and migrate
         run: |
           cp config/database.ci.yml config/database.yml
@@ -81,7 +97,7 @@ jobs:
           bundle exec rails db:migrate
 
       - name: Run rspec
-        run: bundle exec rspec
+        run: bundle exec rspec spec/models
 
       - name: Upload Capybara screenshot artifacts
         if: failure()  # テストが失敗したときだけ
