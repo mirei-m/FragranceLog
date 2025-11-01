@@ -5,4 +5,11 @@ module LoginMacros
     fill_in 'user_password', with: user.password
     click_button 'ログイン'
   end
+
+  def logout_from_dropdown
+    # ドロップダウンメニューをクリックして開く
+    find('.dropdown .btn-ghost').click
+    # ログアウトリンクをクリック
+    click_link 'ログアウト'
+  end
 end
