@@ -80,7 +80,7 @@ RSpec.describe 'ユーザーセッション', type: :system do
   end
 
   describe 'ログアウト' do
-    #login_macrosに書いたログイン処理を先に行う
+    # login_macrosに書いたログイン処理を先に行う
     before { login_as(user) }
 
     context 'ドロップダウンメニューからログアウト' do
