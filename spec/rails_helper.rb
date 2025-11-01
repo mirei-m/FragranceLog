@@ -85,6 +85,8 @@ RSpec.configure do |config|
 
   # factory_botを使う設定
   config.include FactoryBot::Syntax::Methods
+  # loginのモジュールを使う設定
+  config.include LoginMacros, type: :system
 
   # system spec用の設定
   config.before(:each, type: :system) do
