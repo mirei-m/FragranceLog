@@ -80,9 +80,6 @@
       <h2 class="text-2xl md:text-3xl font-bold text-neutral mb-3">
         主な機能紹介
       </h2>
-      <p class="text-gray-600">
-        FragranceLogで使える4つの主要機能
-      </p>
     </div>
 
     <!-- 機能カード -->
@@ -414,3 +411,131 @@
     </div>
   </div>
 <% end %>
+
+<!-- よくある質問セクション -->
+<div class="py-16">
+  <div class="max-w-4xl mx-auto px-4">
+    <!-- セクションヘッダー -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-neutral mb-3">
+        よくある質問
+      </h2>
+    </div>
+
+    <!-- FAQ項目 -->
+    <div class="space-y-4">
+      <!-- Q1: 香水を持っていなくても使えますか？ -->
+      <div class="collapse collapse-plus bg-white shadow-lg rounded-xl">
+        <input type="radio" name="faq-accordion" checked="checked" />
+        <div class="collapse-title text-lg font-semibold text-neutral">
+          <i class="fa-solid fa-circle-question text-primary mr-2"></i>
+          香水を持っていなくても使えますか？
+        </div>
+        <div class="collapse-content">
+          <p class="text-gray-700 leading-relaxed pt-2">
+            はい、もちろんです！<strong class="text-primary">香り診断</strong>や<strong class="text-primary">レビュー閲覧</strong>は、香水を持っていなくてもログイン不要でご利用いただけます。<br>
+            まずは診断で自分に合う香りを見つけたり、他の人のレビューを参考に、お気に入りの香水を探してみてください。
+          </p>
+        </div>
+      </div>
+
+      <!-- Q2: 無料で使えますか？ -->
+      <div class="collapse collapse-plus bg-white shadow-lg rounded-xl">
+        <input type="radio" name="faq-accordion" />
+        <div class="collapse-title text-lg font-semibold text-neutral">
+          <i class="fa-solid fa-circle-question text-secondary mr-2"></i>
+          無料で使えますか？
+        </div>
+        <div class="collapse-content">
+          <p class="text-gray-700 leading-relaxed pt-2">
+            はい、<strong class="text-secondary">すべての機能を完全無料</strong>でご利用いただけます。<br>
+            香水の登録、レビュー投稿、香り日記、診断機能まで、料金は一切かかりません。安心してお使いください。
+          </p>
+        </div>
+      </div>
+
+      <!-- Q3: ログインは必要ですか？ -->
+      <div class="collapse collapse-plus bg-white shadow-lg rounded-xl">
+        <input type="radio" name="faq-accordion" />
+        <div class="collapse-title text-lg font-semibold text-neutral">
+          <i class="fa-solid fa-circle-question text-accent mr-2"></i>
+          ログインは必要ですか？
+        </div>
+        <div class="collapse-content">
+          <p class="text-gray-700 leading-relaxed pt-2">
+            <strong class="text-accent">レビュー閲覧</strong>と<strong class="text-accent">香り診断</strong>は、ログイン不要でご利用いただけます。<br>
+            マイ香水の登録、レビュー投稿、香り日記、お気に入り・コメント機能を使う場合は、無料の会員登録（メールアドレスまたはGoogleアカウント）が必要です。
+          </p>
+        </div>
+      </div>
+
+      <!-- Q4: どんな人におすすめですか？ -->
+      <div class="collapse collapse-plus bg-white shadow-lg rounded-xl">
+        <input type="radio" name="faq-accordion" />
+        <div class="collapse-title text-lg font-semibold text-neutral">
+          <i class="fa-solid fa-circle-question text-info mr-2"></i>
+          どんな人におすすめですか？
+        </div>
+        <div class="collapse-content">
+          <p class="text-gray-700 leading-relaxed pt-2">
+            FragranceLogは、香水オタクから初心者まで、<strong class="text-info">香水に興味があるすべての方</strong>におすすめです。
+          </p>
+          <ul class="list-disc list-inside mt-3 space-y-2 text-gray-700">
+            <li><strong>香水オタク</strong>：コレクション管理とレビューで香水愛を語れます</li>
+            <li><strong>香水ビギナー</strong>：診断機能で自分に合う香りを発見できます</li>
+            <li><strong>社会人</strong>：TPOに合わせた香水選びをカレンダーで記録できます</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q5: スマホでも使えますか？ -->
+      <div class="collapse collapse-plus bg-white shadow-lg rounded-xl">
+        <input type="radio" name="faq-accordion" />
+        <div class="collapse-title text-lg font-semibold text-neutral">
+          <i class="fa-solid fa-circle-question text-primary mr-2"></i>
+          スマホでも使えますか？
+        </div>
+        <div class="collapse-content">
+          <p class="text-gray-700 leading-relaxed pt-2">
+            はい、<strong class="text-primary">レスポンシブデザイン</strong>を採用しているため、スマートフォン、タブレット、PCなど、どのデバイスからでも快適にご利用いただけます。<br>
+            外出先でもサクサク使えます。
+          </p>
+        </div>
+      </div>
+
+      <!-- Q6: 登録した香水は他の人に見られますか？ -->
+      <div class="collapse collapse-plus bg-white shadow-lg rounded-xl">
+        <input type="radio" name="faq-accordion" />
+        <div class="collapse-title text-lg font-semibold text-neutral">
+          <i class="fa-solid fa-circle-question text-secondary mr-2"></i>
+          登録した香水は他の人に見られますか？
+        </div>
+        <div class="collapse-content">
+          <p class="text-gray-700 leading-relaxed pt-2">
+            マイ香水は<strong class="text-secondary">公開・非公開を自由に切り替え</strong>できます。<br>
+            プライベートな香水は非公開に、おすすめしたい香水は公開してレビューを投稿できます。あなたのペースで楽しんでください。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- まだ不明な点がある場合 -->
+    <div class="mt-12 text-center bg-white rounded-2xl shadow-lg p-8">
+      <i class="fa-solid fa-envelope text-4xl text-primary mb-4"></i>
+      <h3 class="text-xl font-bold text-neutral mb-2">他にご質問はありますか？</h3>
+      <p class="text-gray-600 mb-6">
+        ご不明な点があれば、お気軽に<%= link_to "お問い合わせ", "https://docs.google.com/forms/d/e/1FAIpQLSfIxqJ-RczDz23_qfu-mTD9LXLVNYUmUxdanyS0B4mFrnuu-A/viewform?usp=header", target: "_blank", rel: "noopener noreferrer", class: "link link-primary font-semibold" %>ください。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <%= link_to new_diagnosis_path, class: "btn btn-primary gap-2" do %>
+          <i class="fa-solid fa-magnifying-glass-plus"></i>
+          まずは香り診断から始める
+        <% end %>
+        <%= link_to reviews_path, class: "btn btn-outline btn-primary gap-2" do %>
+          <i class="fa-solid fa-comments"></i>
+          レビューを見てみる
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
