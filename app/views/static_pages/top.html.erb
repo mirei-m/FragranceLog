@@ -72,28 +72,185 @@
   </div>
 </div>
 
-<!-- 既存の機能カードセクション -->
-<div class="max-w-5xl mx-auto px-4 pb-12 mt-4">
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-    <%= link_to fragrances_path, class:"card bg-white rounded-xl shadow-lg p-4 text-center hover:bg-gray-100 transition" do %>
-      <h2 class="font-semibold text-lg text-primary mb-2"><i class="fa-solid fa-spray-can-sparkles"></i>  マイ香水</h2>
-      <p class="text-sm text-gray-600">自分の香水を登録して一覧で管理。ボトル画像や印象も記録できます。</p>
-    <% end %>
+<!-- 主な機能紹介セクション -->
+<div class="py-16 bg-gradient-to-b from-gray-50 to-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- セクションヘッダー -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-neutral mb-3">
+        主な機能紹介
+      </h2>
+      <p class="text-gray-600">
+        FragranceLogで使える4つの主要機能
+      </p>
+    </div>
 
-    <%= link_to calendars_path, class:"card bg-white rounded-xl shadow-lg p-4 text-center hover:bg-gray-100 transition" do %>
-      <h2 class="font-semibold text-lg text-primary mb-2"><i class="fa-solid fa-calendar"></i>  香り日記</h2>
-      <p class="text-sm text-gray-600">気分や天気と一緒に香水を記録。振り返りにも便利です。</p>
-    <% end %>
+    <!-- 機能カード -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- 1. マイ香水 -->
+      <%= link_to fragrances_path, class: "group" do %>
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+          <!-- アイコン部分 -->
+          <div class="relative bg-gradient-to-br from-primary/10 to-primary/5 p-8 text-center">
+            <div class="inline-block bg-white rounded-full p-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-spray-can-sparkles text-6xl text-primary"></i>
+            </div>
+          </div>
+          <!-- 説明部分 -->
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-neutral mb-3 group-hover:text-primary transition-colors">
+              マイ香水
+            </h3>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+              手持ちの香水を登録して一覧で管理。ブランド名、香水名、ボトル画像、カテゴリや印象を記録できます。
+            </p>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-primary"></i>
+                <span>ボトル画像を登録して視覚的に管理</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-primary"></i>
+                <span>レーダーチャートで香りを可視化</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-primary"></i>
+                <span>公開・非公開の切り替えが可能</span>
+              </div>
+            </div>
+            <div class="mt-6 flex items-center justify-between">
+              <span class="text-primary font-semibold group-hover:gap-3 flex items-center gap-2 transition-all">
+                詳しく見る
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
-    <%= link_to reviews_path, class:"card bg-white rounded-xl shadow-lg p-4 text-center hover:bg-gray-100 transition" do %>
-      <h2 class="font-semibold text-lg text-primary mb-2"><i class="fa-solid fa-comments"></i>  みんなの香水</h2>
-      <p class="text-sm text-gray-600">他の人のレビューを参考に、新しい香りとの出会いを楽しめます。</p>
-    <% end %>
+      <!-- 2. 香り日記 -->
+      <%= link_to calendars_path, class: "group" do %>
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+          <!-- アイコン部分 -->
+          <div class="relative bg-gradient-to-br from-secondary/10 to-secondary/5 p-8 text-center">
+            <div class="inline-block bg-white rounded-full p-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-calendar-days text-6xl text-secondary"></i>
+            </div>
+          </div>
+          <!-- 説明部分 -->
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-neutral mb-3 group-hover:text-secondary transition-colors">
+              香り日記
+            </h3>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+              天気や気分と一緒に、使用した香水を日記形式で記録。カレンダーで過去の記録を振り返れます。
+            </p>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-secondary"></i>
+                <span>カレンダー形式で使用履歴を管理</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-secondary"></i>
+                <span>天気・気分・ひとこと日記を記録</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-secondary"></i>
+                <span>TPOに合わせた香水選びに最適</span>
+              </div>
+            </div>
+            <div class="mt-6 flex items-center justify-between">
+              <span class="text-secondary font-semibold group-hover:gap-3 flex items-center gap-2 transition-all">
+                詳しく見る
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
-    <%= link_to new_diagnosis_path, class:"card bg-white rounded-xl shadow-lg p-4 text-center hover:bg-gray-100 transition" do %>
-      <h2 class="font-semibold text-lg text-primary mb-2"><i class="fa-solid fa-magnifying-glass-plus"></i>  香り診断</h2>
-      <p class="text-sm text-gray-600">質問に答えるだけで、あなたにぴったりな香りの系統がわかります。</p>
-    <% end %>
+      <!-- 3. みんなの香水（レビュー） -->
+      <%= link_to reviews_path, class: "group" do %>
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+          <!-- アイコン部分 -->
+          <div class="relative bg-gradient-to-br from-accent/10 to-accent/5 p-8 text-center">
+            <div class="inline-block bg-white rounded-full p-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-comments text-6xl text-accent"></i>
+            </div>
+          </div>
+          <!-- 説明部分 -->
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-neutral mb-3 group-hover:text-accent transition-colors">
+              みんなの香水
+            </h3>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+              他のユーザーが投稿した香水レビューを閲覧。コメントやお気に入りで交流し、新しい香水と出会えます。
+            </p>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-accent"></i>
+                <span>ログイン不要でレビュー閲覧可能</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-accent"></i>
+                <span>検索・タグで絞り込み検索</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-accent"></i>
+                <span>お気に入り・コメントで交流</span>
+              </div>
+            </div>
+            <div class="mt-6 flex items-center justify-between">
+              <span class="text-accent font-semibold group-hover:gap-3 flex items-center gap-2 transition-all">
+                詳しく見る
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- 4. 香り診断 -->
+      <%= link_to new_diagnosis_path, class: "group" do %>
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+          <!-- アイコン部分 -->
+          <div class="relative bg-gradient-to-br from-info/10 to-info/5 p-8 text-center">
+            <div class="inline-block bg-white rounded-full p-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-wand-magic-sparkles text-6xl text-info"></i>
+            </div>
+          </div>
+          <!-- 説明部分 -->
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-neutral mb-3 group-hover:text-info transition-colors">
+              香り診断
+            </h3>
+            <p class="text-gray-700 mb-4 leading-relaxed">
+              4つの質問に答えるだけで、あなたにぴったりな香りの系統を診断。結果から該当レビューを検索できます。
+            </p>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-info"></i>
+                <span>ログイン不要で診断可能</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-info"></i>
+                <span>8つの香り系統から診断</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fa-solid fa-check text-info"></i>
+                <span>診断結果をXでシェア可能</span>
+              </div>
+            </div>
+            <div class="mt-6 flex items-center justify-between">
+              <span class="text-info font-semibold group-hover:gap-3 flex items-center gap-2 transition-all">
+                詳しく見る
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
