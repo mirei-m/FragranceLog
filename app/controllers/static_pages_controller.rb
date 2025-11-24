@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :top, :terms_of_service, :privacy_policy ]
 
   def top
+    @latest_reviews = Review.includes([ :user, fragrance: :tags ]).order(created_at: :desc).limit(6)
   end
 
   def terms_of_service
